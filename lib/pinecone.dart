@@ -1,8 +1,34 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library pinecone;
 
-export 'src/pinecone_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/client.dart';
+export 'src/generated/shared_models/collection.dart';
+export 'src/generated/shared_models/collection_definition.dart';
+export 'src/generated/shared_models/delete_request.dart';
+export 'src/generated/shared_models/delete_response.dart';
+export 'src/generated/shared_models/describe_index_stats_request.dart';
+export 'src/generated/shared_models/describe_index_stats_response.dart';
+export 'src/generated/shared_models/environment.dart';
+export 'src/generated/shared_models/fetch_request.dart';
+export 'src/generated/shared_models/fetch_response.dart';
+export 'src/generated/shared_models/index.dart';
+export 'src/generated/shared_models/index_configuration.dart';
+export 'src/generated/shared_models/index_database.dart';
+export 'src/generated/shared_models/index_definition.dart';
+export 'src/generated/shared_models/index_metadata_config.dart';
+export 'src/generated/shared_models/index_metric.dart';
+export 'src/generated/shared_models/index_namespace_stats.dart';
+export 'src/generated/shared_models/index_state.dart';
+export 'src/generated/shared_models/index_status.dart';
+export 'src/generated/shared_models/namespaces_value.dart';
+export 'src/generated/shared_models/query_match.dart';
+export 'src/generated/shared_models/query_request.dart';
+export 'src/generated/shared_models/query_response.dart';
+export 'src/generated/shared_models/sparse_vector_data.dart';
+export 'src/generated/shared_models/update_request.dart';
+export 'src/generated/shared_models/update_response.dart';
+export 'src/generated/shared_models/upsert_request.dart';
+export 'src/generated/shared_models/upsert_response.dart';
+export 'src/generated/shared_models/upsert_vector.dart';
+export 'src/generated/shared_models/vector_filter.dart';
+export 'src/generated/shared_models/vector_metadata.dart';
+export 'src/generated/shared_models/vectors_value.dart';

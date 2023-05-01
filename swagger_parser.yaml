@@ -1,0 +1,13 @@
+swagger_parser:
+  # Path to Pinecone vector operations API schema
+  schema_path: assets/openapi.json 
+  # Output directory for generated files (api clients and models)
+  output_directory: lib/src/generated
+  # Output language for generated models
+  language: dart 
+  # Put all clients in one folder
+  squish_clients: false 
+  # Set postfix for client folder and Class
+  client_postfix: 'Client' 
+  # Generate data classes using freezed package
+  freezed: false
