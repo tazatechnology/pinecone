@@ -9,7 +9,7 @@ part of 'describe_index_stats_request.dart';
 DescribeIndexStatsRequest _$DescribeIndexStatsRequestFromJson(
         Map<String, dynamic> json) =>
     DescribeIndexStatsRequest(
-      filter: json['filter'] as Map<String, dynamic>,
+      filter: json['filter'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$DescribeIndexStatsRequestToJson(

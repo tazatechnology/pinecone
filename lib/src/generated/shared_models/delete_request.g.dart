@@ -10,7 +10,7 @@ DeleteRequest _$DeleteRequestFromJson(Map<String, dynamic> json) =>
     DeleteRequest(
       ids: (json['ids'] as List<dynamic>).map((e) => e as String).toList(),
       deleteAll: json['deleteAll'] as bool? ?? false,
-      namespace: json['namespace'] as String,
+      namespace: json['namespace'] as String?,
       filter: json['filter'] as Map<String, dynamic>?,
     );
 

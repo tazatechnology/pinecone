@@ -29,6 +29,5 @@ export 'src/generated/shared_models/update_response.dart';
 export 'src/generated/shared_models/upsert_request.dart';
 export 'src/generated/shared_models/upsert_response.dart';
 export 'src/generated/shared_models/upsert_vector.dart';
-export 'src/generated/shared_models/vector_filter.dart';
 export 'src/generated/shared_models/vector_metadata.dart';
 export 'src/generated/shared_models/vectors_value.dart';

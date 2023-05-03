@@ -28,7 +28,9 @@ abstract class IndexOperationsClient {
   });
 
   @DELETE('/collections/{collectionName}')
-  Future<void> deleteCollection();
+  Future<void> deleteCollection({
+    @Path('collectionName') required String collectionName,
+  });
 
   @GET('/databases')
   Future<List<String>> listIndexes();
@@ -44,7 +46,9 @@ abstract class IndexOperationsClient {
   });
 
   @DELETE('/databases/{indexName}')
-  Future<void> deleteIndex();
+  Future<void> deleteIndex({
+    @Path('indexName') required String indexName,
+  });
 
   @PATCH('/databases/{indexName}')
   Future<void> configureIndex({

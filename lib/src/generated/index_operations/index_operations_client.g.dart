@@ -87,7 +87,7 @@ class _IndexOperationsClient implements IndexOperationsClient {
   }
 
   @override
-  Future<void> deleteCollection() async {
+  Future<void> deleteCollection({required String collectionName}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -99,7 +99,7 @@ class _IndexOperationsClient implements IndexOperationsClient {
     )
         .compose(
           _dio.options,
-          '/collections/{collectionName}',
+          '/collections/${collectionName}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -174,7 +174,7 @@ class _IndexOperationsClient implements IndexOperationsClient {
   }
 
   @override
-  Future<void> deleteIndex() async {
+  Future<void> deleteIndex({required String indexName}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -186,7 +186,7 @@ class _IndexOperationsClient implements IndexOperationsClient {
     )
         .compose(
           _dio.options,
-          '/databases/{indexName}',
+          '/databases/${indexName}',
           queryParameters: queryParameters,
           data: _data,
         )

@@ -152,6 +152,16 @@
         "summary": "Delete Collection",
         "description": "This operation deletes an existing collection.",
         "operationId": "delete_collection",
+        "parameters": [
+          {
+            "name": "collectionName",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "202": {
             "description": "The collection has been successfully deleted."
@@ -273,6 +283,16 @@
         "summary": "Delete Index",
         "description": "This operation deletes an existing index.",
         "operationId": "delete_index",
+        "parameters": [
+          {
+            "name": "indexName",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "202": {
             "description": "The index has been successfully deleted."
@@ -941,17 +961,6 @@
           }
         }
       },
-      "VectorFilter": {
-        "type": "object",
-        "description": "If this parameter is present, the operation only affects vectors that satisfy the filter. See https://www.pinecone.io/docs/metadata-filtering/.",
-        "additionalProperties": {},
-        "example": {
-          "hello": [
-            "alpha",
-            "bravo"
-          ]
-        }
-      },
       "VectorMetadata": {
         "type": "object",
         "additionalProperties": {},
@@ -995,7 +1004,9 @@
         "type": "object",
         "properties": {
           "filter": {
-            "$ref": "#/components/schemas/VectorFilter"
+            "$type": "object",
+            "additionalProperties": {},
+            "nullable": true
           }
         }
       },
@@ -1048,7 +1059,9 @@
             "description": "The number of results to return for each query."
           },
           "filter": {
-            "$ref": "#/components/schemas/VectorFilter"
+            "$type": "object",
+            "additionalProperties": {},
+            "nullable": true
           },
           "includeValues": {
             "type": "boolean",
@@ -1130,11 +1143,13 @@
             "default": false
           },
           "namespace": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "filter": {
-            "nullable": true,
-            "$ref": "#/components/schemas/VectorFilter"
+            "$type": "object",
+            "additionalProperties": {},
+            "nullable": true
           }
         }
       },
