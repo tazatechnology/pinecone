@@ -7,7 +7,6 @@ export 'src/generated/shared_models/delete_request.dart';
 export 'src/generated/shared_models/delete_response.dart';
 export 'src/generated/shared_models/describe_index_stats_request.dart';
 export 'src/generated/shared_models/describe_index_stats_response.dart';
-export 'src/generated/shared_models/environment.dart';
 export 'src/generated/shared_models/fetch_request.dart';
 export 'src/generated/shared_models/fetch_response.dart';
 export 'src/generated/shared_models/index.dart';

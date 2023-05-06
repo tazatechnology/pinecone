@@ -10,9 +10,9 @@ IndexDefinition _$IndexDefinitionFromJson(Map<String, dynamic> json) =>
     IndexDefinition(
       name: json['name'] as String,
       dimension: json['dimension'] as int,
-      metric: $enumDecodeNullable(_$IndexMetricEnumMap, json['metric']),
       pods: json['pods'] as int? ?? 1,
       replicas: json['replicas'] as int? ?? 1,
+      metric: $enumDecodeNullable(_$IndexMetricEnumMap, json['metric']),
       podType: json['pod_type'] as String?,
       metadataConfig: json['metadata_config'] == null
           ? null

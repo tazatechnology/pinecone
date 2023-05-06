@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+/// The current status of a index.
 @JsonEnum()
 enum IndexState {
   @JsonValue('Initializing')

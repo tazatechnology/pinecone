@@ -5,6 +5,7 @@ import 'index_status.dart';
 
 part 'index.g.dart';
 
+/// Configuration information and deployment status of the index
 @JsonSerializable()
 class Index {
   const Index({
@@ -14,7 +15,10 @@ class Index {
 
   factory Index.fromJson(Map<String, dynamic> json) => _$IndexFromJson(json);
 
+  /// Summary of index properties and metadata
   final IndexDatabase database;
+
+  /// The status of the index.
   final IndexStatus status;
 
   Map<String, dynamic> toJson() => _$IndexToJson(this);

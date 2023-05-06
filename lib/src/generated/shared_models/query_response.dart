@@ -4,6 +4,7 @@ import 'query_match.dart';
 
 part 'query_response.g.dart';
 
+/// The response to a query request
 @JsonSerializable()
 class QueryResponse {
   const QueryResponse({
@@ -15,6 +16,8 @@ class QueryResponse {
       _$QueryResponseFromJson(json);
 
   final List<QueryMatch> matches;
+
+  /// The namespace for the vectors.
   final String namespace;
 
   Map<String, dynamic> toJson() => _$QueryResponseToJson(this);

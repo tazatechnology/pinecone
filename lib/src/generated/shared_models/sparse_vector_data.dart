@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'sparse_vector_data.g.dart';
 
+/// Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length.
 @JsonSerializable()
 class SparseVectorData {
   const SparseVectorData({

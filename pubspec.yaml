@@ -1,6 +1,6 @@
 name: pinecone
-description: Unofficial Dart client for Pinecone vector database
-version: 0.1.0
+description: Unofficial Dart client for Pinecone vector database. For more details on Pinecone, please visit https://docs.pinecone.io/docs/overview.
+version: 0.2.0
 maintainer: Taza Technology LLC
 repository: https://github.com/tazatechnology/pinecone
 issue_tracker: https://github.com/tazatechnology/pinecone/issues
@@ -12,12 +12,18 @@ environment:
 
 dependencies:
   dio: ^5.1.1
-  json_annotation: ^4.8.0
+  json_annotation: ^4.8.1
   retrofit: ^4.0.1
 
 dev_dependencies:
   lints: ^2.0.0
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
-  swagger_parser: ^0.10.3
   retrofit_generator: ^6.0.0+3
+
+  # swagger_parser: ^0.10.3
+  swagger_parser:
+    git:
+      url: https://github.com/Carapacik/swagger_parser.git
+      ref: "1.0"
+      path: swagger_parser

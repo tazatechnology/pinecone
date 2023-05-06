@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+/// The vector similarity metric of the index
 @JsonEnum()
 enum IndexMetric {
   @JsonValue('euclidean')

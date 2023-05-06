@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'update_response.g.dart';
 
+/// Response from update request
 @JsonSerializable()
 class UpdateResponse {
   const UpdateResponse();

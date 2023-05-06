@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'delete_response.g.dart';
 
+/// The response of the delete request
 @JsonSerializable()
 class DeleteResponse {
   const DeleteResponse();

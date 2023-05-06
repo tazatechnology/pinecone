@@ -8,8 +8,8 @@ part of 'index_configuration.dart';
 
 IndexConfiguration _$IndexConfigurationFromJson(Map<String, dynamic> json) =>
     IndexConfiguration(
-      replicas: json['replicas'] as int? ?? 1,
       podType: json['pod_type'] as String?,
+      replicas: json['replicas'] as int? ?? 1,
     );
 
 Map<String, dynamic> _$IndexConfigurationToJson(IndexConfiguration instance) =>

@@ -4,10 +4,10 @@
     "title": "Pinecone API",
     "description": "Pinecone is a vector database. This is an unofficial, community-managed OpenAPI spec that (should) accurately model the Pinecone API. This project was developed independent of and is unaffiliated with Pinecone Systems. Users should switch to the official API spec, if and when Pinecone releases it.",
     "contact": {
-      "name": "Andy Boothe",
-      "url": "https://github.com/sigpwned/pinecone-openapi-spec"
+      "name": "Dart Pinecone Client",
+      "url": "https://pub.dev/packages/pinecone"
     },
-    "version": "20230406.1"
+    "version": "0.2.0"
   },
   "servers": [
     {
@@ -15,16 +15,7 @@
       "variables": {
         "environment": {
           "default": "us-east1-gcp",
-          "description": "The regional deployment to use. Must match API key.",
-          "enum": [
-            "us-west1-gcp",
-            "us-west4-gcp",
-            "us-central1-gcp",
-            "us-east1-gcp",
-            "us-east4-gcp",
-            "eu-west1-gcp",
-            "us-east1-aws"
-          ]
+          "description": "The regional deployment to use. Must match API key."
         }
       }
     }
@@ -353,16 +344,7 @@
             },
             "environment": {
               "description": "The cloud environment",
-              "default": "us-east1-gcp",
-              "enum": [
-                "us-west1-gcp",
-                "us-west4-gcp",
-                "us-central1-gcp",
-                "us-east1-gcp",
-                "us-east4-gcp",
-                "eu-west1-gcp",
-                "us-east1-aws"
-              ]
+              "default": "us-east1-gcp"
             }
           }
         }
@@ -473,16 +455,7 @@
             },
             "environment": {
               "description": "The cloud environment",
-              "default": "us-east1-gcp",
-              "enum": [
-                "us-west1-gcp",
-                "us-west4-gcp",
-                "us-central1-gcp",
-                "us-east1-gcp",
-                "us-east4-gcp",
-                "eu-west1-gcp",
-                "us-east1-aws"
-              ]
+              "default": "us-east1-gcp"
             }
           }
         }
@@ -533,16 +506,7 @@
             },
             "environment": {
               "description": "The cloud environment",
-              "default": "us-east1-gcp",
-              "enum": [
-                "us-west1-gcp",
-                "us-west4-gcp",
-                "us-central1-gcp",
-                "us-east1-gcp",
-                "us-east4-gcp",
-                "eu-west1-gcp",
-                "us-east1-aws"
-              ]
+              "default": "us-east1-gcp"
             }
           }
         }
@@ -593,16 +557,7 @@
             },
             "environment": {
               "description": "The cloud environment",
-              "default": "us-east1-gcp",
-              "enum": [
-                "us-west1-gcp",
-                "us-west4-gcp",
-                "us-central1-gcp",
-                "us-east1-gcp",
-                "us-east4-gcp",
-                "eu-west1-gcp",
-                "us-east1-aws"
-              ]
+              "default": "us-east1-gcp"
             }
           }
         }
@@ -653,16 +608,7 @@
             },
             "environment": {
               "description": "The cloud environment",
-              "default": "us-east1-gcp",
-              "enum": [
-                "us-west1-gcp",
-                "us-west4-gcp",
-                "us-central1-gcp",
-                "us-east1-gcp",
-                "us-east4-gcp",
-                "eu-west1-gcp",
-                "us-east1-aws"
-              ]
+              "default": "us-east1-gcp"
             }
           }
         }
@@ -750,35 +696,27 @@
       }
     },
     "schemas": {
-      "Environment": {
-        "type": "string",
-        "enum": [
-          "us-west1-gcp",
-          "us-west4-gcp",
-          "us-central1-gcp",
-          "us-east1-gcp",
-          "us-east4-gcp",
-          "eu-west1-gcp",
-          "us-east1-aws"
-        ]
-      },
       "CollectionDefinition": {
         "type": "object",
+        "description": "The collection to create",
         "required": [
           "name",
           "source"
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the collection to be created."
           },
           "source": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the source index to be used as the source for the collection."
           }
         }
       },
       "Collection": {
         "type": "object",
+        "description": "Object container for collection information",
         "required": [
           "name",
           "dimension",
@@ -786,24 +724,28 @@
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the collection"
           },
           "dimension": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The dimension of the vectors within the collection."
           },
           "size": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The size of the collection in bytes."
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "description": "The status of the collection."
           }
         }
       },
       "IndexState": {
-        "description": "The current status of a index.",
         "type": "string",
+        "description": "The current status of a index.",
         "format": "IndexState",
         "nullable": false,
         "example": "Ready",
@@ -842,127 +784,153 @@
       },
       "IndexDefinition": {
         "type": "object",
+        "description": "The index to create",
         "required": [
           "name",
           "dimension"
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the index to be created. The maximum length is 45 characters."
           },
           "dimension": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The dimensions of the vectors to be inserted in the index"
           },
           "metric": {
-            "$ref": "#/components/schemas/IndexMetric"
+            "$ref": "#/components/schemas/IndexMetric",
+            "description": "The distance metric to be used for similarity search: euclidean, cosine, or dotproduct."
           },
           "pods": {
             "type": "integer",
             "format": "int32",
-            "description": "The number of pods for the index to use,including replicas.",
             "minimum": 1,
-            "default": 1
+            "default": 1,
+            "description": "The number of pods for the index to use,including replicas."
           },
           "replicas": {
             "type": "integer",
             "format": "int32",
-            "description": "The number of replicas. Replicas duplicate your index. They provide higher availability and throughput.",
             "minimum": 1,
-            "default": 1
+            "default": 1,
+            "description": "The number of replicas. Replicas duplicate your index. They provide higher availability and throughput."
           },
           "pod_type": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "The type of pod to use. One of s1, p1, or p2 appended with . and one of x1, x2, x4, or x8."
           },
           "metadata_config": {
-            "$ref": "#/components/schemas/IndexMetadataConfig"
+            "$ref": "#/components/schemas/IndexMetadataConfig",
+            "description": "Configuration for the behavior of Pinecone's internal metadata index. By default, all metadata is indexed; when metadata_config is present, only specified metadata fields are indexed."
           },
           "source_collection": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the collection to create an index from"
           }
         }
       },
       "IndexConfiguration": {
         "type": "object",
+        "description": "This operation specifies the pod type and number of replicas for an index.",
         "properties": {
           "replicas": {
-            "description": "The desired number of replicas for the index.",
             "type": "integer",
             "format": "int32",
             "minimum": 1,
-            "default": 1
+            "default": 1,
+            "description": "The desired number of replicas for the index."
           },
           "pod_type": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "The new pod type for the index. One of s1, p1, or p2 appended with . and one of x1, x2, x4, or x8."
           }
         }
       },
       "IndexDatabase": {
         "type": "object",
+        "description": "Object container for index database information",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the index"
           },
           "metric": {
-            "$ref": "#/components/schemas/IndexMetric"
+            "$ref": "#/components/schemas/IndexMetric",
+            "description": "The distance metric to be used for similarity search"
           },
           "dimension": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The dimensions of the vectors to be inserted in the index"
           },
           "replicas": {
             "type": "integer",
             "format": "int32",
-            "minimum": 1
+            "minimum": 1,
+            "description": "The number of replicas"
           },
           "shards": {
             "type": "integer",
             "format": "int32",
-            "minimum": 1
+            "minimum": 1,
+            "description": "The number of shares"
           },
           "pods": {
             "type": "integer",
             "format": "int32",
-            "minimum": 1
+            "minimum": 1,
+            "description": "The number of pods"
           },
           "pod_type": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "The type of pods"
           }
         }
       },
       "IndexStatus": {
         "type": "object",
+        "description": "The status of an index.",
         "properties": {
           "host": {
             "type": "string",
-            "format": "Hostname"
+            "format": "Hostname",
+            "description": "The URL of the host for this index"
           },
           "port": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "The port of this index"
           },
           "state": {
-            "$ref": "#/components/schemas/IndexState"
+            "$ref": "#/components/schemas/IndexState",
+            "description": "The index state"
           },
           "ready": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicator of index readiness"
           }
         }
       },
       "Index": {
         "type": "object",
+        "description": "Configuration information and deployment status of the index",
         "properties": {
           "database": {
-            "$ref": "#/components/schemas/IndexDatabase"
+            "$ref": "#/components/schemas/IndexDatabase",
+            "description": "Summary of index properties and metadata"
           },
           "status": {
-            "$ref": "#/components/schemas/IndexStatus"
+            "$ref": "#/components/schemas/IndexStatus",
+            "description": "The status of the index."
           }
         }
       },
       "VectorMetadata": {
         "type": "object",
+        "description": "The vector meta data",
         "additionalProperties": {},
         "example": {
           "hello": "alpha"
@@ -977,59 +945,60 @@
         ],
         "properties": {
           "indices": {
-            "description": "The indices of the sparse data.",
             "type": "array",
             "items": {
               "type": "integer",
               "format": "int64"
             },
-            "example": [
-              1
-            ]
+            "description": "The indices of the sparse data."
           },
           "values": {
-            "description": "The corresponding values of the sparse data, which must be the same length as the indices.",
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
             },
-            "example": [
-              2
-            ]
+            "description": "The corresponding values of the sparse data, which must be the same length as the indices."
           }
         }
       },
       "DescribeIndexStatsRequest": {
         "type": "object",
+        "description": "This operation returns statistics about the index's contents, including the vector count per namespace and the number of dimensions.",
         "properties": {
           "filter": {
             "$type": "object",
             "additionalProperties": {},
-            "nullable": true
+            "nullable": true,
+            "description": "If this parameter is present, the operation only returns statistics for vectors that satisfy the filter."
           }
         }
       },
       "IndexNamespaceStats": {
         "type": "object",
+        "description": "The index namespace statistics",
         "properties": {
           "vectorCount": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The total number of vectors in namespace"
           }
         }
       },
       "DescribeIndexStatsResponse": {
         "type": "object",
+        "description": "Response container index statistics",
         "properties": {
           "namespaces": {
             "type": "object",
             "additionalProperties": {
               "$ref": "#/components/schemas/IndexNamespaceStats"
-            }
+            },
+            "description": "A mapping for each namespace in the index from the namespace name to a summary of its contents. If a metadata filter expression is present, the summary will reflect only vectors matching that expression."
           },
           "dimension": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The dimension of the indexed vectors."
           },
           "indexFullness": {
             "type": "number",
@@ -1038,18 +1007,21 @@
           },
           "totalVectorCount": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "Total number of vectors in the index, regardless of whether a metadata filter expression was passed."
           }
         }
       },
       "QueryRequest": {
         "type": "object",
+        "description": "Perform a query on an index",
         "required": [
           "topK"
         ],
         "properties": {
           "namespace": {
-            "type": "string"
+            "type": "string",
+            "description": "The namespace to query."
           },
           "topK": {
             "type": "integer",
@@ -1061,104 +1033,126 @@
           "filter": {
             "$type": "object",
             "additionalProperties": {},
-            "nullable": true
+            "nullable": true,
+            "description": "The filter to apply. You can use vector metadata to limit your search."
           },
           "includeValues": {
             "type": "boolean",
-            "default": false
+            "default": false,
+            "description": "Indicates whether vector values are included in the response."
           },
           "includeMetadata": {
             "type": "boolean",
-            "default": false
+            "default": false,
+            "description": "Indicates whether metadata is included in the response as well as the ids."
           },
           "vector": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "description": "The query vector. This should be the same length as the dimension of the index being queried. Each query() request can contain only one of the parameters id or vector."
           },
           "sparseVector": {
-            "$ref": "#/components/schemas/SparseVectorData"
+            "$ref": "#/components/schemas/SparseVectorData",
+            "description": "Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length."
           },
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "The unique ID of the vector to be used as a query vector. Each query() request can contain only one of the parameters queries, vector, or id."
           }
         }
       },
       "QueryMatch": {
         "type": "object",
+        "description": "The matches for the vectors.",
         "required": [
           "id"
         ],
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "This is the vector's unique id."
           },
           "score": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "description": "This is a measure of similarity between this vector and the query vector. The higher the score, the more they are similar."
           },
           "values": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "description": "This is the vector data, if it is requested."
           },
           "sparseValues": {
-            "$ref": "#/components/schemas/SparseVectorData"
+            "$ref": "#/components/schemas/SparseVectorData",
+            "description": "Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length."
           },
           "metadata": {
-            "$ref": "#/components/schemas/VectorMetadata"
+            "$ref": "#/components/schemas/VectorMetadata",
+            "description": "This is the metadata, if it is requested."
           }
         }
       },
       "QueryResponse": {
         "type": "object",
+        "description": "The response to a query request",
         "properties": {
           "matches": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/QueryMatch"
-            }
+            },
+            "description": "The list of matching vectors for query"
           },
           "namespace": {
-            "type": "string"
+            "type": "string",
+            "description": "The namespace for the vectors."
           }
         }
       },
       "DeleteRequest": {
         "type": "object",
+        "description": "Deletes vectors, by id, from a single namespace.",
         "properties": {
           "ids": {
             "type": "array",
             "maxLength": 1000,
             "items": {
               "type": "string"
-            }
+            },
+            "description": "Vectors to delete."
           },
           "deleteAll": {
             "type": "boolean",
-            "default": false
+            "default": false,
+            "description": "This indicates that all vectors in the index namespace should be deleted."
           },
           "namespace": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "The namespace to delete vectors from, if applicable."
           },
           "filter": {
             "$type": "object",
             "additionalProperties": {},
-            "nullable": true
+            "nullable": true,
+            "description": "If specified, the metadata filter here will be used to select the vectors to delete. This is mutually exclusive with specifying ids to delete in the ids param or using delete_all=True."
           }
         }
       },
       "DeleteResponse": {
         "type": "object",
+        "description": "The response of the delete request",
         "properties": {}
       },
       "FetchRequest": {
         "type": "object",
+        "description": "Operation looks up and returns vectors, by id, from a single namespace.",
         "required": [
           "ids"
         ],
@@ -1168,15 +1162,18 @@
             "maxLength": 1000,
             "items": {
               "type": "string"
-            }
+            },
+            "description": "The vector IDs to fetch. Does not accept values containing spaces."
           },
           "namespace": {
-            "type": "string"
+            "type": "string",
+            "description": "The namespace of the vectors."
           }
         }
       },
       "FetchResponse": {
         "type": "object",
+        "description": "The response to a fetch request",
         "properties": {
           "vectors": {
             "type": "object",
@@ -1186,15 +1183,18 @@
                 "type": "number",
                 "format": "float"
               }
-            }
+            },
+            "description": "Vectors returned by the fetch request."
           },
           "namespace": {
-            "type": "string"
+            "type": "string",
+            "description": "The namespace of the vectors."
           }
         }
       },
       "UpdateRequest": {
         "type": "object",
+        "description": "A vector update request",
         "required": [
           "id"
         ],
@@ -1208,50 +1208,61 @@
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "description": "The vector values"
           },
           "sparseValues": {
-            "$ref": "#/components/schemas/SparseVectorData"
+            "$ref": "#/components/schemas/SparseVectorData",
+            "description": "Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length."
           },
           "setMetadata": {
-            "$ref": "#/components/schemas/VectorMetadata"
+            "$ref": "#/components/schemas/VectorMetadata",
+            "description": "Metadata to set for the vector."
           },
           "namespace": {
-            "type": "string"
+            "type": "string",
+            "description": "The namespace containing the vector to update."
           }
         }
       },
       "UpdateResponse": {
         "type": "object",
+        "description": "Response from update request",
         "properties": {}
       },
       "UpsertVector": {
         "type": "object",
+        "description": "The vector object to upsert",
         "required": [
           "id",
           "values"
         ],
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "This is the vector's unique id."
           },
           "values": {
             "type": "array",
             "items": {
               "type": "number",
               "format": "float"
-            }
+            },
+            "description": "This is the vector data included in the request."
           },
           "sparseValues": {
-            "$ref": "#/components/schemas/SparseVectorData"
+            "$ref": "#/components/schemas/SparseVectorData",
+            "description": "Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length."
           },
           "metadata": {
-            "$ref": "#/components/schemas/VectorMetadata"
+            "$ref": "#/components/schemas/VectorMetadata",
+            "description": "This is the metadata included in the request."
           }
         }
       },
       "UpsertRequest": {
         "type": "object",
+        "description": "This operation writes vectors into a namespace. If a new value is upserted for an existing vector id, it will overwrite the previous value.",
         "required": [
           "vectors"
         ],
@@ -1261,19 +1272,23 @@
             "maxLength": 100,
             "items": {
               "$ref": "#/components/schemas/UpsertVector"
-            }
+            },
+            "description": "An array containing the vectors to upsert. Recommended batch limit is 100 vectors."
           },
           "namespace": {
-            "type": "string"
+            "type": "string",
+            "description": "This is the namespace name where you upsert vectors."
           }
         }
       },
       "UpsertResponse": {
         "type": "object",
+        "description": "The response of update request",
         "properties": {
           "upsertedCount": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The number of vectors upserted."
           }
         }
       }
