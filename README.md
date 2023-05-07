@@ -1,6 +1,7 @@
 # pinecone
 
 [![Pub](https://img.shields.io/pub/v/pinecone.svg)](https://pub.dev/packages/pinecone)
+[![Publish](https://github.com/tazatechnology/pinecone/actions/workflows/publish.yaml/badge.svg)](https://github.com/tazatechnology/pinecone/actions/workflows/publish.yaml)
 
 [pinecone](https://pub.dev/packages/pinecone) is an unofficial Dart client for your managed [Pinecone](https://www.pinecone.io/) vector database instance.
 
