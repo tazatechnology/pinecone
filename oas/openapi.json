@@ -1,0 +1,1265 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Pinecone API",
+    "contact": {
+      "name": "Pinecone.io Ops",
+      "email": "support@pinecone.io",
+      "url": "https://pinecone.io"
+    },
+    "version": "6385160b2d80c50016823ac4"
+  },
+  "externalDocs": {
+    "description": "More Pinecone.io API docs",
+    "url": "https://www.pinecone.io/docs"
+  },
+  "tags": [
+    {
+      "name": "Vector Operations"
+    },
+    {
+      "name": "Index Operations"
+    }
+  ],
+  "paths": {
+    "/collections": {
+      "get": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "List collections",
+        "description": "List all collections in your project.",
+        "operationId": "list_collections",
+        "responses": {
+          "200": {
+            "description": "This operation returns a list of all the collections in your current project.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  "my-collection1",
+                  "my-collection2"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "Create collection",
+        "description": "This operation creates a Pinecone collection.",
+        "operationId": "create_collection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCollectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The collection has been successfully created."
+          },
+          "400": {
+            "description": "Bad request. Request exceeds quota or collection name is invalid."
+          },
+          "409": {
+            "description": "A collection with the name provided already exists."
+          },
+          "500": {
+            "description": "Internal error. Can be caused by invalid parameters."
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://controller.{environment}.pinecone.io",
+          "variables": {
+            "environment": {
+              "default": "us-west1-gcp-free",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ]
+    },
+    "/collections/{collectionName}": {
+      "get": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "Describe collection",
+        "description": "Get a description of a collection.",
+        "operationId": "describe_collection",
+        "responses": {
+          "200": {
+            "description": "Configuration information and deployment status of the index.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Collection"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found."
+          },
+          "500": {
+            "description": "Internal error. Can be caused by invalid parameters."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "Delete collection",
+        "description": "This operation deletes an existing collection.",
+        "operationId": "delete_collection",
+        "responses": {
+          "202": {
+            "description": "The collection has been successfully deleted."
+          },
+          "404": {
+            "description": "Collection not found."
+          },
+          "500": {
+            "description": "Internal error. Can be caused by invalid parameters."
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://controller.{environment}.pinecone.io",
+          "variables": {
+            "environment": {
+              "default": "us-west1-gcp-free",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/CollectionName"
+        }
+      ]
+    },
+    "/databases/": {
+      "get": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "List indexes",
+        "description": "This operation returns a list of your Pinecone indexes.",
+        "operationId": "list_indexes",
+        "responses": {
+          "200": {
+            "description": "This operation returns a list of all the indexes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  "my-index",
+                  "my-index2"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "Create index",
+        "description": "This operation creates a Pinecone index.",
+        "operationId": "create_index",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIndexRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The index has been successfully created."
+          },
+          "400": {
+            "description": "Bad request. Encountered when request exceeds quota or an invalid index name."
+          },
+          "409": {
+            "description": "Index of given name already exists."
+          },
+          "500": {
+            "description": "Internal error. Can be caused by invalid parameters."
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://controller.{environment}.pinecone.io",
+          "variables": {
+            "environment": {
+              "default": "us-west1-gcp-free",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ]
+    },
+    "/databases/{indexName}": {
+      "get": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "Describe index",
+        "description": "Get a description of an index.",
+        "operationId": "describe_index",
+        "responses": {
+          "200": {
+            "description": "Configuration information and deployment status of the index.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Index"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Index not found."
+          },
+          "500": {
+            "description": "Internal error. Can be caused by invalid parameters."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "Delete index",
+        "description": "This operation deletes an existing index.",
+        "operationId": "delete_index",
+        "responses": {
+          "202": {
+            "description": "The index has been successfully deleted."
+          },
+          "404": {
+            "description": "Index not found."
+          },
+          "500": {
+            "description": "Internal error. Can be caused by invalid parameters."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Index Operations"
+        ],
+        "summary": "Configure index",
+        "description": "This operation specifies the pod type and number of replicas for an index.",
+        "operationId": "configure_index",
+        "requestBody": {
+          "description": "Index configuration options",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigureIndexRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "The index has been successfully updated."
+          },
+          "400": {
+            "description": "Bad request, not enough quota."
+          },
+          "404": {
+            "description": "Index not found."
+          },
+          "500": {
+            "description": "Internal error. Can be caused by invalid parameters."
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://controller.{environment}.pinecone.io",
+          "variables": {
+            "environment": {
+              "default": "us-west1-gcp-free",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/IndexName"
+        }
+      ]
+    },
+    "/describe_index_stats": {
+      "post": {
+        "tags": [
+          "Vector Operations"
+        ],
+        "summary": "Describe index stats",
+        "description": "This operation returns statistics about the index's contents",
+        "operationId": "describe_index_stats",
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IndexStatsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IndexStats"
+                }
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://{index_name}-{project_id}.svc.{environment}.pinecone.io",
+          "variables": {
+            "index_name": {
+              "default": "",
+              "description": "The name of your index. See Pinecone console."
+            },
+            "project_id": {
+              "default": "",
+              "description": "The id of your project. See Pinecone console."
+            },
+            "environment": {
+              "default": "",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ]
+    },
+    "/query": {
+      "post": {
+        "tags": [
+          "Vector Operations"
+        ],
+        "summary": "Query vectors",
+        "description": "Retrieves the ids of the most similar items in a namespace, along with their similarity scores.",
+        "operationId": "query_vectors",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://{index_name}-{project_id}.svc.{environment}.pinecone.io",
+          "variables": {
+            "index_name": {
+              "default": "",
+              "description": "The name of your index. See Pinecone console."
+            },
+            "project_id": {
+              "default": "",
+              "description": "The id of your project. See Pinecone console."
+            },
+            "environment": {
+              "default": "",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ]
+    },
+    "/vectors/delete": {
+      "post": {
+        "tags": [
+          "Vector Operations"
+        ],
+        "summary": "Delete vectors",
+        "description": "Deletes vectors, by id, from a single namespace.",
+        "operationId": "delete_vectors",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://{index_name}-{project_id}.svc.{environment}.pinecone.io",
+          "variables": {
+            "index_name": {
+              "default": "",
+              "description": "The name of your index. See Pinecone console."
+            },
+            "project_id": {
+              "default": "",
+              "description": "The id of your project. See Pinecone console."
+            },
+            "environment": {
+              "default": "",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ]
+    },
+    "/vectors/fetch": {
+      "get": {
+        "tags": [
+          "Vector Operations"
+        ],
+        "summary": "Fetch vectors",
+        "description": "Looks up and returns vectors, by ID, from a single namespace.",
+        "operationId": "fetch_vectors",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "The vector IDs to fetch.",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "namespace",
+            "in": "query",
+            "description": "Option to fetch from a single namespace",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FetchResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://{index_name}-{project_id}.svc.{environment}.pinecone.io",
+          "variables": {
+            "index_name": {
+              "default": "",
+              "description": "The name of your index. See Pinecone console."
+            },
+            "project_id": {
+              "default": "",
+              "description": "The id of your project. See Pinecone console."
+            },
+            "environment": {
+              "default": "",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ]
+    },
+    "/vectors/update": {
+      "post": {
+        "tags": [
+          "Vector Operations"
+        ],
+        "summary": "Update vector",
+        "description": "Updates vector in a namespace",
+        "operationId": "update_vector",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response"
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://{index_name}-{project_id}.svc.{environment}.pinecone.io",
+          "variables": {
+            "index_name": {
+              "default": "",
+              "description": "The name of your index. See Pinecone console."
+            },
+            "project_id": {
+              "default": "",
+              "description": "The id of your project. See Pinecone console."
+            },
+            "environment": {
+              "default": "",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ]
+    },
+    "/vectors/upsert": {
+      "post": {
+        "tags": [
+          "Vector Operations"
+        ],
+        "summary": "Upsert vectors",
+        "description": "Writes vectors into a namespace. If a new value is upserted for an existing vector id, it will overwrite the previous value.",
+        "operationId": "upsert_vectors",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpsertResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "servers": [
+        {
+          "url": "https://{index_name}-{project_id}.svc.{environment}.pinecone.io",
+          "variables": {
+            "index_name": {
+              "default": "",
+              "description": "The name of your index. See Pinecone console."
+            },
+            "project_id": {
+              "default": "",
+              "description": "The id of your project. See Pinecone console."
+            },
+            "environment": {
+              "default": "",
+              "description": "The region for your project. See Pinecone console"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "SearchMetric": {
+        "type": "string",
+        "description": "The vector similarity metric of the index.",
+        "default": "cosine",
+        "enum": [
+          "euclidean",
+          "cosine",
+          "dotproduct"
+        ]
+      },
+      "PodType": {
+        "type": "string",
+        "description": "An enumeration of the available pod types.",
+        "example": "p1.x1",
+        "enum": [
+          "s1.x1",
+          "s1.x2",
+          "s1.x4",
+          "s1.x8",
+          "p1.x1",
+          "p1.x2",
+          "p1.x4",
+          "p1.x8",
+          "p2.x1",
+          "p2.x2",
+          "p2.x4",
+          "p2.x8"
+        ]
+      },
+      "Index": {
+        "required": [
+          "database",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "database": {
+            "$ref": "#/components/schemas/IndexDatabase"
+          },
+          "status": {
+            "$ref": "#/components/schemas/IndexStatus"
+          }
+        }
+      },
+      "IndexState": {
+        "type": "string",
+        "description": "The current state of a index.",
+        "enum": [
+          "Initializing",
+          "ScalingUp",
+          "ScalingDown",
+          "Terminating",
+          "Ready"
+        ]
+      },
+      "IndexDatabase": {
+        "required": [
+          "name",
+          "metric",
+          "dimension",
+          "replicas",
+          "shards",
+          "pods"
+        ],
+        "type": "object",
+        "description": "Summary of index properties and metadata",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the index.",
+            "example": "my-index"
+          },
+          "metric": {
+            "type": "string",
+            "$ref": "#/components/schemas/SearchMetric"
+          },
+          "dimension": {
+            "type": "integer",
+            "description": "The dimension of the index.",
+            "example": 1536
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "The number of index replicas.",
+            "example": 1
+          },
+          "shards": {
+            "type": "integer",
+            "description": "The number of index shards.",
+            "example": 1
+          },
+          "pods": {
+            "type": "integer",
+            "description": "The number of index pods.",
+            "example": 1
+          },
+          "pod_type": {
+            "type": "string",
+            "$ref": "#/components/schemas/PodType"
+          }
+        }
+      },
+      "IndexStatus": {
+        "required": [
+          "host",
+          "port",
+          "state",
+          "ready"
+        ],
+        "type": "object",
+        "description": "Information regarding status of the index.",
+        "properties": {
+          "host": {
+            "type": "string",
+            "description": "The host of the index.",
+            "example": "my-index-abc123.svc.us-west1-gcp.pinecone.io"
+          },
+          "port": {
+            "type": "integer",
+            "description": "The port of this index.",
+            "example": 1
+          },
+          "state": {
+            "type": "string",
+            "$ref": "#/components/schemas/IndexState"
+          },
+          "ready": {
+            "type": "boolean",
+            "description": "Indicator of index readiness."
+          }
+        }
+      },
+      "IndexStats": {
+        "type": "object",
+        "description": "Information regarding status of the index.",
+        "properties": {
+          "namespaces": {
+            "type": "object",
+            "description": "A mapping for each namespace in the index from the namespace name to a summary of its contents.",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/NamespaceStats"
+            }
+          },
+          "dimension": {
+            "type": "integer",
+            "description": "The dimension of the indexed vectors.",
+            "example": 1536
+          },
+          "indexFullness": {
+            "type": "number",
+            "description": "The fullness of the index, regardless of whether a metadata filter expression was passed. The granularity of this metric is 10%.",
+            "example": 0.5
+          },
+          "totalVectorCount": {
+            "type": "integer",
+            "description": "Indicator of index readiness.",
+            "format": "int64"
+          }
+        }
+      },
+      "NamespaceStats": {
+        "required": [
+          "vectorCount"
+        ],
+        "type": "object",
+        "description": "A summary of the contents of a namespace.",
+        "properties": {
+          "vectorCount": {
+            "type": "integer",
+            "description": "The number of vectors stored in this namespace.",
+            "format": "int64"
+          }
+        }
+      },
+      "Collection": {
+        "required": [
+          "name",
+          "status",
+          "dimension"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the collection.",
+            "example": "my-collection"
+          },
+          "status": {
+            "type": "string",
+            "$ref": "#/components/schemas/CollectionStatus"
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size of the collection in bytes.",
+            "example": 1000
+          },
+          "dimension": {
+            "type": "integer",
+            "description": "The dimensionality of the collection.",
+            "example": 1536
+          }
+        }
+      },
+      "CollectionStatus": {
+        "type": "string",
+        "description": "The current status of the collection",
+        "enum": [
+          "Initializing",
+          "Ready"
+        ]
+      },
+      "ConfigureIndexRequest": {
+        "type": "object",
+        "properties": {
+          "replicas": {
+            "type": "integer",
+            "description": "The desired number of replicas for the index.",
+            "default": 1,
+            "minimum": 1
+          },
+          "pod_type": {
+            "type": "string",
+            "$ref": "#/components/schemas/PodType"
+          }
+        }
+      },
+      "CreateCollectionRequest": {
+        "required": [
+          "name",
+          "source"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the collection to create.",
+            "example": "my-collection"
+          },
+          "source": {
+            "type": "string",
+            "description": "The name of the index to use as the source of the collection.",
+            "example": "my-index"
+          }
+        }
+      },
+      "CreateIndexRequest": {
+        "required": [
+          "name",
+          "dimension"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the index to be created.",
+            "example": "my-index",
+            "maxLength": 45
+          },
+          "dimension": {
+            "type": "integer",
+            "description": "The dimensions of the vectors to be inserted in the index.",
+            "example": 1536
+          },
+          "metric": {
+            "type": "string",
+            "$ref": "#/components/schemas/SearchMetric"
+          },
+          "pods": {
+            "type": "integer",
+            "description": "The number of pods for the index to use, including replicas.",
+            "default": 1,
+            "minimum": 1
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "The number of replicas. Replicas duplicate your index. They provide higher availability and throughput.",
+            "default": 1,
+            "minimum": 1
+          },
+          "pod_type": {
+            "type": "string",
+            "default": "p1.x1",
+            "$ref": "#/components/schemas/PodType"
+          },
+          "metadata_config": {
+            "type": "object",
+            "description": "Configuration for the behavior of Pinecone's internal metadata index.",
+            "example": {
+              "key": "value"
+            },
+            "additionalProperties": true
+          },
+          "source_collection": {
+            "type": "string",
+            "description": "The name of the collection to create an index from.",
+            "example": "my-collection"
+          }
+        }
+      },
+      "IndexStatsRequest": {
+        "type": "object",
+        "properties": {
+          "filter": {
+            "type": "object",
+            "description": "If defined, the operation only returns statistics for vectors that satisfy the filter.",
+            "additionalProperties": true
+          }
+        }
+      },
+      "DeleteRequest": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "description": "Vectors to delete, by id.",
+            "maxItems": 1000,
+            "items": {
+              "type": "string"
+            }
+          },
+          "deleteAll": {
+            "type": "boolean",
+            "description": "This indicates that all vectors in the index namespace should be deleted.",
+            "example": false
+          },
+          "namespace": {
+            "type": "string",
+            "description": "The namespace to delete vectors from, if applicable.",
+            "example": "my-namespace"
+          },
+          "filter": {
+            "type": "object",
+            "description": "If specified, the metadata filter here will be used to select the vectors to delete.",
+            "example": {
+              "key": "value"
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "QueryRequest": {
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "The namespace to query."
+          },
+          "topK": {
+            "type": "integer",
+            "description": "The number of results to return for each query.",
+            "default": 10,
+            "example": 10,
+            "minimum": 1,
+            "maximum": 10000
+          },
+          "filter": {
+            "type": "object",
+            "description": "The filter to apply. You can use vector metadata to limit your search.",
+            "example": {
+              "key": "value"
+            },
+            "additionalProperties": true
+          },
+          "includeValues": {
+            "type": "boolean",
+            "description": "Indicates whether vector values are included in the response.",
+            "default": false
+          },
+          "includeMetadata": {
+            "type": "boolean",
+            "description": "Indicates whether metadata is included in the response as well as the ids.",
+            "default": false
+          },
+          "vector": {
+            "type": "array",
+            "description": "The query vector. This should be the same length as the dimension of the index being queried.",
+            "minItems": 1,
+            "maxItems": 20000,
+            "items": {
+              "type": "number"
+            }
+          },
+          "sparseVector": {
+            "description": "Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length.",
+            "$ref": "#/components/schemas/SparseVector"
+          },
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the vector to be used as a query vector.",
+            "example": "example-vector-1",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        }
+      },
+      "QueryResponse": {
+        "required": [
+          "namespace",
+          "matches"
+        ],
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "The namespace to query."
+          },
+          "matches": {
+            "type": "array",
+            "description": "The matches for the vectors.",
+            "items": {
+              "$ref": "#/components/schemas/VectorMatch"
+            }
+          }
+        }
+      },
+      "FetchResponse": {
+        "required": [
+          "namespace",
+          "vectors"
+        ],
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "The namespace to the vectors."
+          },
+          "vectors": {
+            "type": "object",
+            "description": "The matches for the vectors.",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Vector"
+            }
+          }
+        }
+      },
+      "UpdateRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the vector.",
+            "example": "example-vector-1",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "values": {
+            "type": "array",
+            "description": "The vector values",
+            "minItems": 1,
+            "maxItems": 20000,
+            "items": {
+              "type": "number"
+            }
+          },
+          "sparseValues": {
+            "description": "Vector sparse data.",
+            "$ref": "#/components/schemas/SparseVector"
+          },
+          "setMetadata": {
+            "type": "object",
+            "description": "Metadata to set for the vector.",
+            "additionalProperties": true
+          },
+          "namespace": {
+            "type": "string",
+            "description": "The namespace containing the vector to update."
+          }
+        }
+      },
+      "UpsertRequest": {
+        "required": [
+          "vectors"
+        ],
+        "type": "object",
+        "properties": {
+          "vectors": {
+            "type": "array",
+            "description": "An array containing the vectors to upsert.",
+            "items": {
+              "$ref": "#/components/schemas/Vector"
+            }
+          },
+          "namespace": {
+            "type": "string",
+            "description": "This is the namespace name where you upsert vectors."
+          }
+        }
+      },
+      "UpsertResponse": {
+        "type": "object",
+        "properties": {
+          "upsertedCount": {
+            "type": "integer",
+            "description": "The number of vectors upserted."
+          }
+        }
+      },
+      "Vector": {
+        "required": [
+          "id",
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the vector.",
+            "example": "example-vector-1",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "values": {
+            "type": "array",
+            "description": "The vector values",
+            "minItems": 1,
+            "maxItems": 20000,
+            "items": {
+              "type": "number"
+            }
+          },
+          "sparseValues": {
+            "description": "Sparse vector data for this vector.",
+            "$ref": "#/components/schemas/SparseVector"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Metadata associated with this vector.",
+            "additionalProperties": true
+          }
+        }
+      },
+      "VectorMatch": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the vector.",
+            "example": "example-vector-1",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "score": {
+            "type": "number",
+            "description": "This is a measure of similarity between this vector and the query vector. The higher the score, the more they are similar."
+          },
+          "values": {
+            "type": "array",
+            "description": "This is the vector data, if it is requested.",
+            "minItems": 1,
+            "maxItems": 20000,
+            "items": {
+              "type": "number"
+            }
+          },
+          "sparseValues": {
+            "description": "This is the sparse vector data, if it is requested.",
+            "$ref": "#/components/schemas/SparseVector"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "This is the metadata, if it is requested.",
+            "additionalProperties": true
+          }
+        }
+      },
+      "SparseVector": {
+        "type": "object",
+        "properties": {
+          "indices": {
+            "type": "array",
+            "description": "The indices of the sparse data.",
+            "minItems": 1,
+            "maxItems": 1000,
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "values": {
+            "type": "array",
+            "description": "The corresponding values of the sparse data, which must be the same length as the indices.",
+            "minItems": 1,
+            "maxItems": 1000,
+            "items": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "IndexName": {
+        "name": "indexName",
+        "in": "path",
+        "description": "Name of the index to operate on.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "CollectionName": {
+        "name": "collectionName",
+        "in": "path",
+        "description": "Name of the collection to operate on.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "Api-Key",
+        "in": "header",
+        "description": "An API Key is required to call Pinecone APIs. Get yours at https://www.pinecone.io/start/"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}
