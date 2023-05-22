@@ -4,7 +4,7 @@
 
 // OPEN API SPECIFICATION: 3.1.0
 // API TITLE: Pinecone API
-// API VERSION: 6385160b2d80c50016823ac4
+// API VERSION: 1.1.0
 
 part of pinecone_schema;
 
@@ -17,6 +17,7 @@ part of pinecone_schema;
 class VectorMatch with _$VectorMatch {
   const VectorMatch._();
 
+  /// Factory constructor for VectorMatch
   const factory VectorMatch({
     /// The unique identifier of the vector.
     required String id,
@@ -47,13 +48,17 @@ class VectorMatch with _$VectorMatch {
     'metadata'
   ];
 
+  /// Validation constants
+  static const idMinLengthValue = 1;
+  static const idMaxLengthValue = 512;
+
   /// Perform validations on the schema property values
   String? validateSchema() {
-    if (id.length < 1) {
-      return "The value of 'id' cannot be < 1 characters";
+    if (id.length < idMinLengthValue) {
+      return "The value of 'id' cannot be < $idMinLengthValue characters";
     }
-    if (id.length > 512) {
-      return "The length of 'id' cannot be > 512 characters";
+    if (id.length > idMaxLengthValue) {
+      return "The length of 'id' cannot be > $idMaxLengthValue characters";
     }
     return null;
   }

@@ -4,7 +4,7 @@
 
 // OPEN API SPECIFICATION: 3.1.0
 // API TITLE: Pinecone API
-// API VERSION: 6385160b2d80c50016823ac4
+// API VERSION: 1.1.0
 
 part of pinecone_schema;
 
@@ -17,6 +17,7 @@ part of pinecone_schema;
 class IndexDatabase with _$IndexDatabase {
   const IndexDatabase._();
 
+  /// Factory constructor for IndexDatabase
   const factory IndexDatabase({
     /// The name of the index.
     required String name,
@@ -38,7 +39,9 @@ class IndexDatabase with _$IndexDatabase {
 
     /// An enumeration of the available pod types.
     @JsonKey(
-        name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      name: 'pod_type',
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue,
+    )
     PodType? podType,
   }) = _IndexDatabase;
 

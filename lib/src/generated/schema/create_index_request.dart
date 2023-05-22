@@ -4,7 +4,7 @@
 
 // OPEN API SPECIFICATION: 3.1.0
 // API TITLE: Pinecone API
-// API VERSION: 6385160b2d80c50016823ac4
+// API VERSION: 1.1.0
 
 part of pinecone_schema;
 
@@ -17,6 +17,7 @@ part of pinecone_schema;
 class CreateIndexRequest with _$CreateIndexRequest {
   const CreateIndexRequest._();
 
+  /// Factory constructor for CreateIndexRequest
   const factory CreateIndexRequest({
     /// The name of the index to be created.
     required String name,
@@ -59,16 +60,21 @@ class CreateIndexRequest with _$CreateIndexRequest {
     'source_collection'
   ];
 
+  /// Validation constants
+  static const nameMaxLengthValue = 45;
+  static const podsMinValue = 1;
+  static const replicasMinValue = 1;
+
   /// Perform validations on the schema property values
   String? validateSchema() {
-    if (name.length > 45) {
-      return "The length of 'name' cannot be > 45 characters";
+    if (name.length > nameMaxLengthValue) {
+      return "The length of 'name' cannot be > $nameMaxLengthValue characters";
     }
-    if (pods < 1) {
-      return "The value of 'pods' cannot be < 1";
+    if (pods < podsMinValue) {
+      return "The value of 'pods' cannot be < $podsMinValue";
     }
-    if (replicas < 1) {
-      return "The value of 'replicas' cannot be < 1";
+    if (replicas < replicasMinValue) {
+      return "The value of 'replicas' cannot be < $replicasMinValue";
     }
     return null;
   }

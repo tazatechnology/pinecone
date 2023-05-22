@@ -4,7 +4,7 @@
 
 // OPEN API SPECIFICATION: 3.1.0
 // API TITLE: Pinecone API
-// API VERSION: 6385160b2d80c50016823ac4
+// API VERSION: 1.1.0
 
 part of pinecone_schema;
 
@@ -17,13 +17,16 @@ part of pinecone_schema;
 class ConfigureIndexRequest with _$ConfigureIndexRequest {
   const ConfigureIndexRequest._();
 
+  /// Factory constructor for ConfigureIndexRequest
   const factory ConfigureIndexRequest({
     /// The desired number of replicas for the index.
     @Default(1) int replicas,
 
     /// An enumeration of the available pod types.
     @JsonKey(
-        name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      name: 'pod_type',
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue,
+    )
     PodType? podType,
   }) = _ConfigureIndexRequest;
 
@@ -34,10 +37,13 @@ class ConfigureIndexRequest with _$ConfigureIndexRequest {
   /// List of all property names of schema
   static const List<String> propertyNames = ['replicas', 'pod_type'];
 
+  /// Validation constants
+  static const replicasMinValue = 1;
+
   /// Perform validations on the schema property values
   String? validateSchema() {
-    if (replicas < 1) {
-      return "The value of 'replicas' cannot be < 1";
+    if (replicas < replicasMinValue) {
+      return "The value of 'replicas' cannot be < $replicasMinValue";
     }
     return null;
   }

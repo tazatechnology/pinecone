@@ -4,7 +4,7 @@
 
 // OPEN API SPECIFICATION: 3.1.0
 // API TITLE: Pinecone API
-// API VERSION: 6385160b2d80c50016823ac4
+// API VERSION: 1.1.0
 
 part of pinecone_schema;
 
@@ -17,6 +17,7 @@ part of pinecone_schema;
 class UpsertResponse with _$UpsertResponse {
   const UpsertResponse._();
 
+  /// Factory constructor for UpsertResponse
   const factory UpsertResponse({
     /// The number of vectors upserted.
     int? upsertedCount,

@@ -4,13 +4,13 @@
 
 // OPEN API SPECIFICATION: 3.1.0
 // API TITLE: Pinecone API
-// API VERSION: 6385160b2d80c50016823ac4
+// API VERSION: 1.1.0
 
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
-import '../schema/schema_index.dart';
+import '../schema/schema.dart';
 
 /// Enum of HTTP methods
 enum HttpMethod { get, put, post, delete, options, head, patch, trace }
@@ -28,22 +28,30 @@ class PineconeClientException implements HttpException {
     required this.uri,
     required this.method,
     this.code,
-    this.data,
+    this.body,
   });
+  @override
   final String message;
+  @override
   final Uri uri;
   final HttpMethod method;
   final int? code;
-  final Object? data;
+  final Object? body;
 
   @override
   String toString() {
+    Object? data;
+    try {
+      data = body is String ? jsonDecode(body as String) : body.toString();
+    } catch (e) {
+      data = body.toString();
+    }
     final s = JsonEncoder.withIndent('  ').convert({
       'uri': uri.toString(),
       'method': method.name.toUpperCase(),
       'code': code,
       'message': message,
-      'data': data.toString(),
+      'body': data,
     });
     return 'PineconeClientException($s)';
   }
@@ -61,16 +69,15 @@ class PineconeClientException implements HttpException {
 class PineconeClient {
   PineconeClient({
     required this.apiKey,
-    String? host,
+    this.host,
     http.Client? client,
   }) {
-    _host = host;
     // Create a retry client
     _client = RetryClient(client ?? http.Client());
   }
 
   /// User provided override for host URL
-  late final String? _host;
+  late final String? host;
 
   /// Internal HTTP client
   late final http.Client _client;
@@ -86,6 +93,26 @@ class PineconeClient {
   void endSession() => _client.close();
 
   // ------------------------------------------
+  // METHOD: onRequest
+  // ------------------------------------------
+
+  /// Middleware for HTTP requests (user can override)
+  ///
+  /// The request can be of type [http.Request] or [http.MultipartRequest]
+  Future<http.BaseRequest> onRequest(http.BaseRequest request) async {
+    return request;
+  }
+
+  // ------------------------------------------
+  // METHOD: onResponse
+  // ------------------------------------------
+
+  /// Middleware for HTTP responses (user can override)
+  Future<http.Response> onResponse(http.Response response) async {
+    return response;
+  }
+
+  // ------------------------------------------
   // METHOD: _request
   // ------------------------------------------
 
@@ -95,8 +122,8 @@ class PineconeClient {
     required String path,
     required bool? secure,
     required HttpMethod method,
-    Map<String, dynamic> queryParameters = const {},
-    Map<String, String> headers = const {},
+    Map<String, dynamic> queryParams = const {},
+    Map<String, String> headerParams = const {},
     ContentType requestType = ContentType.json,
     ContentType responseType = ContentType.json,
     Object? body,
@@ -104,9 +131,10 @@ class PineconeClient {
     // final timer = Stopwatch()..start();
 
     // Override with the user provided host
-    // Else, default to server host defined in spec
-    if (_host?.isNotEmpty ?? false) {
-      host = _host!;
+    if (host.isEmpty) {
+      host = this.host ?? '';
+    } else if (host.isNotEmpty && this.host != null) {
+      host = this.host ?? host;
     }
 
     // Ensure a host is provided
@@ -117,39 +145,43 @@ class PineconeClient {
     }
 
     // Determine the connection type
-    if (secure == null) {
-      secure = Uri.parse(_host ?? '').scheme == 'https';
-    }
+    secure ??= Uri.parse(host).scheme == 'https';
 
     // Build the request URI
     Uri uri;
-    if (secure) {
-      uri = Uri.https(host, path, queryParameters);
+    if (host.contains('http')) {
+      host = Uri.parse(host).host;
     } else {
-      uri = Uri.http(host, path, queryParameters);
+      host = Uri.parse(Uri.https(host).toString()).host;
     }
+    if (secure) {
+      uri = Uri.https(host, path, queryParams.isEmpty ? null : queryParams);
+    } else {
+      uri = Uri.http(host, path, queryParams.isEmpty ? null : queryParams);
+    }
+
+    // Build the headers
+    Map<String, String> headers = {}..addAll(headerParams);
 
     // Define the request type being sent to server
     switch (requestType) {
       case ContentType.json:
-        headers['content-type'] = 'application/json';
+        headers[HttpHeaders.contentTypeHeader] = 'application/json';
       case ContentType.multipart:
-        headers['content-type'] = 'multipart/form-data';
+        headers[HttpHeaders.contentTypeHeader] = 'multipart/form-data';
       case ContentType.xml:
-        headers['content-type'] = 'application/xml';
+        headers[HttpHeaders.contentTypeHeader] = 'application/xml';
     }
 
     // Define the response type expected to receive from server
     switch (responseType) {
       case ContentType.json:
-        headers['accept'] = 'application/json';
+        headers[HttpHeaders.acceptHeader] = 'application/json';
       case ContentType.multipart:
-        headers['accept'] = 'multipart/form-data';
+        headers[HttpHeaders.acceptHeader] = 'multipart/form-data';
       case ContentType.xml:
-        headers['accept'] = 'application/xml';
+        headers[HttpHeaders.acceptHeader] = 'application/xml';
     }
-
-    // Build the headers
 
     // Build the request object
     late http.Response response;
@@ -176,19 +208,29 @@ class PineconeClient {
             uri: uri,
             method: method,
             message: 'Could not encode: ${body.runtimeType}',
-            data: e,
+            body: e,
           ).toString();
         }
       }
+
+      // Add request headers
       request.headers.addAll(headers);
+
+      // Handle user request middleware
+      request = await onRequest(request);
+
+      // Submit request
       response = await http.Response.fromStream(await _client.send(request));
+
+      // Handle user response middleware
+      response = await onResponse(response);
     } catch (e) {
-      // Handle response errors
+      // Handle request and response errors
       throw PineconeClientException(
         uri: uri,
         method: method,
         message: 'Response error',
-        data: e,
+        body: e,
       ).toString();
     }
 
@@ -197,21 +239,13 @@ class PineconeClient {
       return response;
     }
 
-    // Attempt to decode unsuccessful response body
-    Object? rBody;
-    try {
-      rBody = jsonDecode(response.body);
-    } catch (e) {
-      // pass
-    }
-
     // Handle unsuccessful response
     throw PineconeClientException(
       uri: uri,
       method: method,
       message: 'Unsuccessful response',
       code: response.statusCode,
-      data: rBody ?? response.body,
+      body: response.body,
     ).toString();
   }
 
@@ -236,7 +270,7 @@ class PineconeClient {
       method: HttpMethod.get,
       requestType: ContentType.json,
       responseType: ContentType.json,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -268,7 +302,7 @@ class PineconeClient {
       requestType: ContentType.json,
       responseType: ContentType.json,
       body: request,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -293,12 +327,12 @@ class PineconeClient {
   }) async {
     final r = await _request(
       host: 'controller.${environment}.pinecone.io',
-      path: '/collections/${collectionName}',
+      path: '/collections/$collectionName',
       secure: true,
       method: HttpMethod.get,
       requestType: ContentType.json,
       responseType: ContentType.json,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -324,12 +358,12 @@ class PineconeClient {
   }) async {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
-      path: '/collections/${collectionName}',
+      path: '/collections/$collectionName',
       secure: true,
       method: HttpMethod.delete,
       requestType: ContentType.json,
       responseType: ContentType.json,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -356,7 +390,7 @@ class PineconeClient {
       method: HttpMethod.get,
       requestType: ContentType.json,
       responseType: ContentType.json,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -388,7 +422,7 @@ class PineconeClient {
       requestType: ContentType.json,
       responseType: ContentType.json,
       body: request,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -413,12 +447,12 @@ class PineconeClient {
   }) async {
     final r = await _request(
       host: 'controller.${environment}.pinecone.io',
-      path: '/databases/${indexName}',
+      path: '/databases/$indexName',
       secure: true,
       method: HttpMethod.get,
       requestType: ContentType.json,
       responseType: ContentType.json,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -444,12 +478,12 @@ class PineconeClient {
   }) async {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
-      path: '/databases/${indexName}',
+      path: '/databases/$indexName',
       secure: true,
       method: HttpMethod.delete,
       requestType: ContentType.json,
       responseType: ContentType.json,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -477,13 +511,13 @@ class PineconeClient {
   }) async {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
-      path: '/databases/${indexName}',
+      path: '/databases/$indexName',
       secure: true,
       method: HttpMethod.patch,
       requestType: ContentType.json,
       responseType: ContentType.json,
       body: request,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -520,7 +554,7 @@ class PineconeClient {
       requestType: ContentType.json,
       responseType: ContentType.json,
       body: request,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -558,7 +592,7 @@ class PineconeClient {
       requestType: ContentType.json,
       responseType: ContentType.json,
       body: request,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -596,7 +630,7 @@ class PineconeClient {
       requestType: ContentType.json,
       responseType: ContentType.json,
       body: request,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -635,10 +669,10 @@ class PineconeClient {
       method: HttpMethod.get,
       requestType: ContentType.json,
       responseType: ContentType.json,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
-      queryParameters: {
+      queryParams: {
         'ids': ids,
         if (namespace != null) 'namespace': namespace,
       },
@@ -677,7 +711,7 @@ class PineconeClient {
       requestType: ContentType.json,
       responseType: ContentType.json,
       body: request,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );
@@ -714,7 +748,7 @@ class PineconeClient {
       requestType: ContentType.json,
       responseType: ContentType.json,
       body: request,
-      headers: {
+      headerParams: {
         'Api-Key': apiKey,
       },
     );

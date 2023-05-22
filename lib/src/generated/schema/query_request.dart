@@ -4,7 +4,7 @@
 
 // OPEN API SPECIFICATION: 3.1.0
 // API TITLE: Pinecone API
-// API VERSION: 6385160b2d80c50016823ac4
+// API VERSION: 1.1.0
 
 part of pinecone_schema;
 
@@ -17,6 +17,7 @@ part of pinecone_schema;
 class QueryRequest with _$QueryRequest {
   const QueryRequest._();
 
+  /// Factory constructor for QueryRequest
   const factory QueryRequest({
     /// The namespace to query.
     String? namespace,
@@ -59,19 +60,25 @@ class QueryRequest with _$QueryRequest {
     'id'
   ];
 
+  /// Validation constants
+  static const topKMinValue = 1;
+  static const topKMaxValue = 10000;
+  static const idMinLengthValue = 1;
+  static const idMaxLengthValue = 512;
+
   /// Perform validations on the schema property values
   String? validateSchema() {
-    if (topK < 1) {
-      return "The value of 'topK' cannot be < 1";
+    if (topK < topKMinValue) {
+      return "The value of 'topK' cannot be < $topKMinValue";
     }
-    if (topK > 10000) {
-      return "The value of 'topK' cannot be > 10000";
+    if (topK > topKMaxValue) {
+      return "The value of 'topK' cannot be > $topKMaxValue";
     }
-    if (id != null && id!.length < 1) {
-      return "The value of 'id' cannot be < 1 characters";
+    if (id != null && id!.length < idMinLengthValue) {
+      return "The value of 'id' cannot be < $idMinLengthValue characters";
     }
-    if (id != null && id!.length > 512) {
-      return "The length of 'id' cannot be > 512 characters";
+    if (id != null && id!.length > idMaxLengthValue) {
+      return "The length of 'id' cannot be > $idMaxLengthValue characters";
     }
     return null;
   }

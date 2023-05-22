@@ -7,7 +7,7 @@
       "email": "support@pinecone.io",
       "url": "https://pinecone.io"
     },
-    "version": "6385160b2d80c50016823ac4"
+    "version": "1.1.0"
   },
   "externalDocs": {
     "description": "More Pinecone.io API docs",

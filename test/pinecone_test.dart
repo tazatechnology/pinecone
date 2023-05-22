@@ -12,6 +12,14 @@ void main() async {
   const int dimension = 10;
   late Index index;
 
+  // Ensure that proper environment variables are defined for testing
+  if (!Platform.environment.containsKey('PINECONE_API_KEY')) {
+    throw Exception('PINECONE_API_KEY environment variable not set');
+  }
+  if (!Platform.environment.containsKey('PINECONE_API_ENV')) {
+    throw Exception('PINECONE_API_ENV environment variable not set');
+  }
+
   // ==========================================
   // TEST: Setup/Teardown
   // ==========================================
@@ -21,7 +29,7 @@ void main() async {
     client = PineconeClient(
       apiKey: env['PINECONE_API_KEY'] ?? '',
     );
-    environment = env['PINECONE_API_ENV'] ?? 'us-west1-gcp-free';
+    environment = env['PINECONE_API_ENV'] ?? '';
   });
 
   tearDown(() {

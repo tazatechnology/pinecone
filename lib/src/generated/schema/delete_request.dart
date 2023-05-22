@@ -4,7 +4,7 @@
 
 // OPEN API SPECIFICATION: 3.1.0
 // API TITLE: Pinecone API
-// API VERSION: 6385160b2d80c50016823ac4
+// API VERSION: 1.1.0
 
 part of pinecone_schema;
 
@@ -17,6 +17,7 @@ part of pinecone_schema;
 class DeleteRequest with _$DeleteRequest {
   const DeleteRequest._();
 
+  /// Factory constructor for DeleteRequest
   const factory DeleteRequest({
     /// Vectors to delete, by id.
     List<String>? ids,

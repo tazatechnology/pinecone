@@ -8,8 +8,8 @@ main() async {
   final spec = OpenApi(
     info: Info(
       title: 'Pinecone API',
-      // Taken from the "_id" field in the OpenAPI spec
-      version: '6385160b2d80c50016823ac4',
+      // From inspection of the documentation response JSON
+      version: '1.1.0',
       contact: Contact(
         name: 'Pinecone.io Ops',
         email: 'support@pinecone.io',
@@ -142,8 +142,14 @@ main() async {
   await spec.generate(
     package: 'pinecone',
     destination: 'lib/src/generated/',
-    replace: true,
-    client: true,
-    server: false,
+    schemaOptions: SchemaGeneratorOptions(
+      replaceOutput: true,
+      includeVersion: true,
+    ),
+    clientOptions: ClientGeneratorOptions(
+      enabled: true,
+      replaceOutput: true,
+      includeVersion: true,
+    ),
   );
 }

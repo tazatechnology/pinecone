@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+* Update to latest `openapi_spec` package
+* Improved schema/client generation
+
 ## 0.3.0
 
 * Update for Dart 3 support

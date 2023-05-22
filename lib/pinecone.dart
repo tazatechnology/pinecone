@@ -2,5 +2,5 @@
 library pinecone;
 
 export 'src/generated/client/client.dart';
-export 'src/generated/schema/schema_index.dart';
+export 'src/generated/schema/schema.dart';
 export 'src/extensions.dart';

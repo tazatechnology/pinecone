@@ -32,7 +32,7 @@ build:
 	dart format .
 	
 test:
-	dart pub get && \
+	@dart pub get && \
 	dart format \
 		--set-exit-if-changed . && \
 	dart analyze \
