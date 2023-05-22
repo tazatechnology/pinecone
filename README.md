@@ -1,4 +1,4 @@
-![Header](./assets/header-image.png)
+![Header](https://github.com/tazatechnology/pinecone/raw/main/assets/header-image.png)
 
 # pinecone
 
