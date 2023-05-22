@@ -6,9 +6,10 @@
 # https://dart.dev/guides/libraries/private-files#pubspeclock.
 pubspec.lock
 
+# Ignore build artifacts
+build/
+tmp/
+docs/
+
 # MacOS
 .DS_Store
-
-# Temporary build locations
-lib/src/vector_operations
-lib/src/index_operations

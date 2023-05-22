@@ -1,4 +1,2 @@
-overrides/
-assets/
-swagger_parser.yaml
+oas/
 Makefile

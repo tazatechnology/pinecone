@@ -1,3 +1,5 @@
+![Header](./assets/header-image.png)
+
 # pinecone
 
 [![Pub](https://img.shields.io/pub/v/pinecone.svg)](https://pub.dev/packages/pinecone)
@@ -15,33 +17,32 @@ For detailed API information, please see the official [Pinecone API reference](h
 
 ## Client Instance
 
-To create a client instance you will need your API key and the environment name of your Pinecone project. You can find your API key and project environment in the [Pinecone console](https://app.pinecone.io/).
+To create a client instance you simply need the API key for your Pinecone project. You can find your API key in the [Pinecone console](https://app.pinecone.io/).
 
 ```dart
 final client = PineconeClient(
   apiKey: '123-456-789',
-  environment: 'us-west1-gcp-free',
 );
 ```
 
-Once the client is created, you can access the index and vector operations APIs respectively:
+## Index Operations
 
-```dart
-// Access the index operations API
-client.index;
+All index operations require an `environment` parameter which is used to route to the appropriate host:
 
-// Access the vector operations API
-client.vector(host:host);
+```sh
+https://controller.{environment}.pinecone.io
 ```
 
-## Index Operations
+You can find your environment name in the [Pinecone console](https://app.pinecone.io/).
 
 ### List Indexes
 
 [Official Documentation: `list_indexes`](https://docs.pinecone.io/reference/list_indexes)
 
 ```dart
-List<String> names = await client.index.listIndexes();
+List<String> indexes = await client.listIndexes(
+  environment: environment,
+);
 ```
 
 ### Create Index
@@ -49,10 +50,15 @@ List<String> names = await client.index.listIndexes();
 [Official Documentation: `create_index`](https://docs.pinecone.io/reference/create_index)
 
 ```dart
-await client.index.createIndex(
-  body: IndexDefinition(
-    name: 'my-index',
-    dimension: 1536,
+await client.createIndex(
+  environment: environment,
+  request: CreateIndexRequest(
+    name: indexName,
+    dimension: dimension,
+    metric: SearchMetric.cosine,
+    pods: 1,
+    replicas: 1,
+    podType: PodType.p1x1,
   ),
 );
 ```
@@ -62,8 +68,9 @@ await client.index.createIndex(
 [Official Documentation: `describe_index`](https://docs.pinecone.io/reference/describe_index)
 
 ```dart
-final Index index = await client.index.describeIndex(
-  indexName: 'my-index',
+Index index = await client.describeIndex(
+  environment: environment,
+  indexName: indexName,
 );
 ```
 
@@ -72,8 +79,9 @@ final Index index = await client.index.describeIndex(
 [Official Documentation: `delete_index`](https://docs.pinecone.io/reference/delete_index)
 
 ```dart
-await client.index.deleteIndex(
-  indexName: 'my-index',
+await client.deleteIndex(
+  environment: environment,
+  indexName: indexName,
 );
 ```
 
@@ -82,11 +90,13 @@ await client.index.deleteIndex(
 [Official Documentation: `configure_index`](https://docs.pinecone.io/reference/configure_index)
 
 ```dart
-await client.index.configureIndex(
-  body: IndexConfiguration(
-    podType: 's1.x2',
-    replicas: 3,
-  ),
+await client.configureIndex(
+  environment: environment,
+  indexName: indexName,
+  request: ConfigureIndexRequest(
+    replicas: 2,
+    podType: PodType.p2x2,
+  )
 );
 ```
 
@@ -95,7 +105,9 @@ await client.index.configureIndex(
 [Official Documentation: `list_collections`](https://docs.pinecone.io/reference/list_collections)
 
 ```dart
-List<String> names = await client.index.listCollections();
+List<String> collections await client.listCollections(
+  environment: environment,
+);
 ```
 
 ### Create Collection
@@ -103,10 +115,11 @@ List<String> names = await client.index.listCollections();
 [Official Documentation: `create_collection`](https://docs.pinecone.io/reference/create_collection)
 
 ```dart
-await client.index.createCollection(
-  body: CollectionDefinition(
-    name: 'my-collection',
-    source: 'my-index'
+await client.createCollection(
+  environment: environment,
+  request: CreateCollectionRequest(
+    name: collectionName,
+    source: indexName,
   ),
 );
 ```
@@ -116,8 +129,9 @@ await client.index.createCollection(
 [Official Documentation: `describe_collection`](https://docs.pinecone.io/reference/describe_collection)
 
 ```dart
-final Collection collection = await client.index.describeCollection(
-  collectionName: 'my-collection'
+Collection collection = await client.describeCollection(
+  environment: environment,
+  collectionName: collectionName,
 );
 ```
 
@@ -126,39 +140,48 @@ final Collection collection = await client.index.describeCollection(
 [Official Documentation: `delete_collection`](https://docs.pinecone.io/reference/delete_collection)
 
 ```dart
-await client.index.deleteCollection(
-  collectionName: 'my-collection'
+await client.deleteCollection(
+  environment: environment,
+  collectionName: collectionName,
 );
 ```
 
 ## Vector Operations
 
-In order to use the vector operations API, you must provide the host name of your specified index. The host name will look something like the following:
+All vector operations require the `indexName`, `projectId`, and `environment` parameters which determine the appropriate host:
 
 ```sh
-my-index-e345e78.svc.us-west1-gcp-free.pinecone.io
+https://{indexName}-{projectId}.svc.{environment}.pinecone.io
 ```
 
-To retrieve the host name, you can use the `describeIndex` method:
+For convenience, each of these components can be retrieved from the `Index` object:
 
 ```dart
-final Index index = await client.index.describeIndex(
-  indexName: 'my-index',
+final Index index = await client.describeIndex(
+  indexName: indexName,
 );
 
-// The host name is the `status.host` property
+final indexName =  index.name;
+final projectId =  index.projectId;
+final environment = index.environment;
+```
+
+To retrieve the full host URL, you can use the `status` property:
+
+```dart
 final String host = index.status.host;
 ```
 
 ### Describe Index Stats
 
-[Official Documentation: `describe_index_stats_post`](https://docs.pinecone.io/reference/describe_index_stats_post)
+[Official Documentation: `describe_index_stats`](https://docs.pinecone.io/reference/describe_index_stats_post)
 
 ```dart
-final DescribeIndexStatsResponse res =
-    await client.vector(host: host).describeIndexStats(
-          body: DescribeIndexStatsRequest(),
-        );
+IndexStats indexStats = await client.describeIndexStats(
+  indexName: index.name,
+  projectId: index.projectId,
+  environment: index.environment,
+);
 ```
 
 ### Query
@@ -166,15 +189,14 @@ final DescribeIndexStatsResponse res =
 [Official Documentation: `query`](https://docs.pinecone.io/reference/query)
 
 ```dart
-final QueryResponse res = await client.vector(host: host).query(
-      body: QueryRequest(
-        topK: 5,
-        namespace: 'my-namespace',
-        includeValues: false,
-        includeMetadata: false,
-        vector: [1, 2, 3],
-      ),
-    );
+QueryResponse queryResponse = await client.queryVectors(
+  indexName: index.name,
+  projectId: index.projectId,
+  environment: index.environment,
+  request: QueryRequest(
+    vector: queryVector,
+  ),
+);
 ```
 
 ### Delete
@@ -182,12 +204,14 @@ final QueryResponse res = await client.vector(host: host).query(
 [Official Documentation: `delete`](https://docs.pinecone.io/reference/delete)
 
 ```dart
-final DeleteResponse res = await client.vector(host: host).delete(
-      body: DeleteRequest(
-        ids: ['id-1', 'id-2', 'id-3'],
-        namespace: 'my-namespace',
-      ),
-    );
+await client.deleteVectors(
+  indexName: index.name,
+  projectId: index.projectId,
+  environment: index.environment,
+  request: DeleteRequest(
+    ids: ['vector-0', 'vector-1', 'vector-2'],
+  ),
+);
 ```
 
 ### Fetch
@@ -195,12 +219,12 @@ final DeleteResponse res = await client.vector(host: host).delete(
 [Official Documentation: `fetch`](https://docs.pinecone.io/reference/fetch)
 
 ```dart
-final FetchResponse res = await client.vector(host: host).fetch(
-      body: FetchRequest(
-        ids: [],
-        namespace: 'my-namespace',
-      ),
-    );
+FetchResponse fetchResponse = await client.fetchVectors(
+  indexName: index.name,
+  projectId: index.projectId,
+  environment: index.environment,
+  ids: ['vector-0', 'vector-1', 'vector-2'],
+);
 ```
 
 ### Update
@@ -208,13 +232,17 @@ final FetchResponse res = await client.vector(host: host).fetch(
 [Official Documentation: `update`](https://docs.pinecone.io/reference/update)
 
 ```dart
-final UpdateResponse res = await client.vector(host: host).update(
-      body: UpdateRequest(
-        id: 'id-1',
-        namespace: 'my-namespace',
-        values: [1, 2, 3],
-      ),
-    );
+await client.updateVector(
+  indexName: index.name,
+  projectId: index.projectId,
+  environment: index.environment,
+  request: UpdateRequest(
+    id: 'vector-5',
+    namespace: namespaceName,
+    values: List.generate(dimension, (k) => 999.9),
+    setMetadata: {'test-meta': 'new-meta-value'},
+  ),
+);
 ```
 
 ### Upsert
@@ -222,23 +250,24 @@ final UpdateResponse res = await client.vector(host: host).update(
 [Official Documentation: `upsert`](https://docs.pinecone.io/reference/upsert)
 
 ```dart
-final UpsertResponse res = await client.vector(host: host).upsert(
-      body: UpsertRequest(
-        vectors: [
-          UpsertVector(
-            id: 'id-1',
-            values: [1, 2, 3],
-          ),
-          UpsertVector(
-            id: 'id-2',
-            values: [4, 5, 6],
-          ),
-        ],
-        namespace: 'my-namespace',
-      ),
-    );
+UpsertResponse upsertResponse = await client.upsertVectors(
+  indexName: index.name,
+  projectId: index.projectId,
+  environment: index.environment,
+  request: UpsertRequest(
+    namespace: namespaceName,
+    vectors: [
+      for (var i = 0; i < 10; i++)
+        Vector(
+          id: 'vector-$i',
+          values: List.generate(dimension, (k) => (k + i).toDouble()),
+          metadata: {'test-meta': 'test-value-$i'},
+        ),
+    ],
+  ),
+);
 ```
 
 ## Contributing
 
-Please see the [pinecone Github repository](https://github.com/tazatechnology/pinecone).
+Please see the [pinecone Github repository](https://github.com/tazatechnology/pinecone). Feel free to open an issue to report bugs or request new features.
