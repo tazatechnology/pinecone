@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+* Make dependencies flexible
+
 ## 0.4.0
 
 * Update to latest `openapi_spec` package

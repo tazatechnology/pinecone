@@ -69,7 +69,7 @@ class VectorMatch with _$VectorMatch {
       'id': id,
       'score': score,
       'values': values,
-      'sparseValues': sparseValues,
+      'sparseValues': sparseValues?.toMap(),
       'metadata': metadata,
     };
   }

@@ -142,13 +142,12 @@ main() async {
   await spec.generate(
     package: 'pinecone',
     destination: 'lib/src/generated/',
+    replace: true,
     schemaOptions: SchemaGeneratorOptions(
-      replaceOutput: true,
       includeVersion: true,
     ),
     clientOptions: ClientGeneratorOptions(
       enabled: true,
-      replaceOutput: true,
       includeVersion: true,
     ),
   );

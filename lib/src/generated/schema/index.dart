@@ -40,8 +40,8 @@ class Index with _$Index {
   /// Map representation of object (not serialized)
   Map<String, dynamic> toMap() {
     return {
-      'database': database,
-      'status': status,
+      'database': database.toMap(),
+      'status': status.toMap(),
     };
   }
 }

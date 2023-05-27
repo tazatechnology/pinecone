@@ -1,5 +1,4 @@
 // ignore_for_file: unused_local_variable, avoid_print
-
 import 'dart:io';
 import 'package:pinecone/pinecone.dart';
 

@@ -63,7 +63,7 @@ class Vector with _$Vector {
     return {
       'id': id,
       'values': values,
-      'sparseValues': sparseValues,
+      'sparseValues': sparseValues?.toMap(),
       'metadata': metadata,
     };
   }

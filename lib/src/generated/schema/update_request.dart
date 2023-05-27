@@ -68,7 +68,7 @@ class UpdateRequest with _$UpdateRequest {
     return {
       'id': id,
       'values': values,
-      'sparseValues': sparseValues,
+      'sparseValues': sparseValues?.toMap(),
       'setMetadata': setMetadata,
       'namespace': namespace,
     };

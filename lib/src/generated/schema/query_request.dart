@@ -92,7 +92,7 @@ class QueryRequest with _$QueryRequest {
       'includeValues': includeValues,
       'includeMetadata': includeMetadata,
       'vector': vector,
-      'sparseVector': sparseVector,
+      'sparseVector': sparseVector?.toMap(),
       'id': id,
     };
   }

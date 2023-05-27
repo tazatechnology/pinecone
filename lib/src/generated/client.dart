@@ -10,7 +10,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
-import '../schema/schema.dart';
+import 'schema/schema.dart';
 
 /// Enum of HTTP methods
 enum HttpMethod { get, put, post, delete, options, head, patch, trace }
@@ -20,6 +20,10 @@ enum ContentType { json, multipart, xml }
 
 /// Enum of supported authentication types
 enum AuthType { keyQuery, keyHeader, keyCookie, openId }
+
+// ==========================================
+// CLASS: PineconeClientException
+// ==========================================
 
 /// HTTP exception handler for PineconeClient
 class PineconeClientException implements HttpException {
@@ -68,7 +72,7 @@ class PineconeClientException implements HttpException {
 /// `client`: Override HTTP client to use for requests
 class PineconeClient {
   PineconeClient({
-    required this.apiKey,
+    this.apiKey = '',
     this.host,
     http.Client? client,
   }) {
@@ -128,8 +132,6 @@ class PineconeClient {
     ContentType responseType = ContentType.json,
     Object? body,
   }) async {
-    // final timer = Stopwatch()..start();
-
     // Override with the user provided host
     if (host.isEmpty) {
       host = this.host ?? '';
@@ -150,9 +152,9 @@ class PineconeClient {
     // Build the request URI
     Uri uri;
     if (host.contains('http')) {
-      host = Uri.parse(host).host;
+      host = Uri.parse(host).authority;
     } else {
-      host = Uri.parse(Uri.https(host).toString()).host;
+      host = Uri.parse(Uri.https(host).toString()).authority;
     }
     if (secure) {
       uri = Uri.https(host, path, queryParams.isEmpty ? null : queryParams);
@@ -499,15 +501,15 @@ class PineconeClient {
   ///
   /// `environment`: The region for your project. See Pinecone console
   ///
-  /// `request`: Index configuration options
-  ///
   /// `indexName`: Name of the index to operate on.
+  ///
+  /// `request`: Index configuration options
   ///
   /// `PATCH` `https://controller.{environment}.pinecone.io/databases/{indexName}`
   Future<void> configureIndex({
     String environment = 'us-west1-gcp-free',
-    required ConfigureIndexRequest request,
     required String indexName,
+    required ConfigureIndexRequest request,
   }) async {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
