@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+* Client generation using latest `openapi_spec` package
+
 ## 0.4.1
 
 * Make dependencies flexible

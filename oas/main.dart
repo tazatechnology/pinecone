@@ -143,12 +143,9 @@ main() async {
     package: 'pinecone',
     destination: 'lib/src/generated/',
     replace: true,
-    schemaOptions: SchemaGeneratorOptions(
-      includeVersion: true,
-    ),
+    schemaOptions: SchemaGeneratorOptions(),
     clientOptions: ClientGeneratorOptions(
       enabled: true,
-      includeVersion: true,
     ),
   );
 }

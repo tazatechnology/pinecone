@@ -1,11 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-
-// OPEN API SPECIFICATION: 3.1.0
-// API TITLE: Pinecone API
-// API VERSION: 1.1.0
-
 part of pinecone_schema;
 
 // ==========================================
@@ -61,6 +56,7 @@ class QueryRequest with _$QueryRequest {
   ];
 
   /// Validation constants
+  static const topKDefaultValue = 10;
   static const topKMinValue = 1;
   static const topKMaxValue = 10000;
   static const idMinLengthValue = 1;
@@ -92,7 +88,7 @@ class QueryRequest with _$QueryRequest {
       'includeValues': includeValues,
       'includeMetadata': includeMetadata,
       'vector': vector,
-      'sparseVector': sparseVector?.toMap(),
+      'sparseVector': sparseVector,
       'id': id,
     };
   }

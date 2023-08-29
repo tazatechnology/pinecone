@@ -23,8 +23,8 @@ download:
 	jq .oasDefinition | \
 	jq 'del(..|."x-readme"?)' --indent 2 > oas/openapi_vector.json
 
-# Build the Dart client from the OpenAPI spec
-build:
+# Generate the Dart client from the OpenAPI spec
+generate:
 	dart pub get
 	dart run oas/main.dart
 	dart run build_runner build --delete-conflicting-outputs

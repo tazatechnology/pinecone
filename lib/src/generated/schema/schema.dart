@@ -2,10 +2,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 
-// OPEN API SPECIFICATION: 3.1.0
-// API TITLE: Pinecone API
-// API VERSION: 1.1.0
-
 library pinecone_schema;
 
 import 'package:freezed_annotation/freezed_annotation.dart';
