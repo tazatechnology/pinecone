@@ -1,3 +1,4 @@
+@Timeout(Duration(minutes: 10))
 import 'dart:io';
 import 'package:pinecone/pinecone.dart';
 import 'package:test/test.dart';
@@ -163,6 +164,8 @@ void main() async {
         ],
       ),
     );
+
+    await Future.delayed(Duration(seconds: 5));
 
     indexStats = await client.describeIndexStats(
       indexName: index.name,
@@ -335,6 +338,8 @@ void main() async {
       ),
     );
 
+    await Future.delayed(Duration(seconds: 5));
+
     IndexStats indexStats = await client.describeIndexStats(
       indexName: index.name,
       projectId: index.projectId,
@@ -372,6 +377,8 @@ void main() async {
         deleteAll: true,
       ),
     );
+
+    await Future.delayed(Duration(seconds: 5));
 
     indexStats = await client.describeIndexStats(
       indexName: index.name,

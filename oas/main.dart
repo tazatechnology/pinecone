@@ -42,7 +42,7 @@ main() async {
           ),
         ],
       ),
-      '/databases/': PathItem(
+      '/databases': PathItem(
         servers: [indexServer],
         get: listIndexes,
         post: createIndex,
