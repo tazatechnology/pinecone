@@ -1,3 +1,4 @@
+@Timeout(Duration(minutes: 10))
 import 'dart:io';
 import 'package:pinecone/pinecone.dart';
 import 'package:test/test.dart';
@@ -48,7 +49,7 @@ void main() async {
   // TEST: Create Index
   // ==========================================
 
-  test('Create Index', timeout: Timeout(Duration(minutes: 1)), () async {
+  test('Create Index', () async {
     final indexes = await client.listIndexes(
       environment: environment,
     );
