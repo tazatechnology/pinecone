@@ -48,7 +48,7 @@ void main() async {
   // TEST: Create Index
   // ==========================================
 
-  test('Create Index', () async {
+  test('Create Index', timeout: Timeout(Duration(minutes: 1)), () async {
     final indexes = await client.listIndexes(
       environment: environment,
     );
@@ -163,6 +163,8 @@ void main() async {
         ],
       ),
     );
+
+    await Future.delayed(Duration(seconds: 5));
 
     indexStats = await client.describeIndexStats(
       indexName: index.name,
@@ -335,6 +337,8 @@ void main() async {
       ),
     );
 
+    await Future.delayed(Duration(seconds: 5));
+
     IndexStats indexStats = await client.describeIndexStats(
       indexName: index.name,
       projectId: index.projectId,
@@ -372,6 +376,8 @@ void main() async {
         deleteAll: true,
       ),
     );
+
+    await Future.delayed(Duration(seconds: 5));
 
     indexStats = await client.describeIndexStats(
       indexName: index.name,

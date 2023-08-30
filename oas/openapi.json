@@ -157,7 +157,7 @@
         }
       ]
     },
-    "/databases/": {
+    "/databases": {
       "get": {
         "tags": [
           "Index Operations"

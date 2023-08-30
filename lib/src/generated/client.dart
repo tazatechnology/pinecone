@@ -388,13 +388,13 @@ class PineconeClient {
   ///
   /// `environment`: The region for your project. See Pinecone console
   ///
-  /// `GET` `https://controller.{environment}.pinecone.io/databases/`
+  /// `GET` `https://controller.{environment}.pinecone.io/databases`
   Future<List<String>> listIndexes({
     String environment = 'us-west1-gcp-free',
   }) async {
     final r = await _request(
       host: 'controller.${environment}.pinecone.io',
-      path: '/databases/',
+      path: '/databases',
       secure: true,
       method: HttpMethod.get,
       isMultipart: false,
@@ -419,14 +419,14 @@ class PineconeClient {
   ///
   /// `request`: No description
   ///
-  /// `POST` `https://controller.{environment}.pinecone.io/databases/`
+  /// `POST` `https://controller.{environment}.pinecone.io/databases`
   Future<void> createIndex({
     String environment = 'us-west1-gcp-free',
     required CreateIndexRequest request,
   }) async {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
-      path: '/databases/',
+      path: '/databases',
       secure: true,
       method: HttpMethod.post,
       isMultipart: false,
