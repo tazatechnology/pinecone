@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.2
+
+* Client generation using latest `openapi_spec` package (v0.5.3)
+
 ## 0.5.1
 
 * Remove trailing slash from /databases endpoint

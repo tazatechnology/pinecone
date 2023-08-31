@@ -15,6 +15,8 @@ Yes! This package is used in production applications and is actively maintained!
 
 For detailed API information, please see the official [Pinecone API reference](https://docs.pinecone.io/reference). This package is a thin wrapper around the official API and aims to have full parity with the official API.
 
+This Dart client was generated using the [openapi_spec](https://pub.dev/packages/openapi_spec) package by mirroring the implementation details defined in the [Pinecone API](https://docs.pinecone.io/reference).
+
 ## Client Instance
 
 To create a client instance you simply need the API key for your Pinecone project. You can find your API key in the [Pinecone console](https://app.pinecone.io/).

@@ -116,7 +116,6 @@ class PineconeClient {
   Future<http.Response> _request({
     required String host,
     required String path,
-    required bool? secure,
     required HttpMethod method,
     Map<String, dynamic> queryParams = const {},
     Map<String, String> headerParams = const {},
@@ -151,7 +150,7 @@ class PineconeClient {
     });
 
     // Build the request URI
-    secure ??= Uri.parse(host).scheme == 'https';
+    final secure = Uri.parse(host).scheme == 'https';
     Uri uri;
     String authority;
     if (host.contains('http')) {
@@ -271,7 +270,6 @@ class PineconeClient {
     final r = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/collections',
-      secure: true,
       method: HttpMethod.get,
       isMultipart: false,
       requestType: '',
@@ -303,7 +301,6 @@ class PineconeClient {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/collections',
-      secure: true,
       method: HttpMethod.post,
       isMultipart: false,
       requestType: 'application/json',
@@ -335,7 +332,6 @@ class PineconeClient {
     final r = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/collections/$collectionName',
-      secure: true,
       method: HttpMethod.get,
       isMultipart: false,
       requestType: '',
@@ -367,7 +363,6 @@ class PineconeClient {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/collections/$collectionName',
-      secure: true,
       method: HttpMethod.delete,
       isMultipart: false,
       requestType: '',
@@ -395,7 +390,6 @@ class PineconeClient {
     final r = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/databases',
-      secure: true,
       method: HttpMethod.get,
       isMultipart: false,
       requestType: '',
@@ -427,7 +421,6 @@ class PineconeClient {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/databases',
-      secure: true,
       method: HttpMethod.post,
       isMultipart: false,
       requestType: 'application/json',
@@ -459,7 +452,6 @@ class PineconeClient {
     final r = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
-      secure: true,
       method: HttpMethod.get,
       isMultipart: false,
       requestType: '',
@@ -491,7 +483,6 @@ class PineconeClient {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
-      secure: true,
       method: HttpMethod.delete,
       isMultipart: false,
       requestType: '',
@@ -525,7 +516,6 @@ class PineconeClient {
     final _ = await _request(
       host: 'controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
-      secure: true,
       method: HttpMethod.patch,
       isMultipart: false,
       requestType: 'application/json',
@@ -563,7 +553,6 @@ class PineconeClient {
     final r = await _request(
       host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/describe_index_stats',
-      secure: true,
       method: HttpMethod.post,
       isMultipart: false,
       requestType: 'application/json',
@@ -602,7 +591,6 @@ class PineconeClient {
     final r = await _request(
       host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/query',
-      secure: true,
       method: HttpMethod.post,
       isMultipart: false,
       requestType: 'application/json',
@@ -641,7 +629,6 @@ class PineconeClient {
     final _ = await _request(
       host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/delete',
-      secure: true,
       method: HttpMethod.post,
       isMultipart: false,
       requestType: 'application/json',
@@ -682,7 +669,6 @@ class PineconeClient {
     final r = await _request(
       host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/fetch',
-      secure: true,
       method: HttpMethod.get,
       isMultipart: false,
       requestType: '',
@@ -724,7 +710,6 @@ class PineconeClient {
     final _ = await _request(
       host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/update',
-      secure: true,
       method: HttpMethod.post,
       isMultipart: false,
       requestType: 'application/json',
@@ -762,7 +747,6 @@ class PineconeClient {
     final r = await _request(
       host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/upsert',
-      secure: true,
       method: HttpMethod.post,
       isMultipart: false,
       requestType: 'application/json',
