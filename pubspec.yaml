@@ -16,7 +16,7 @@ dependencies:
   json_annotation: ^4.8.1
   
 dev_dependencies:
-  openapi_spec: ^0.5.3
+  openapi_spec: ^0.5.6
   build_runner: ^2.4.6
   lints: ^2.1.1
   freezed: ^2.4.2

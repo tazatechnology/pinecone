@@ -268,7 +268,7 @@ class PineconeClient {
     String environment = 'us-west1-gcp-free',
   }) async {
     final r = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/collections',
       method: HttpMethod.get,
       isMultipart: false,
@@ -299,7 +299,7 @@ class PineconeClient {
     required CreateCollectionRequest request,
   }) async {
     final _ = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/collections',
       method: HttpMethod.post,
       isMultipart: false,
@@ -330,7 +330,7 @@ class PineconeClient {
     required String collectionName,
   }) async {
     final r = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/collections/$collectionName',
       method: HttpMethod.get,
       isMultipart: false,
@@ -361,7 +361,7 @@ class PineconeClient {
     required String collectionName,
   }) async {
     final _ = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/collections/$collectionName',
       method: HttpMethod.delete,
       isMultipart: false,
@@ -388,7 +388,7 @@ class PineconeClient {
     String environment = 'us-west1-gcp-free',
   }) async {
     final r = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/databases',
       method: HttpMethod.get,
       isMultipart: false,
@@ -419,7 +419,7 @@ class PineconeClient {
     required CreateIndexRequest request,
   }) async {
     final _ = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/databases',
       method: HttpMethod.post,
       isMultipart: false,
@@ -450,7 +450,7 @@ class PineconeClient {
     required String indexName,
   }) async {
     final r = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
       method: HttpMethod.get,
       isMultipart: false,
@@ -481,7 +481,7 @@ class PineconeClient {
     required String indexName,
   }) async {
     final _ = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
       method: HttpMethod.delete,
       isMultipart: false,
@@ -514,7 +514,7 @@ class PineconeClient {
     required ConfigureIndexRequest request,
   }) async {
     final _ = await _request(
-      host: 'controller.${environment}.pinecone.io',
+      host: 'https://controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
       method: HttpMethod.patch,
       isMultipart: false,
@@ -551,7 +551,7 @@ class PineconeClient {
     IndexStatsRequest? request,
   }) async {
     final r = await _request(
-      host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
+      host: 'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/describe_index_stats',
       method: HttpMethod.post,
       isMultipart: false,
@@ -589,7 +589,7 @@ class PineconeClient {
     required QueryRequest request,
   }) async {
     final r = await _request(
-      host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
+      host: 'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/query',
       method: HttpMethod.post,
       isMultipart: false,
@@ -627,7 +627,7 @@ class PineconeClient {
     required DeleteRequest request,
   }) async {
     final _ = await _request(
-      host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
+      host: 'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/delete',
       method: HttpMethod.post,
       isMultipart: false,
@@ -667,7 +667,7 @@ class PineconeClient {
     String? namespace,
   }) async {
     final r = await _request(
-      host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
+      host: 'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/fetch',
       method: HttpMethod.get,
       isMultipart: false,
@@ -708,7 +708,7 @@ class PineconeClient {
     required UpdateRequest request,
   }) async {
     final _ = await _request(
-      host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
+      host: 'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/update',
       method: HttpMethod.post,
       isMultipart: false,
@@ -745,7 +745,7 @@ class PineconeClient {
     required UpsertRequest request,
   }) async {
     final r = await _request(
-      host: '${indexName}-${projectId}.svc.${environment}.pinecone.io',
+      host: 'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/upsert',
       method: HttpMethod.post,
       isMultipart: false,
