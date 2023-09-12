@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.3
+
+* Fix missing security scheme in host for client generation
+
 ## 0.5.2
 
 * Client generation using latest `openapi_spec` package (v0.5.3)
