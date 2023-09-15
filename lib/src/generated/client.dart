@@ -134,18 +134,12 @@ class PineconeClient {
       );
     }
 
-    // Ensure query parameters are properly encoded
+    // Ensure query parameters are strings or iterable of strings
     queryParams = queryParams.map((key, value) {
       if (value is List) {
-        return MapEntry(
-          key,
-          value.map((v) => Uri.encodeComponent(v.toString())).toList(),
-        );
+        return MapEntry(key, value.map((v) => v.toString()));
       } else {
-        return MapEntry(
-          key,
-          Uri.encodeComponent(value.toString()),
-        );
+        return MapEntry(key, value.toString());
       }
     });
 
