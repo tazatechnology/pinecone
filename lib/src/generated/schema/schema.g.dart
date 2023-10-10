@@ -8,19 +8,20 @@ part of 'schema.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Index _$$_IndexFromJson(Map<String, dynamic> json) => _$_Index(
+_$IndexImpl _$$IndexImplFromJson(Map<String, dynamic> json) => _$IndexImpl(
       database:
           IndexDatabase.fromJson(json['database'] as Map<String, dynamic>),
       status: IndexStatus.fromJson(json['status'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_IndexToJson(_$_Index instance) => <String, dynamic>{
+Map<String, dynamic> _$$IndexImplToJson(_$IndexImpl instance) =>
+    <String, dynamic>{
       'database': instance.database,
       'status': instance.status,
     };
 
-_$_IndexDatabase _$$_IndexDatabaseFromJson(Map<String, dynamic> json) =>
-    _$_IndexDatabase(
+_$IndexDatabaseImpl _$$IndexDatabaseImplFromJson(Map<String, dynamic> json) =>
+    _$IndexDatabaseImpl(
       name: json['name'] as String,
       metric: $enumDecode(_$SearchMetricEnumMap, json['metric']),
       dimension: json['dimension'] as int,
@@ -31,7 +32,7 @@ _$_IndexDatabase _$$_IndexDatabaseFromJson(Map<String, dynamic> json) =>
           unknownValue: JsonKey.nullForUndefinedEnumValue),
     );
 
-Map<String, dynamic> _$$_IndexDatabaseToJson(_$_IndexDatabase instance) =>
+Map<String, dynamic> _$$IndexDatabaseImplToJson(_$IndexDatabaseImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'metric': _$SearchMetricEnumMap[instance.metric]!,
@@ -63,8 +64,8 @@ const _$PodTypeEnumMap = {
   PodType.p2x8: 'p2.x8',
 };
 
-_$_IndexStatus _$$_IndexStatusFromJson(Map<String, dynamic> json) =>
-    _$_IndexStatus(
+_$IndexStatusImpl _$$IndexStatusImplFromJson(Map<String, dynamic> json) =>
+    _$IndexStatusImpl(
       host: json['host'] as String,
       port: json['port'] as int,
       state: $enumDecode(_$IndexStateEnumMap, json['state'],
@@ -72,7 +73,7 @@ _$_IndexStatus _$$_IndexStatusFromJson(Map<String, dynamic> json) =>
       ready: json['ready'] as bool,
     );
 
-Map<String, dynamic> _$$_IndexStatusToJson(_$_IndexStatus instance) =>
+Map<String, dynamic> _$$IndexStatusImplToJson(_$IndexStatusImpl instance) =>
     <String, dynamic>{
       'host': instance.host,
       'port': instance.port,
@@ -88,8 +89,8 @@ const _$IndexStateEnumMap = {
   IndexState.ready: 'Ready',
 };
 
-_$_IndexStats _$$_IndexStatsFromJson(Map<String, dynamic> json) =>
-    _$_IndexStats(
+_$IndexStatsImpl _$$IndexStatsImplFromJson(Map<String, dynamic> json) =>
+    _$IndexStatsImpl(
       namespaces: (json['namespaces'] as Map<String, dynamic>?)?.map(
         (k, e) =>
             MapEntry(k, NamespaceStats.fromJson(e as Map<String, dynamic>)),
@@ -99,7 +100,7 @@ _$_IndexStats _$$_IndexStatsFromJson(Map<String, dynamic> json) =>
       totalVectorCount: json['totalVectorCount'] as int?,
     );
 
-Map<String, dynamic> _$$_IndexStatsToJson(_$_IndexStats instance) =>
+Map<String, dynamic> _$$IndexStatsImplToJson(_$IndexStatsImpl instance) =>
     <String, dynamic>{
       'namespaces': instance.namespaces,
       'dimension': instance.dimension,
@@ -107,25 +108,26 @@ Map<String, dynamic> _$$_IndexStatsToJson(_$_IndexStats instance) =>
       'totalVectorCount': instance.totalVectorCount,
     };
 
-_$_NamespaceStats _$$_NamespaceStatsFromJson(Map<String, dynamic> json) =>
-    _$_NamespaceStats(
+_$NamespaceStatsImpl _$$NamespaceStatsImplFromJson(Map<String, dynamic> json) =>
+    _$NamespaceStatsImpl(
       vectorCount: json['vectorCount'] as int,
     );
 
-Map<String, dynamic> _$$_NamespaceStatsToJson(_$_NamespaceStats instance) =>
+Map<String, dynamic> _$$NamespaceStatsImplToJson(
+        _$NamespaceStatsImpl instance) =>
     <String, dynamic>{
       'vectorCount': instance.vectorCount,
     };
 
-_$_Collection _$$_CollectionFromJson(Map<String, dynamic> json) =>
-    _$_Collection(
+_$CollectionImpl _$$CollectionImplFromJson(Map<String, dynamic> json) =>
+    _$CollectionImpl(
       name: json['name'] as String,
       status: $enumDecode(_$CollectionStatusEnumMap, json['status']),
       size: json['size'] as int?,
       dimension: json['dimension'] as int,
     );
 
-Map<String, dynamic> _$$_CollectionToJson(_$_Collection instance) =>
+Map<String, dynamic> _$$CollectionImplToJson(_$CollectionImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'status': _$CollectionStatusEnumMap[instance.status]!,
@@ -138,38 +140,38 @@ const _$CollectionStatusEnumMap = {
   CollectionStatus.ready: 'Ready',
 };
 
-_$_ConfigureIndexRequest _$$_ConfigureIndexRequestFromJson(
+_$ConfigureIndexRequestImpl _$$ConfigureIndexRequestImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ConfigureIndexRequest(
+    _$ConfigureIndexRequestImpl(
       replicas: json['replicas'] as int? ?? 1,
       podType: $enumDecodeNullable(_$PodTypeEnumMap, json['pod_type'],
           unknownValue: JsonKey.nullForUndefinedEnumValue),
     );
 
-Map<String, dynamic> _$$_ConfigureIndexRequestToJson(
-        _$_ConfigureIndexRequest instance) =>
+Map<String, dynamic> _$$ConfigureIndexRequestImplToJson(
+        _$ConfigureIndexRequestImpl instance) =>
     <String, dynamic>{
       'replicas': instance.replicas,
       'pod_type': _$PodTypeEnumMap[instance.podType],
     };
 
-_$_CreateCollectionRequest _$$_CreateCollectionRequestFromJson(
+_$CreateCollectionRequestImpl _$$CreateCollectionRequestImplFromJson(
         Map<String, dynamic> json) =>
-    _$_CreateCollectionRequest(
+    _$CreateCollectionRequestImpl(
       name: json['name'] as String,
       source: json['source'] as String,
     );
 
-Map<String, dynamic> _$$_CreateCollectionRequestToJson(
-        _$_CreateCollectionRequest instance) =>
+Map<String, dynamic> _$$CreateCollectionRequestImplToJson(
+        _$CreateCollectionRequestImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'source': instance.source,
     };
 
-_$_CreateIndexRequest _$$_CreateIndexRequestFromJson(
+_$CreateIndexRequestImpl _$$CreateIndexRequestImplFromJson(
         Map<String, dynamic> json) =>
-    _$_CreateIndexRequest(
+    _$CreateIndexRequestImpl(
       name: json['name'] as String,
       dimension: json['dimension'] as int,
       metric: $enumDecodeNullable(_$SearchMetricEnumMap, json['metric']) ??
@@ -182,8 +184,8 @@ _$_CreateIndexRequest _$$_CreateIndexRequestFromJson(
       sourceCollection: json['source_collection'] as String?,
     );
 
-Map<String, dynamic> _$$_CreateIndexRequestToJson(
-        _$_CreateIndexRequest instance) =>
+Map<String, dynamic> _$$CreateIndexRequestImplToJson(
+        _$CreateIndexRequestImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'dimension': instance.dimension,
@@ -195,26 +197,27 @@ Map<String, dynamic> _$$_CreateIndexRequestToJson(
       'source_collection': instance.sourceCollection,
     };
 
-_$_IndexStatsRequest _$$_IndexStatsRequestFromJson(Map<String, dynamic> json) =>
-    _$_IndexStatsRequest(
+_$IndexStatsRequestImpl _$$IndexStatsRequestImplFromJson(
+        Map<String, dynamic> json) =>
+    _$IndexStatsRequestImpl(
       filter: json['filter'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$_IndexStatsRequestToJson(
-        _$_IndexStatsRequest instance) =>
+Map<String, dynamic> _$$IndexStatsRequestImplToJson(
+        _$IndexStatsRequestImpl instance) =>
     <String, dynamic>{
       'filter': instance.filter,
     };
 
-_$_DeleteRequest _$$_DeleteRequestFromJson(Map<String, dynamic> json) =>
-    _$_DeleteRequest(
+_$DeleteRequestImpl _$$DeleteRequestImplFromJson(Map<String, dynamic> json) =>
+    _$DeleteRequestImpl(
       ids: (json['ids'] as List<dynamic>?)?.map((e) => e as String).toList(),
       deleteAll: json['deleteAll'] as bool?,
       namespace: json['namespace'] as String?,
       filter: json['filter'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$_DeleteRequestToJson(_$_DeleteRequest instance) =>
+Map<String, dynamic> _$$DeleteRequestImplToJson(_$DeleteRequestImpl instance) =>
     <String, dynamic>{
       'ids': instance.ids,
       'deleteAll': instance.deleteAll,
@@ -222,8 +225,8 @@ Map<String, dynamic> _$$_DeleteRequestToJson(_$_DeleteRequest instance) =>
       'filter': instance.filter,
     };
 
-_$_QueryRequest _$$_QueryRequestFromJson(Map<String, dynamic> json) =>
-    _$_QueryRequest(
+_$QueryRequestImpl _$$QueryRequestImplFromJson(Map<String, dynamic> json) =>
+    _$QueryRequestImpl(
       namespace: json['namespace'] as String?,
       topK: json['topK'] as int? ?? 10,
       filter: json['filter'] as Map<String, dynamic>?,
@@ -238,7 +241,7 @@ _$_QueryRequest _$$_QueryRequestFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$_QueryRequestToJson(_$_QueryRequest instance) =>
+Map<String, dynamic> _$$QueryRequestImplToJson(_$QueryRequestImpl instance) =>
     <String, dynamic>{
       'namespace': instance.namespace,
       'topK': instance.topK,
@@ -250,36 +253,36 @@ Map<String, dynamic> _$$_QueryRequestToJson(_$_QueryRequest instance) =>
       'id': instance.id,
     };
 
-_$_QueryResponse _$$_QueryResponseFromJson(Map<String, dynamic> json) =>
-    _$_QueryResponse(
+_$QueryResponseImpl _$$QueryResponseImplFromJson(Map<String, dynamic> json) =>
+    _$QueryResponseImpl(
       namespace: json['namespace'] as String,
       matches: (json['matches'] as List<dynamic>)
           .map((e) => VectorMatch.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_QueryResponseToJson(_$_QueryResponse instance) =>
+Map<String, dynamic> _$$QueryResponseImplToJson(_$QueryResponseImpl instance) =>
     <String, dynamic>{
       'namespace': instance.namespace,
       'matches': instance.matches,
     };
 
-_$_FetchResponse _$$_FetchResponseFromJson(Map<String, dynamic> json) =>
-    _$_FetchResponse(
+_$FetchResponseImpl _$$FetchResponseImplFromJson(Map<String, dynamic> json) =>
+    _$FetchResponseImpl(
       namespace: json['namespace'] as String,
       vectors: (json['vectors'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(k, Vector.fromJson(e as Map<String, dynamic>)),
       ),
     );
 
-Map<String, dynamic> _$$_FetchResponseToJson(_$_FetchResponse instance) =>
+Map<String, dynamic> _$$FetchResponseImplToJson(_$FetchResponseImpl instance) =>
     <String, dynamic>{
       'namespace': instance.namespace,
       'vectors': instance.vectors,
     };
 
-_$_UpdateRequest _$$_UpdateRequestFromJson(Map<String, dynamic> json) =>
-    _$_UpdateRequest(
+_$UpdateRequestImpl _$$UpdateRequestImplFromJson(Map<String, dynamic> json) =>
+    _$UpdateRequestImpl(
       id: json['id'] as String,
       values: (json['values'] as List<dynamic>?)
           ?.map((e) => (e as num).toDouble())
@@ -291,7 +294,7 @@ _$_UpdateRequest _$$_UpdateRequestFromJson(Map<String, dynamic> json) =>
       namespace: json['namespace'] as String?,
     );
 
-Map<String, dynamic> _$$_UpdateRequestToJson(_$_UpdateRequest instance) =>
+Map<String, dynamic> _$$UpdateRequestImplToJson(_$UpdateRequestImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'values': instance.values,
@@ -300,31 +303,32 @@ Map<String, dynamic> _$$_UpdateRequestToJson(_$_UpdateRequest instance) =>
       'namespace': instance.namespace,
     };
 
-_$_UpsertRequest _$$_UpsertRequestFromJson(Map<String, dynamic> json) =>
-    _$_UpsertRequest(
+_$UpsertRequestImpl _$$UpsertRequestImplFromJson(Map<String, dynamic> json) =>
+    _$UpsertRequestImpl(
       vectors: (json['vectors'] as List<dynamic>)
           .map((e) => Vector.fromJson(e as Map<String, dynamic>))
           .toList(),
       namespace: json['namespace'] as String?,
     );
 
-Map<String, dynamic> _$$_UpsertRequestToJson(_$_UpsertRequest instance) =>
+Map<String, dynamic> _$$UpsertRequestImplToJson(_$UpsertRequestImpl instance) =>
     <String, dynamic>{
       'vectors': instance.vectors,
       'namespace': instance.namespace,
     };
 
-_$_UpsertResponse _$$_UpsertResponseFromJson(Map<String, dynamic> json) =>
-    _$_UpsertResponse(
+_$UpsertResponseImpl _$$UpsertResponseImplFromJson(Map<String, dynamic> json) =>
+    _$UpsertResponseImpl(
       upsertedCount: json['upsertedCount'] as int?,
     );
 
-Map<String, dynamic> _$$_UpsertResponseToJson(_$_UpsertResponse instance) =>
+Map<String, dynamic> _$$UpsertResponseImplToJson(
+        _$UpsertResponseImpl instance) =>
     <String, dynamic>{
       'upsertedCount': instance.upsertedCount,
     };
 
-_$_Vector _$$_VectorFromJson(Map<String, dynamic> json) => _$_Vector(
+_$VectorImpl _$$VectorImplFromJson(Map<String, dynamic> json) => _$VectorImpl(
       id: json['id'] as String,
       values: (json['values'] as List<dynamic>)
           .map((e) => (e as num).toDouble())
@@ -335,15 +339,16 @@ _$_Vector _$$_VectorFromJson(Map<String, dynamic> json) => _$_Vector(
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$_VectorToJson(_$_Vector instance) => <String, dynamic>{
+Map<String, dynamic> _$$VectorImplToJson(_$VectorImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'values': instance.values,
       'sparseValues': instance.sparseValues,
       'metadata': instance.metadata,
     };
 
-_$_VectorMatch _$$_VectorMatchFromJson(Map<String, dynamic> json) =>
-    _$_VectorMatch(
+_$VectorMatchImpl _$$VectorMatchImplFromJson(Map<String, dynamic> json) =>
+    _$VectorMatchImpl(
       id: json['id'] as String,
       score: (json['score'] as num?)?.toDouble(),
       values: (json['values'] as List<dynamic>?)
@@ -355,7 +360,7 @@ _$_VectorMatch _$$_VectorMatchFromJson(Map<String, dynamic> json) =>
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$_VectorMatchToJson(_$_VectorMatch instance) =>
+Map<String, dynamic> _$$VectorMatchImplToJson(_$VectorMatchImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'score': instance.score,
@@ -364,8 +369,8 @@ Map<String, dynamic> _$$_VectorMatchToJson(_$_VectorMatch instance) =>
       'metadata': instance.metadata,
     };
 
-_$_SparseVector _$$_SparseVectorFromJson(Map<String, dynamic> json) =>
-    _$_SparseVector(
+_$SparseVectorImpl _$$SparseVectorImplFromJson(Map<String, dynamic> json) =>
+    _$SparseVectorImpl(
       indices:
           (json['indices'] as List<dynamic>?)?.map((e) => e as int).toList(),
       values: (json['values'] as List<dynamic>?)
@@ -373,7 +378,7 @@ _$_SparseVector _$$_SparseVectorFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_SparseVectorToJson(_$_SparseVector instance) =>
+Map<String, dynamic> _$$SparseVectorImplToJson(_$SparseVectorImpl instance) =>
     <String, dynamic>{
       'indices': instance.indices,
       'values': instance.values,

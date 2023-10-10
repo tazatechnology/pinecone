@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.5
+
+* Client generation using latest `openapi_spec` package (v0.5.13)
+* Fix static analysis warning in generated files
+
 ## 0.5.4
 
 * Client generation using latest `openapi_spec` package (v0.5.9)

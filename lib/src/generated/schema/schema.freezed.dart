@@ -88,9 +88,10 @@ class _$IndexCopyWithImpl<$Res, $Val extends Index>
 }
 
 /// @nodoc
-abstract class _$$_IndexCopyWith<$Res> implements $IndexCopyWith<$Res> {
-  factory _$$_IndexCopyWith(_$_Index value, $Res Function(_$_Index) then) =
-      __$$_IndexCopyWithImpl<$Res>;
+abstract class _$$IndexImplCopyWith<$Res> implements $IndexCopyWith<$Res> {
+  factory _$$IndexImplCopyWith(
+          _$IndexImpl value, $Res Function(_$IndexImpl) then) =
+      __$$IndexImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({IndexDatabase database, IndexStatus status});
@@ -102,9 +103,11 @@ abstract class _$$_IndexCopyWith<$Res> implements $IndexCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_IndexCopyWithImpl<$Res> extends _$IndexCopyWithImpl<$Res, _$_Index>
-    implements _$$_IndexCopyWith<$Res> {
-  __$$_IndexCopyWithImpl(_$_Index _value, $Res Function(_$_Index) _then)
+class __$$IndexImplCopyWithImpl<$Res>
+    extends _$IndexCopyWithImpl<$Res, _$IndexImpl>
+    implements _$$IndexImplCopyWith<$Res> {
+  __$$IndexImplCopyWithImpl(
+      _$IndexImpl _value, $Res Function(_$IndexImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +116,7 @@ class __$$_IndexCopyWithImpl<$Res> extends _$IndexCopyWithImpl<$Res, _$_Index>
     Object? database = null,
     Object? status = null,
   }) {
-    return _then(_$_Index(
+    return _then(_$IndexImpl(
       database: null == database
           ? _value.database
           : database // ignore: cast_nullable_to_non_nullable
@@ -128,11 +131,11 @@ class __$$_IndexCopyWithImpl<$Res> extends _$IndexCopyWithImpl<$Res, _$_Index>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Index extends _Index {
-  const _$_Index({required this.database, required this.status}) : super._();
+class _$IndexImpl extends _Index {
+  const _$IndexImpl({required this.database, required this.status}) : super._();
 
-  factory _$_Index.fromJson(Map<String, dynamic> json) =>
-      _$$_IndexFromJson(json);
+  factory _$IndexImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IndexImplFromJson(json);
 
   /// Summary of index properties and metadata
   @override
@@ -151,7 +154,7 @@ class _$_Index extends _Index {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Index &&
+            other is _$IndexImpl &&
             (identical(other.database, database) ||
                 other.database == database) &&
             (identical(other.status, status) || other.status == status));
@@ -164,12 +167,12 @@ class _$_Index extends _Index {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IndexCopyWith<_$_Index> get copyWith =>
-      __$$_IndexCopyWithImpl<_$_Index>(this, _$identity);
+  _$$IndexImplCopyWith<_$IndexImpl> get copyWith =>
+      __$$IndexImplCopyWithImpl<_$IndexImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IndexToJson(
+    return _$$IndexImplToJson(
       this,
     );
   }
@@ -178,10 +181,10 @@ class _$_Index extends _Index {
 abstract class _Index extends Index {
   const factory _Index(
       {required final IndexDatabase database,
-      required final IndexStatus status}) = _$_Index;
+      required final IndexStatus status}) = _$IndexImpl;
   const _Index._() : super._();
 
-  factory _Index.fromJson(Map<String, dynamic> json) = _$_Index.fromJson;
+  factory _Index.fromJson(Map<String, dynamic> json) = _$IndexImpl.fromJson;
 
   @override
 
@@ -193,7 +196,7 @@ abstract class _Index extends Index {
   IndexStatus get status;
   @override
   @JsonKey(ignore: true)
-  _$$_IndexCopyWith<_$_Index> get copyWith =>
+  _$$IndexImplCopyWith<_$IndexImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -305,11 +308,11 @@ class _$IndexDatabaseCopyWithImpl<$Res, $Val extends IndexDatabase>
 }
 
 /// @nodoc
-abstract class _$$_IndexDatabaseCopyWith<$Res>
+abstract class _$$IndexDatabaseImplCopyWith<$Res>
     implements $IndexDatabaseCopyWith<$Res> {
-  factory _$$_IndexDatabaseCopyWith(
-          _$_IndexDatabase value, $Res Function(_$_IndexDatabase) then) =
-      __$$_IndexDatabaseCopyWithImpl<$Res>;
+  factory _$$IndexDatabaseImplCopyWith(
+          _$IndexDatabaseImpl value, $Res Function(_$IndexDatabaseImpl) then) =
+      __$$IndexDatabaseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -325,11 +328,11 @@ abstract class _$$_IndexDatabaseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_IndexDatabaseCopyWithImpl<$Res>
-    extends _$IndexDatabaseCopyWithImpl<$Res, _$_IndexDatabase>
-    implements _$$_IndexDatabaseCopyWith<$Res> {
-  __$$_IndexDatabaseCopyWithImpl(
-      _$_IndexDatabase _value, $Res Function(_$_IndexDatabase) _then)
+class __$$IndexDatabaseImplCopyWithImpl<$Res>
+    extends _$IndexDatabaseCopyWithImpl<$Res, _$IndexDatabaseImpl>
+    implements _$$IndexDatabaseImplCopyWith<$Res> {
+  __$$IndexDatabaseImplCopyWithImpl(
+      _$IndexDatabaseImpl _value, $Res Function(_$IndexDatabaseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -343,7 +346,7 @@ class __$$_IndexDatabaseCopyWithImpl<$Res>
     Object? pods = null,
     Object? podType = freezed,
   }) {
-    return _then(_$_IndexDatabase(
+    return _then(_$IndexDatabaseImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -378,8 +381,8 @@ class __$$_IndexDatabaseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IndexDatabase extends _IndexDatabase {
-  const _$_IndexDatabase(
+class _$IndexDatabaseImpl extends _IndexDatabase {
+  const _$IndexDatabaseImpl(
       {required this.name,
       required this.metric,
       required this.dimension,
@@ -391,8 +394,8 @@ class _$_IndexDatabase extends _IndexDatabase {
       this.podType})
       : super._();
 
-  factory _$_IndexDatabase.fromJson(Map<String, dynamic> json) =>
-      _$$_IndexDatabaseFromJson(json);
+  factory _$IndexDatabaseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IndexDatabaseImplFromJson(json);
 
   /// The name of the index.
   @override
@@ -433,7 +436,7 @@ class _$_IndexDatabase extends _IndexDatabase {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IndexDatabase &&
+            other is _$IndexDatabaseImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.metric, metric) || other.metric == metric) &&
             (identical(other.dimension, dimension) ||
@@ -453,12 +456,12 @@ class _$_IndexDatabase extends _IndexDatabase {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IndexDatabaseCopyWith<_$_IndexDatabase> get copyWith =>
-      __$$_IndexDatabaseCopyWithImpl<_$_IndexDatabase>(this, _$identity);
+  _$$IndexDatabaseImplCopyWith<_$IndexDatabaseImpl> get copyWith =>
+      __$$IndexDatabaseImplCopyWithImpl<_$IndexDatabaseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IndexDatabaseToJson(
+    return _$$IndexDatabaseImplToJson(
       this,
     );
   }
@@ -474,11 +477,11 @@ abstract class _IndexDatabase extends IndexDatabase {
       required final int pods,
       @JsonKey(
           name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
-      final PodType? podType}) = _$_IndexDatabase;
+      final PodType? podType}) = _$IndexDatabaseImpl;
   const _IndexDatabase._() : super._();
 
   factory _IndexDatabase.fromJson(Map<String, dynamic> json) =
-      _$_IndexDatabase.fromJson;
+      _$IndexDatabaseImpl.fromJson;
 
   @override
 
@@ -512,7 +515,7 @@ abstract class _IndexDatabase extends IndexDatabase {
   PodType? get podType;
   @override
   @JsonKey(ignore: true)
-  _$$_IndexDatabaseCopyWith<_$_IndexDatabase> get copyWith =>
+  _$$IndexDatabaseImplCopyWith<_$IndexDatabaseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -594,11 +597,11 @@ class _$IndexStatusCopyWithImpl<$Res, $Val extends IndexStatus>
 }
 
 /// @nodoc
-abstract class _$$_IndexStatusCopyWith<$Res>
+abstract class _$$IndexStatusImplCopyWith<$Res>
     implements $IndexStatusCopyWith<$Res> {
-  factory _$$_IndexStatusCopyWith(
-          _$_IndexStatus value, $Res Function(_$_IndexStatus) then) =
-      __$$_IndexStatusCopyWithImpl<$Res>;
+  factory _$$IndexStatusImplCopyWith(
+          _$IndexStatusImpl value, $Res Function(_$IndexStatusImpl) then) =
+      __$$IndexStatusImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -609,11 +612,11 @@ abstract class _$$_IndexStatusCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_IndexStatusCopyWithImpl<$Res>
-    extends _$IndexStatusCopyWithImpl<$Res, _$_IndexStatus>
-    implements _$$_IndexStatusCopyWith<$Res> {
-  __$$_IndexStatusCopyWithImpl(
-      _$_IndexStatus _value, $Res Function(_$_IndexStatus) _then)
+class __$$IndexStatusImplCopyWithImpl<$Res>
+    extends _$IndexStatusCopyWithImpl<$Res, _$IndexStatusImpl>
+    implements _$$IndexStatusImplCopyWith<$Res> {
+  __$$IndexStatusImplCopyWithImpl(
+      _$IndexStatusImpl _value, $Res Function(_$IndexStatusImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -624,7 +627,7 @@ class __$$_IndexStatusCopyWithImpl<$Res>
     Object? state = null,
     Object? ready = null,
   }) {
-    return _then(_$_IndexStatus(
+    return _then(_$IndexStatusImpl(
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
@@ -647,16 +650,16 @@ class __$$_IndexStatusCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IndexStatus extends _IndexStatus {
-  const _$_IndexStatus(
+class _$IndexStatusImpl extends _IndexStatus {
+  const _$IndexStatusImpl(
       {required this.host,
       required this.port,
       @JsonKey(unknownEnumValue: IndexState.terminating) required this.state,
       required this.ready})
       : super._();
 
-  factory _$_IndexStatus.fromJson(Map<String, dynamic> json) =>
-      _$$_IndexStatusFromJson(json);
+  factory _$IndexStatusImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IndexStatusImplFromJson(json);
 
   /// The host of the index.
   @override
@@ -684,7 +687,7 @@ class _$_IndexStatus extends _IndexStatus {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IndexStatus &&
+            other is _$IndexStatusImpl &&
             (identical(other.host, host) || other.host == host) &&
             (identical(other.port, port) || other.port == port) &&
             (identical(other.state, state) || other.state == state) &&
@@ -698,12 +701,12 @@ class _$_IndexStatus extends _IndexStatus {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IndexStatusCopyWith<_$_IndexStatus> get copyWith =>
-      __$$_IndexStatusCopyWithImpl<_$_IndexStatus>(this, _$identity);
+  _$$IndexStatusImplCopyWith<_$IndexStatusImpl> get copyWith =>
+      __$$IndexStatusImplCopyWithImpl<_$IndexStatusImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IndexStatusToJson(
+    return _$$IndexStatusImplToJson(
       this,
     );
   }
@@ -715,11 +718,11 @@ abstract class _IndexStatus extends IndexStatus {
       required final int port,
       @JsonKey(unknownEnumValue: IndexState.terminating)
       required final IndexState state,
-      required final bool ready}) = _$_IndexStatus;
+      required final bool ready}) = _$IndexStatusImpl;
   const _IndexStatus._() : super._();
 
   factory _IndexStatus.fromJson(Map<String, dynamic> json) =
-      _$_IndexStatus.fromJson;
+      _$IndexStatusImpl.fromJson;
 
   @override
 
@@ -740,7 +743,7 @@ abstract class _IndexStatus extends IndexStatus {
   bool get ready;
   @override
   @JsonKey(ignore: true)
-  _$$_IndexStatusCopyWith<_$_IndexStatus> get copyWith =>
+  _$$IndexStatusImplCopyWith<_$IndexStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -822,11 +825,11 @@ class _$IndexStatsCopyWithImpl<$Res, $Val extends IndexStats>
 }
 
 /// @nodoc
-abstract class _$$_IndexStatsCopyWith<$Res>
+abstract class _$$IndexStatsImplCopyWith<$Res>
     implements $IndexStatsCopyWith<$Res> {
-  factory _$$_IndexStatsCopyWith(
-          _$_IndexStats value, $Res Function(_$_IndexStats) then) =
-      __$$_IndexStatsCopyWithImpl<$Res>;
+  factory _$$IndexStatsImplCopyWith(
+          _$IndexStatsImpl value, $Res Function(_$IndexStatsImpl) then) =
+      __$$IndexStatsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -837,11 +840,11 @@ abstract class _$$_IndexStatsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_IndexStatsCopyWithImpl<$Res>
-    extends _$IndexStatsCopyWithImpl<$Res, _$_IndexStats>
-    implements _$$_IndexStatsCopyWith<$Res> {
-  __$$_IndexStatsCopyWithImpl(
-      _$_IndexStats _value, $Res Function(_$_IndexStats) _then)
+class __$$IndexStatsImplCopyWithImpl<$Res>
+    extends _$IndexStatsCopyWithImpl<$Res, _$IndexStatsImpl>
+    implements _$$IndexStatsImplCopyWith<$Res> {
+  __$$IndexStatsImplCopyWithImpl(
+      _$IndexStatsImpl _value, $Res Function(_$IndexStatsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -852,7 +855,7 @@ class __$$_IndexStatsCopyWithImpl<$Res>
     Object? indexFullness = freezed,
     Object? totalVectorCount = freezed,
   }) {
-    return _then(_$_IndexStats(
+    return _then(_$IndexStatsImpl(
       namespaces: freezed == namespaces
           ? _value._namespaces
           : namespaces // ignore: cast_nullable_to_non_nullable
@@ -875,8 +878,8 @@ class __$$_IndexStatsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IndexStats extends _IndexStats {
-  const _$_IndexStats(
+class _$IndexStatsImpl extends _IndexStats {
+  const _$IndexStatsImpl(
       {final Map<String, NamespaceStats>? namespaces,
       this.dimension,
       this.indexFullness,
@@ -884,8 +887,8 @@ class _$_IndexStats extends _IndexStats {
       : _namespaces = namespaces,
         super._();
 
-  factory _$_IndexStats.fromJson(Map<String, dynamic> json) =>
-      _$$_IndexStatsFromJson(json);
+  factory _$IndexStatsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IndexStatsImplFromJson(json);
 
   /// A mapping for each namespace in the index from the namespace name to a summary of its contents.
   final Map<String, NamespaceStats>? _namespaces;
@@ -921,7 +924,7 @@ class _$_IndexStats extends _IndexStats {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IndexStats &&
+            other is _$IndexStatsImpl &&
             const DeepCollectionEquality()
                 .equals(other._namespaces, _namespaces) &&
             (identical(other.dimension, dimension) ||
@@ -944,12 +947,12 @@ class _$_IndexStats extends _IndexStats {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IndexStatsCopyWith<_$_IndexStats> get copyWith =>
-      __$$_IndexStatsCopyWithImpl<_$_IndexStats>(this, _$identity);
+  _$$IndexStatsImplCopyWith<_$IndexStatsImpl> get copyWith =>
+      __$$IndexStatsImplCopyWithImpl<_$IndexStatsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IndexStatsToJson(
+    return _$$IndexStatsImplToJson(
       this,
     );
   }
@@ -960,11 +963,11 @@ abstract class _IndexStats extends IndexStats {
       {final Map<String, NamespaceStats>? namespaces,
       final int? dimension,
       final double? indexFullness,
-      final int? totalVectorCount}) = _$_IndexStats;
+      final int? totalVectorCount}) = _$IndexStatsImpl;
   const _IndexStats._() : super._();
 
   factory _IndexStats.fromJson(Map<String, dynamic> json) =
-      _$_IndexStats.fromJson;
+      _$IndexStatsImpl.fromJson;
 
   @override
 
@@ -984,7 +987,7 @@ abstract class _IndexStats extends IndexStats {
   int? get totalVectorCount;
   @override
   @JsonKey(ignore: true)
-  _$$_IndexStatsCopyWith<_$_IndexStats> get copyWith =>
+  _$$IndexStatsImplCopyWith<_$IndexStatsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1037,22 +1040,22 @@ class _$NamespaceStatsCopyWithImpl<$Res, $Val extends NamespaceStats>
 }
 
 /// @nodoc
-abstract class _$$_NamespaceStatsCopyWith<$Res>
+abstract class _$$NamespaceStatsImplCopyWith<$Res>
     implements $NamespaceStatsCopyWith<$Res> {
-  factory _$$_NamespaceStatsCopyWith(
-          _$_NamespaceStats value, $Res Function(_$_NamespaceStats) then) =
-      __$$_NamespaceStatsCopyWithImpl<$Res>;
+  factory _$$NamespaceStatsImplCopyWith(_$NamespaceStatsImpl value,
+          $Res Function(_$NamespaceStatsImpl) then) =
+      __$$NamespaceStatsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int vectorCount});
 }
 
 /// @nodoc
-class __$$_NamespaceStatsCopyWithImpl<$Res>
-    extends _$NamespaceStatsCopyWithImpl<$Res, _$_NamespaceStats>
-    implements _$$_NamespaceStatsCopyWith<$Res> {
-  __$$_NamespaceStatsCopyWithImpl(
-      _$_NamespaceStats _value, $Res Function(_$_NamespaceStats) _then)
+class __$$NamespaceStatsImplCopyWithImpl<$Res>
+    extends _$NamespaceStatsCopyWithImpl<$Res, _$NamespaceStatsImpl>
+    implements _$$NamespaceStatsImplCopyWith<$Res> {
+  __$$NamespaceStatsImplCopyWithImpl(
+      _$NamespaceStatsImpl _value, $Res Function(_$NamespaceStatsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1060,7 +1063,7 @@ class __$$_NamespaceStatsCopyWithImpl<$Res>
   $Res call({
     Object? vectorCount = null,
   }) {
-    return _then(_$_NamespaceStats(
+    return _then(_$NamespaceStatsImpl(
       vectorCount: null == vectorCount
           ? _value.vectorCount
           : vectorCount // ignore: cast_nullable_to_non_nullable
@@ -1071,11 +1074,11 @@ class __$$_NamespaceStatsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_NamespaceStats extends _NamespaceStats {
-  const _$_NamespaceStats({required this.vectorCount}) : super._();
+class _$NamespaceStatsImpl extends _NamespaceStats {
+  const _$NamespaceStatsImpl({required this.vectorCount}) : super._();
 
-  factory _$_NamespaceStats.fromJson(Map<String, dynamic> json) =>
-      _$$_NamespaceStatsFromJson(json);
+  factory _$NamespaceStatsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NamespaceStatsImplFromJson(json);
 
   /// The number of vectors stored in this namespace.
   @override
@@ -1090,7 +1093,7 @@ class _$_NamespaceStats extends _NamespaceStats {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NamespaceStats &&
+            other is _$NamespaceStatsImpl &&
             (identical(other.vectorCount, vectorCount) ||
                 other.vectorCount == vectorCount));
   }
@@ -1102,12 +1105,13 @@ class _$_NamespaceStats extends _NamespaceStats {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NamespaceStatsCopyWith<_$_NamespaceStats> get copyWith =>
-      __$$_NamespaceStatsCopyWithImpl<_$_NamespaceStats>(this, _$identity);
+  _$$NamespaceStatsImplCopyWith<_$NamespaceStatsImpl> get copyWith =>
+      __$$NamespaceStatsImplCopyWithImpl<_$NamespaceStatsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NamespaceStatsToJson(
+    return _$$NamespaceStatsImplToJson(
       this,
     );
   }
@@ -1115,11 +1119,11 @@ class _$_NamespaceStats extends _NamespaceStats {
 
 abstract class _NamespaceStats extends NamespaceStats {
   const factory _NamespaceStats({required final int vectorCount}) =
-      _$_NamespaceStats;
+      _$NamespaceStatsImpl;
   const _NamespaceStats._() : super._();
 
   factory _NamespaceStats.fromJson(Map<String, dynamic> json) =
-      _$_NamespaceStats.fromJson;
+      _$NamespaceStatsImpl.fromJson;
 
   @override
 
@@ -1127,7 +1131,7 @@ abstract class _NamespaceStats extends NamespaceStats {
   int get vectorCount;
   @override
   @JsonKey(ignore: true)
-  _$$_NamespaceStatsCopyWith<_$_NamespaceStats> get copyWith =>
+  _$$NamespaceStatsImplCopyWith<_$NamespaceStatsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1204,22 +1208,22 @@ class _$CollectionCopyWithImpl<$Res, $Val extends Collection>
 }
 
 /// @nodoc
-abstract class _$$_CollectionCopyWith<$Res>
+abstract class _$$CollectionImplCopyWith<$Res>
     implements $CollectionCopyWith<$Res> {
-  factory _$$_CollectionCopyWith(
-          _$_Collection value, $Res Function(_$_Collection) then) =
-      __$$_CollectionCopyWithImpl<$Res>;
+  factory _$$CollectionImplCopyWith(
+          _$CollectionImpl value, $Res Function(_$CollectionImpl) then) =
+      __$$CollectionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, CollectionStatus status, int? size, int dimension});
 }
 
 /// @nodoc
-class __$$_CollectionCopyWithImpl<$Res>
-    extends _$CollectionCopyWithImpl<$Res, _$_Collection>
-    implements _$$_CollectionCopyWith<$Res> {
-  __$$_CollectionCopyWithImpl(
-      _$_Collection _value, $Res Function(_$_Collection) _then)
+class __$$CollectionImplCopyWithImpl<$Res>
+    extends _$CollectionCopyWithImpl<$Res, _$CollectionImpl>
+    implements _$$CollectionImplCopyWith<$Res> {
+  __$$CollectionImplCopyWithImpl(
+      _$CollectionImpl _value, $Res Function(_$CollectionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1230,7 +1234,7 @@ class __$$_CollectionCopyWithImpl<$Res>
     Object? size = freezed,
     Object? dimension = null,
   }) {
-    return _then(_$_Collection(
+    return _then(_$CollectionImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1253,16 +1257,16 @@ class __$$_CollectionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Collection extends _Collection {
-  const _$_Collection(
+class _$CollectionImpl extends _Collection {
+  const _$CollectionImpl(
       {required this.name,
       required this.status,
       this.size,
       required this.dimension})
       : super._();
 
-  factory _$_Collection.fromJson(Map<String, dynamic> json) =>
-      _$$_CollectionFromJson(json);
+  factory _$CollectionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CollectionImplFromJson(json);
 
   /// The name of the collection.
   @override
@@ -1289,7 +1293,7 @@ class _$_Collection extends _Collection {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Collection &&
+            other is _$CollectionImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.size, size) || other.size == size) &&
@@ -1304,12 +1308,12 @@ class _$_Collection extends _Collection {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CollectionCopyWith<_$_Collection> get copyWith =>
-      __$$_CollectionCopyWithImpl<_$_Collection>(this, _$identity);
+  _$$CollectionImplCopyWith<_$CollectionImpl> get copyWith =>
+      __$$CollectionImplCopyWithImpl<_$CollectionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CollectionToJson(
+    return _$$CollectionImplToJson(
       this,
     );
   }
@@ -1320,11 +1324,11 @@ abstract class _Collection extends Collection {
       {required final String name,
       required final CollectionStatus status,
       final int? size,
-      required final int dimension}) = _$_Collection;
+      required final int dimension}) = _$CollectionImpl;
   const _Collection._() : super._();
 
   factory _Collection.fromJson(Map<String, dynamic> json) =
-      _$_Collection.fromJson;
+      _$CollectionImpl.fromJson;
 
   @override
 
@@ -1344,7 +1348,7 @@ abstract class _Collection extends Collection {
   int get dimension;
   @override
   @JsonKey(ignore: true)
-  _$$_CollectionCopyWith<_$_Collection> get copyWith =>
+  _$$CollectionImplCopyWith<_$CollectionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1413,11 +1417,12 @@ class _$ConfigureIndexRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ConfigureIndexRequestCopyWith<$Res>
+abstract class _$$ConfigureIndexRequestImplCopyWith<$Res>
     implements $ConfigureIndexRequestCopyWith<$Res> {
-  factory _$$_ConfigureIndexRequestCopyWith(_$_ConfigureIndexRequest value,
-          $Res Function(_$_ConfigureIndexRequest) then) =
-      __$$_ConfigureIndexRequestCopyWithImpl<$Res>;
+  factory _$$ConfigureIndexRequestImplCopyWith(
+          _$ConfigureIndexRequestImpl value,
+          $Res Function(_$ConfigureIndexRequestImpl) then) =
+      __$$ConfigureIndexRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1428,11 +1433,12 @@ abstract class _$$_ConfigureIndexRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ConfigureIndexRequestCopyWithImpl<$Res>
-    extends _$ConfigureIndexRequestCopyWithImpl<$Res, _$_ConfigureIndexRequest>
-    implements _$$_ConfigureIndexRequestCopyWith<$Res> {
-  __$$_ConfigureIndexRequestCopyWithImpl(_$_ConfigureIndexRequest _value,
-      $Res Function(_$_ConfigureIndexRequest) _then)
+class __$$ConfigureIndexRequestImplCopyWithImpl<$Res>
+    extends _$ConfigureIndexRequestCopyWithImpl<$Res,
+        _$ConfigureIndexRequestImpl>
+    implements _$$ConfigureIndexRequestImplCopyWith<$Res> {
+  __$$ConfigureIndexRequestImplCopyWithImpl(_$ConfigureIndexRequestImpl _value,
+      $Res Function(_$ConfigureIndexRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1441,7 +1447,7 @@ class __$$_ConfigureIndexRequestCopyWithImpl<$Res>
     Object? replicas = null,
     Object? podType = freezed,
   }) {
-    return _then(_$_ConfigureIndexRequest(
+    return _then(_$ConfigureIndexRequestImpl(
       replicas: null == replicas
           ? _value.replicas
           : replicas // ignore: cast_nullable_to_non_nullable
@@ -1456,16 +1462,16 @@ class __$$_ConfigureIndexRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ConfigureIndexRequest extends _ConfigureIndexRequest {
-  const _$_ConfigureIndexRequest(
+class _$ConfigureIndexRequestImpl extends _ConfigureIndexRequest {
+  const _$ConfigureIndexRequestImpl(
       {this.replicas = 1,
       @JsonKey(
           name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       this.podType})
       : super._();
 
-  factory _$_ConfigureIndexRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_ConfigureIndexRequestFromJson(json);
+  factory _$ConfigureIndexRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ConfigureIndexRequestImplFromJson(json);
 
   /// The desired number of replicas for the index.
   @override
@@ -1487,7 +1493,7 @@ class _$_ConfigureIndexRequest extends _ConfigureIndexRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ConfigureIndexRequest &&
+            other is _$ConfigureIndexRequestImpl &&
             (identical(other.replicas, replicas) ||
                 other.replicas == replicas) &&
             (identical(other.podType, podType) || other.podType == podType));
@@ -1500,13 +1506,13 @@ class _$_ConfigureIndexRequest extends _ConfigureIndexRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ConfigureIndexRequestCopyWith<_$_ConfigureIndexRequest> get copyWith =>
-      __$$_ConfigureIndexRequestCopyWithImpl<_$_ConfigureIndexRequest>(
-          this, _$identity);
+  _$$ConfigureIndexRequestImplCopyWith<_$ConfigureIndexRequestImpl>
+      get copyWith => __$$ConfigureIndexRequestImplCopyWithImpl<
+          _$ConfigureIndexRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ConfigureIndexRequestToJson(
+    return _$$ConfigureIndexRequestImplToJson(
       this,
     );
   }
@@ -1517,11 +1523,11 @@ abstract class _ConfigureIndexRequest extends ConfigureIndexRequest {
       {final int replicas,
       @JsonKey(
           name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
-      final PodType? podType}) = _$_ConfigureIndexRequest;
+      final PodType? podType}) = _$ConfigureIndexRequestImpl;
   const _ConfigureIndexRequest._() : super._();
 
   factory _ConfigureIndexRequest.fromJson(Map<String, dynamic> json) =
-      _$_ConfigureIndexRequest.fromJson;
+      _$ConfigureIndexRequestImpl.fromJson;
 
   @override
 
@@ -1535,8 +1541,8 @@ abstract class _ConfigureIndexRequest extends ConfigureIndexRequest {
   PodType? get podType;
   @override
   @JsonKey(ignore: true)
-  _$$_ConfigureIndexRequestCopyWith<_$_ConfigureIndexRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ConfigureIndexRequestImplCopyWith<_$ConfigureIndexRequestImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 CreateCollectionRequest _$CreateCollectionRequestFromJson(
@@ -1598,23 +1604,25 @@ class _$CreateCollectionRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CreateCollectionRequestCopyWith<$Res>
+abstract class _$$CreateCollectionRequestImplCopyWith<$Res>
     implements $CreateCollectionRequestCopyWith<$Res> {
-  factory _$$_CreateCollectionRequestCopyWith(_$_CreateCollectionRequest value,
-          $Res Function(_$_CreateCollectionRequest) then) =
-      __$$_CreateCollectionRequestCopyWithImpl<$Res>;
+  factory _$$CreateCollectionRequestImplCopyWith(
+          _$CreateCollectionRequestImpl value,
+          $Res Function(_$CreateCollectionRequestImpl) then) =
+      __$$CreateCollectionRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, String source});
 }
 
 /// @nodoc
-class __$$_CreateCollectionRequestCopyWithImpl<$Res>
+class __$$CreateCollectionRequestImplCopyWithImpl<$Res>
     extends _$CreateCollectionRequestCopyWithImpl<$Res,
-        _$_CreateCollectionRequest>
-    implements _$$_CreateCollectionRequestCopyWith<$Res> {
-  __$$_CreateCollectionRequestCopyWithImpl(_$_CreateCollectionRequest _value,
-      $Res Function(_$_CreateCollectionRequest) _then)
+        _$CreateCollectionRequestImpl>
+    implements _$$CreateCollectionRequestImplCopyWith<$Res> {
+  __$$CreateCollectionRequestImplCopyWithImpl(
+      _$CreateCollectionRequestImpl _value,
+      $Res Function(_$CreateCollectionRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1623,7 +1631,7 @@ class __$$_CreateCollectionRequestCopyWithImpl<$Res>
     Object? name = null,
     Object? source = null,
   }) {
-    return _then(_$_CreateCollectionRequest(
+    return _then(_$CreateCollectionRequestImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1638,12 +1646,13 @@ class __$$_CreateCollectionRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateCollectionRequest extends _CreateCollectionRequest {
-  const _$_CreateCollectionRequest({required this.name, required this.source})
+class _$CreateCollectionRequestImpl extends _CreateCollectionRequest {
+  const _$CreateCollectionRequestImpl(
+      {required this.name, required this.source})
       : super._();
 
-  factory _$_CreateCollectionRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateCollectionRequestFromJson(json);
+  factory _$CreateCollectionRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateCollectionRequestImplFromJson(json);
 
   /// The name of the collection to create.
   @override
@@ -1662,7 +1671,7 @@ class _$_CreateCollectionRequest extends _CreateCollectionRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreateCollectionRequest &&
+            other is _$CreateCollectionRequestImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.source, source) || other.source == source));
   }
@@ -1674,14 +1683,13 @@ class _$_CreateCollectionRequest extends _CreateCollectionRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreateCollectionRequestCopyWith<_$_CreateCollectionRequest>
-      get copyWith =>
-          __$$_CreateCollectionRequestCopyWithImpl<_$_CreateCollectionRequest>(
-              this, _$identity);
+  _$$CreateCollectionRequestImplCopyWith<_$CreateCollectionRequestImpl>
+      get copyWith => __$$CreateCollectionRequestImplCopyWithImpl<
+          _$CreateCollectionRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateCollectionRequestToJson(
+    return _$$CreateCollectionRequestImplToJson(
       this,
     );
   }
@@ -1690,11 +1698,11 @@ class _$_CreateCollectionRequest extends _CreateCollectionRequest {
 abstract class _CreateCollectionRequest extends CreateCollectionRequest {
   const factory _CreateCollectionRequest(
       {required final String name,
-      required final String source}) = _$_CreateCollectionRequest;
+      required final String source}) = _$CreateCollectionRequestImpl;
   const _CreateCollectionRequest._() : super._();
 
   factory _CreateCollectionRequest.fromJson(Map<String, dynamic> json) =
-      _$_CreateCollectionRequest.fromJson;
+      _$CreateCollectionRequestImpl.fromJson;
 
   @override
 
@@ -1706,7 +1714,7 @@ abstract class _CreateCollectionRequest extends CreateCollectionRequest {
   String get source;
   @override
   @JsonKey(ignore: true)
-  _$$_CreateCollectionRequestCopyWith<_$_CreateCollectionRequest>
+  _$$CreateCollectionRequestImplCopyWith<_$CreateCollectionRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1827,11 +1835,11 @@ class _$CreateIndexRequestCopyWithImpl<$Res, $Val extends CreateIndexRequest>
 }
 
 /// @nodoc
-abstract class _$$_CreateIndexRequestCopyWith<$Res>
+abstract class _$$CreateIndexRequestImplCopyWith<$Res>
     implements $CreateIndexRequestCopyWith<$Res> {
-  factory _$$_CreateIndexRequestCopyWith(_$_CreateIndexRequest value,
-          $Res Function(_$_CreateIndexRequest) then) =
-      __$$_CreateIndexRequestCopyWithImpl<$Res>;
+  factory _$$CreateIndexRequestImplCopyWith(_$CreateIndexRequestImpl value,
+          $Res Function(_$CreateIndexRequestImpl) then) =
+      __$$CreateIndexRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1846,11 +1854,11 @@ abstract class _$$_CreateIndexRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CreateIndexRequestCopyWithImpl<$Res>
-    extends _$CreateIndexRequestCopyWithImpl<$Res, _$_CreateIndexRequest>
-    implements _$$_CreateIndexRequestCopyWith<$Res> {
-  __$$_CreateIndexRequestCopyWithImpl(
-      _$_CreateIndexRequest _value, $Res Function(_$_CreateIndexRequest) _then)
+class __$$CreateIndexRequestImplCopyWithImpl<$Res>
+    extends _$CreateIndexRequestCopyWithImpl<$Res, _$CreateIndexRequestImpl>
+    implements _$$CreateIndexRequestImplCopyWith<$Res> {
+  __$$CreateIndexRequestImplCopyWithImpl(_$CreateIndexRequestImpl _value,
+      $Res Function(_$CreateIndexRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1865,7 +1873,7 @@ class __$$_CreateIndexRequestCopyWithImpl<$Res>
     Object? metadataConfig = freezed,
     Object? sourceCollection = freezed,
   }) {
-    return _then(_$_CreateIndexRequest(
+    return _then(_$CreateIndexRequestImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1904,8 +1912,8 @@ class __$$_CreateIndexRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateIndexRequest extends _CreateIndexRequest {
-  const _$_CreateIndexRequest(
+class _$CreateIndexRequestImpl extends _CreateIndexRequest {
+  const _$CreateIndexRequestImpl(
       {required this.name,
       required this.dimension,
       this.metric = SearchMetric.cosine,
@@ -1918,8 +1926,8 @@ class _$_CreateIndexRequest extends _CreateIndexRequest {
       : _metadataConfig = metadataConfig,
         super._();
 
-  factory _$_CreateIndexRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateIndexRequestFromJson(json);
+  factory _$CreateIndexRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateIndexRequestImplFromJson(json);
 
   /// The name of the index to be created.
   @override
@@ -1977,7 +1985,7 @@ class _$_CreateIndexRequest extends _CreateIndexRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreateIndexRequest &&
+            other is _$CreateIndexRequestImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.dimension, dimension) ||
                 other.dimension == dimension) &&
@@ -2008,13 +2016,13 @@ class _$_CreateIndexRequest extends _CreateIndexRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreateIndexRequestCopyWith<_$_CreateIndexRequest> get copyWith =>
-      __$$_CreateIndexRequestCopyWithImpl<_$_CreateIndexRequest>(
+  _$$CreateIndexRequestImplCopyWith<_$CreateIndexRequestImpl> get copyWith =>
+      __$$CreateIndexRequestImplCopyWithImpl<_$CreateIndexRequestImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateIndexRequestToJson(
+    return _$$CreateIndexRequestImplToJson(
       this,
     );
   }
@@ -2031,11 +2039,11 @@ abstract class _CreateIndexRequest extends CreateIndexRequest {
           @JsonKey(name: 'metadata_config')
           final Map<String, dynamic>? metadataConfig,
           @JsonKey(name: 'source_collection') final String? sourceCollection}) =
-      _$_CreateIndexRequest;
+      _$CreateIndexRequestImpl;
   const _CreateIndexRequest._() : super._();
 
   factory _CreateIndexRequest.fromJson(Map<String, dynamic> json) =
-      _$_CreateIndexRequest.fromJson;
+      _$CreateIndexRequestImpl.fromJson;
 
   @override
 
@@ -2074,7 +2082,7 @@ abstract class _CreateIndexRequest extends CreateIndexRequest {
   String? get sourceCollection;
   @override
   @JsonKey(ignore: true)
-  _$$_CreateIndexRequestCopyWith<_$_CreateIndexRequest> get copyWith =>
+  _$$CreateIndexRequestImplCopyWith<_$CreateIndexRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2127,22 +2135,22 @@ class _$IndexStatsRequestCopyWithImpl<$Res, $Val extends IndexStatsRequest>
 }
 
 /// @nodoc
-abstract class _$$_IndexStatsRequestCopyWith<$Res>
+abstract class _$$IndexStatsRequestImplCopyWith<$Res>
     implements $IndexStatsRequestCopyWith<$Res> {
-  factory _$$_IndexStatsRequestCopyWith(_$_IndexStatsRequest value,
-          $Res Function(_$_IndexStatsRequest) then) =
-      __$$_IndexStatsRequestCopyWithImpl<$Res>;
+  factory _$$IndexStatsRequestImplCopyWith(_$IndexStatsRequestImpl value,
+          $Res Function(_$IndexStatsRequestImpl) then) =
+      __$$IndexStatsRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Map<String, dynamic>? filter});
 }
 
 /// @nodoc
-class __$$_IndexStatsRequestCopyWithImpl<$Res>
-    extends _$IndexStatsRequestCopyWithImpl<$Res, _$_IndexStatsRequest>
-    implements _$$_IndexStatsRequestCopyWith<$Res> {
-  __$$_IndexStatsRequestCopyWithImpl(
-      _$_IndexStatsRequest _value, $Res Function(_$_IndexStatsRequest) _then)
+class __$$IndexStatsRequestImplCopyWithImpl<$Res>
+    extends _$IndexStatsRequestCopyWithImpl<$Res, _$IndexStatsRequestImpl>
+    implements _$$IndexStatsRequestImplCopyWith<$Res> {
+  __$$IndexStatsRequestImplCopyWithImpl(_$IndexStatsRequestImpl _value,
+      $Res Function(_$IndexStatsRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2150,7 +2158,7 @@ class __$$_IndexStatsRequestCopyWithImpl<$Res>
   $Res call({
     Object? filter = freezed,
   }) {
-    return _then(_$_IndexStatsRequest(
+    return _then(_$IndexStatsRequestImpl(
       filter: freezed == filter
           ? _value._filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -2161,13 +2169,13 @@ class __$$_IndexStatsRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IndexStatsRequest extends _IndexStatsRequest {
-  const _$_IndexStatsRequest({final Map<String, dynamic>? filter})
+class _$IndexStatsRequestImpl extends _IndexStatsRequest {
+  const _$IndexStatsRequestImpl({final Map<String, dynamic>? filter})
       : _filter = filter,
         super._();
 
-  factory _$_IndexStatsRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_IndexStatsRequestFromJson(json);
+  factory _$IndexStatsRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IndexStatsRequestImplFromJson(json);
 
   /// If defined, the operation only returns statistics for vectors that satisfy the filter.
   final Map<String, dynamic>? _filter;
@@ -2191,7 +2199,7 @@ class _$_IndexStatsRequest extends _IndexStatsRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IndexStatsRequest &&
+            other is _$IndexStatsRequestImpl &&
             const DeepCollectionEquality().equals(other._filter, _filter));
   }
 
@@ -2203,13 +2211,13 @@ class _$_IndexStatsRequest extends _IndexStatsRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IndexStatsRequestCopyWith<_$_IndexStatsRequest> get copyWith =>
-      __$$_IndexStatsRequestCopyWithImpl<_$_IndexStatsRequest>(
+  _$$IndexStatsRequestImplCopyWith<_$IndexStatsRequestImpl> get copyWith =>
+      __$$IndexStatsRequestImplCopyWithImpl<_$IndexStatsRequestImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IndexStatsRequestToJson(
+    return _$$IndexStatsRequestImplToJson(
       this,
     );
   }
@@ -2217,11 +2225,11 @@ class _$_IndexStatsRequest extends _IndexStatsRequest {
 
 abstract class _IndexStatsRequest extends IndexStatsRequest {
   const factory _IndexStatsRequest({final Map<String, dynamic>? filter}) =
-      _$_IndexStatsRequest;
+      _$IndexStatsRequestImpl;
   const _IndexStatsRequest._() : super._();
 
   factory _IndexStatsRequest.fromJson(Map<String, dynamic> json) =
-      _$_IndexStatsRequest.fromJson;
+      _$IndexStatsRequestImpl.fromJson;
 
   @override
 
@@ -2229,7 +2237,7 @@ abstract class _IndexStatsRequest extends IndexStatsRequest {
   Map<String, dynamic>? get filter;
   @override
   @JsonKey(ignore: true)
-  _$$_IndexStatsRequestCopyWith<_$_IndexStatsRequest> get copyWith =>
+  _$$IndexStatsRequestImplCopyWith<_$IndexStatsRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2310,11 +2318,11 @@ class _$DeleteRequestCopyWithImpl<$Res, $Val extends DeleteRequest>
 }
 
 /// @nodoc
-abstract class _$$_DeleteRequestCopyWith<$Res>
+abstract class _$$DeleteRequestImplCopyWith<$Res>
     implements $DeleteRequestCopyWith<$Res> {
-  factory _$$_DeleteRequestCopyWith(
-          _$_DeleteRequest value, $Res Function(_$_DeleteRequest) then) =
-      __$$_DeleteRequestCopyWithImpl<$Res>;
+  factory _$$DeleteRequestImplCopyWith(
+          _$DeleteRequestImpl value, $Res Function(_$DeleteRequestImpl) then) =
+      __$$DeleteRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2325,11 +2333,11 @@ abstract class _$$_DeleteRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DeleteRequestCopyWithImpl<$Res>
-    extends _$DeleteRequestCopyWithImpl<$Res, _$_DeleteRequest>
-    implements _$$_DeleteRequestCopyWith<$Res> {
-  __$$_DeleteRequestCopyWithImpl(
-      _$_DeleteRequest _value, $Res Function(_$_DeleteRequest) _then)
+class __$$DeleteRequestImplCopyWithImpl<$Res>
+    extends _$DeleteRequestCopyWithImpl<$Res, _$DeleteRequestImpl>
+    implements _$$DeleteRequestImplCopyWith<$Res> {
+  __$$DeleteRequestImplCopyWithImpl(
+      _$DeleteRequestImpl _value, $Res Function(_$DeleteRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2340,7 +2348,7 @@ class __$$_DeleteRequestCopyWithImpl<$Res>
     Object? namespace = freezed,
     Object? filter = freezed,
   }) {
-    return _then(_$_DeleteRequest(
+    return _then(_$DeleteRequestImpl(
       ids: freezed == ids
           ? _value._ids
           : ids // ignore: cast_nullable_to_non_nullable
@@ -2363,8 +2371,8 @@ class __$$_DeleteRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DeleteRequest extends _DeleteRequest {
-  const _$_DeleteRequest(
+class _$DeleteRequestImpl extends _DeleteRequest {
+  const _$DeleteRequestImpl(
       {final List<String>? ids,
       this.deleteAll,
       this.namespace,
@@ -2373,8 +2381,8 @@ class _$_DeleteRequest extends _DeleteRequest {
         _filter = filter,
         super._();
 
-  factory _$_DeleteRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_DeleteRequestFromJson(json);
+  factory _$DeleteRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DeleteRequestImplFromJson(json);
 
   /// Vectors to delete, by id.
   final List<String>? _ids;
@@ -2419,7 +2427,7 @@ class _$_DeleteRequest extends _DeleteRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeleteRequest &&
+            other is _$DeleteRequestImpl &&
             const DeepCollectionEquality().equals(other._ids, _ids) &&
             (identical(other.deleteAll, deleteAll) ||
                 other.deleteAll == deleteAll) &&
@@ -2440,12 +2448,12 @@ class _$_DeleteRequest extends _DeleteRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeleteRequestCopyWith<_$_DeleteRequest> get copyWith =>
-      __$$_DeleteRequestCopyWithImpl<_$_DeleteRequest>(this, _$identity);
+  _$$DeleteRequestImplCopyWith<_$DeleteRequestImpl> get copyWith =>
+      __$$DeleteRequestImplCopyWithImpl<_$DeleteRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeleteRequestToJson(
+    return _$$DeleteRequestImplToJson(
       this,
     );
   }
@@ -2456,11 +2464,11 @@ abstract class _DeleteRequest extends DeleteRequest {
       {final List<String>? ids,
       final bool? deleteAll,
       final String? namespace,
-      final Map<String, dynamic>? filter}) = _$_DeleteRequest;
+      final Map<String, dynamic>? filter}) = _$DeleteRequestImpl;
   const _DeleteRequest._() : super._();
 
   factory _DeleteRequest.fromJson(Map<String, dynamic> json) =
-      _$_DeleteRequest.fromJson;
+      _$DeleteRequestImpl.fromJson;
 
   @override
 
@@ -2480,7 +2488,7 @@ abstract class _DeleteRequest extends DeleteRequest {
   Map<String, dynamic>? get filter;
   @override
   @JsonKey(ignore: true)
-  _$$_DeleteRequestCopyWith<_$_DeleteRequest> get copyWith =>
+  _$$DeleteRequestImplCopyWith<_$DeleteRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2611,11 +2619,11 @@ class _$QueryRequestCopyWithImpl<$Res, $Val extends QueryRequest>
 }
 
 /// @nodoc
-abstract class _$$_QueryRequestCopyWith<$Res>
+abstract class _$$QueryRequestImplCopyWith<$Res>
     implements $QueryRequestCopyWith<$Res> {
-  factory _$$_QueryRequestCopyWith(
-          _$_QueryRequest value, $Res Function(_$_QueryRequest) then) =
-      __$$_QueryRequestCopyWithImpl<$Res>;
+  factory _$$QueryRequestImplCopyWith(
+          _$QueryRequestImpl value, $Res Function(_$QueryRequestImpl) then) =
+      __$$QueryRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2633,11 +2641,11 @@ abstract class _$$_QueryRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_QueryRequestCopyWithImpl<$Res>
-    extends _$QueryRequestCopyWithImpl<$Res, _$_QueryRequest>
-    implements _$$_QueryRequestCopyWith<$Res> {
-  __$$_QueryRequestCopyWithImpl(
-      _$_QueryRequest _value, $Res Function(_$_QueryRequest) _then)
+class __$$QueryRequestImplCopyWithImpl<$Res>
+    extends _$QueryRequestCopyWithImpl<$Res, _$QueryRequestImpl>
+    implements _$$QueryRequestImplCopyWith<$Res> {
+  __$$QueryRequestImplCopyWithImpl(
+      _$QueryRequestImpl _value, $Res Function(_$QueryRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2652,7 +2660,7 @@ class __$$_QueryRequestCopyWithImpl<$Res>
     Object? sparseVector = freezed,
     Object? id = freezed,
   }) {
-    return _then(_$_QueryRequest(
+    return _then(_$QueryRequestImpl(
       namespace: freezed == namespace
           ? _value.namespace
           : namespace // ignore: cast_nullable_to_non_nullable
@@ -2691,8 +2699,8 @@ class __$$_QueryRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_QueryRequest extends _QueryRequest {
-  const _$_QueryRequest(
+class _$QueryRequestImpl extends _QueryRequest {
+  const _$QueryRequestImpl(
       {this.namespace,
       this.topK = 10,
       final Map<String, dynamic>? filter,
@@ -2705,8 +2713,8 @@ class _$_QueryRequest extends _QueryRequest {
         _vector = vector,
         super._();
 
-  factory _$_QueryRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_QueryRequestFromJson(json);
+  factory _$QueryRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$QueryRequestImplFromJson(json);
 
   /// The namespace to query.
   @override
@@ -2770,7 +2778,7 @@ class _$_QueryRequest extends _QueryRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_QueryRequest &&
+            other is _$QueryRequestImpl &&
             (identical(other.namespace, namespace) ||
                 other.namespace == namespace) &&
             (identical(other.topK, topK) || other.topK == topK) &&
@@ -2801,12 +2809,12 @@ class _$_QueryRequest extends _QueryRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_QueryRequestCopyWith<_$_QueryRequest> get copyWith =>
-      __$$_QueryRequestCopyWithImpl<_$_QueryRequest>(this, _$identity);
+  _$$QueryRequestImplCopyWith<_$QueryRequestImpl> get copyWith =>
+      __$$QueryRequestImplCopyWithImpl<_$QueryRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_QueryRequestToJson(
+    return _$$QueryRequestImplToJson(
       this,
     );
   }
@@ -2821,11 +2829,11 @@ abstract class _QueryRequest extends QueryRequest {
       final bool includeMetadata,
       final List<double>? vector,
       final SparseVector? sparseVector,
-      final String? id}) = _$_QueryRequest;
+      final String? id}) = _$QueryRequestImpl;
   const _QueryRequest._() : super._();
 
   factory _QueryRequest.fromJson(Map<String, dynamic> json) =
-      _$_QueryRequest.fromJson;
+      _$QueryRequestImpl.fromJson;
 
   @override
 
@@ -2861,7 +2869,7 @@ abstract class _QueryRequest extends QueryRequest {
   String? get id;
   @override
   @JsonKey(ignore: true)
-  _$$_QueryRequestCopyWith<_$_QueryRequest> get copyWith =>
+  _$$QueryRequestImplCopyWith<_$QueryRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2922,22 +2930,22 @@ class _$QueryResponseCopyWithImpl<$Res, $Val extends QueryResponse>
 }
 
 /// @nodoc
-abstract class _$$_QueryResponseCopyWith<$Res>
+abstract class _$$QueryResponseImplCopyWith<$Res>
     implements $QueryResponseCopyWith<$Res> {
-  factory _$$_QueryResponseCopyWith(
-          _$_QueryResponse value, $Res Function(_$_QueryResponse) then) =
-      __$$_QueryResponseCopyWithImpl<$Res>;
+  factory _$$QueryResponseImplCopyWith(
+          _$QueryResponseImpl value, $Res Function(_$QueryResponseImpl) then) =
+      __$$QueryResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String namespace, List<VectorMatch> matches});
 }
 
 /// @nodoc
-class __$$_QueryResponseCopyWithImpl<$Res>
-    extends _$QueryResponseCopyWithImpl<$Res, _$_QueryResponse>
-    implements _$$_QueryResponseCopyWith<$Res> {
-  __$$_QueryResponseCopyWithImpl(
-      _$_QueryResponse _value, $Res Function(_$_QueryResponse) _then)
+class __$$QueryResponseImplCopyWithImpl<$Res>
+    extends _$QueryResponseCopyWithImpl<$Res, _$QueryResponseImpl>
+    implements _$$QueryResponseImplCopyWith<$Res> {
+  __$$QueryResponseImplCopyWithImpl(
+      _$QueryResponseImpl _value, $Res Function(_$QueryResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2946,7 +2954,7 @@ class __$$_QueryResponseCopyWithImpl<$Res>
     Object? namespace = null,
     Object? matches = null,
   }) {
-    return _then(_$_QueryResponse(
+    return _then(_$QueryResponseImpl(
       namespace: null == namespace
           ? _value.namespace
           : namespace // ignore: cast_nullable_to_non_nullable
@@ -2961,14 +2969,14 @@ class __$$_QueryResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_QueryResponse extends _QueryResponse {
-  const _$_QueryResponse(
+class _$QueryResponseImpl extends _QueryResponse {
+  const _$QueryResponseImpl(
       {required this.namespace, required final List<VectorMatch> matches})
       : _matches = matches,
         super._();
 
-  factory _$_QueryResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_QueryResponseFromJson(json);
+  factory _$QueryResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$QueryResponseImplFromJson(json);
 
   /// The namespace to query.
   @override
@@ -2994,7 +3002,7 @@ class _$_QueryResponse extends _QueryResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_QueryResponse &&
+            other is _$QueryResponseImpl &&
             (identical(other.namespace, namespace) ||
                 other.namespace == namespace) &&
             const DeepCollectionEquality().equals(other._matches, _matches));
@@ -3008,12 +3016,12 @@ class _$_QueryResponse extends _QueryResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_QueryResponseCopyWith<_$_QueryResponse> get copyWith =>
-      __$$_QueryResponseCopyWithImpl<_$_QueryResponse>(this, _$identity);
+  _$$QueryResponseImplCopyWith<_$QueryResponseImpl> get copyWith =>
+      __$$QueryResponseImplCopyWithImpl<_$QueryResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_QueryResponseToJson(
+    return _$$QueryResponseImplToJson(
       this,
     );
   }
@@ -3022,11 +3030,11 @@ class _$_QueryResponse extends _QueryResponse {
 abstract class _QueryResponse extends QueryResponse {
   const factory _QueryResponse(
       {required final String namespace,
-      required final List<VectorMatch> matches}) = _$_QueryResponse;
+      required final List<VectorMatch> matches}) = _$QueryResponseImpl;
   const _QueryResponse._() : super._();
 
   factory _QueryResponse.fromJson(Map<String, dynamic> json) =
-      _$_QueryResponse.fromJson;
+      _$QueryResponseImpl.fromJson;
 
   @override
 
@@ -3038,7 +3046,7 @@ abstract class _QueryResponse extends QueryResponse {
   List<VectorMatch> get matches;
   @override
   @JsonKey(ignore: true)
-  _$$_QueryResponseCopyWith<_$_QueryResponse> get copyWith =>
+  _$$QueryResponseImplCopyWith<_$QueryResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3099,22 +3107,22 @@ class _$FetchResponseCopyWithImpl<$Res, $Val extends FetchResponse>
 }
 
 /// @nodoc
-abstract class _$$_FetchResponseCopyWith<$Res>
+abstract class _$$FetchResponseImplCopyWith<$Res>
     implements $FetchResponseCopyWith<$Res> {
-  factory _$$_FetchResponseCopyWith(
-          _$_FetchResponse value, $Res Function(_$_FetchResponse) then) =
-      __$$_FetchResponseCopyWithImpl<$Res>;
+  factory _$$FetchResponseImplCopyWith(
+          _$FetchResponseImpl value, $Res Function(_$FetchResponseImpl) then) =
+      __$$FetchResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String namespace, Map<String, Vector> vectors});
 }
 
 /// @nodoc
-class __$$_FetchResponseCopyWithImpl<$Res>
-    extends _$FetchResponseCopyWithImpl<$Res, _$_FetchResponse>
-    implements _$$_FetchResponseCopyWith<$Res> {
-  __$$_FetchResponseCopyWithImpl(
-      _$_FetchResponse _value, $Res Function(_$_FetchResponse) _then)
+class __$$FetchResponseImplCopyWithImpl<$Res>
+    extends _$FetchResponseCopyWithImpl<$Res, _$FetchResponseImpl>
+    implements _$$FetchResponseImplCopyWith<$Res> {
+  __$$FetchResponseImplCopyWithImpl(
+      _$FetchResponseImpl _value, $Res Function(_$FetchResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3123,7 +3131,7 @@ class __$$_FetchResponseCopyWithImpl<$Res>
     Object? namespace = null,
     Object? vectors = null,
   }) {
-    return _then(_$_FetchResponse(
+    return _then(_$FetchResponseImpl(
       namespace: null == namespace
           ? _value.namespace
           : namespace // ignore: cast_nullable_to_non_nullable
@@ -3138,14 +3146,14 @@ class __$$_FetchResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_FetchResponse extends _FetchResponse {
-  const _$_FetchResponse(
+class _$FetchResponseImpl extends _FetchResponse {
+  const _$FetchResponseImpl(
       {required this.namespace, required final Map<String, Vector> vectors})
       : _vectors = vectors,
         super._();
 
-  factory _$_FetchResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_FetchResponseFromJson(json);
+  factory _$FetchResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FetchResponseImplFromJson(json);
 
   /// The namespace to the vectors.
   @override
@@ -3171,7 +3179,7 @@ class _$_FetchResponse extends _FetchResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FetchResponse &&
+            other is _$FetchResponseImpl &&
             (identical(other.namespace, namespace) ||
                 other.namespace == namespace) &&
             const DeepCollectionEquality().equals(other._vectors, _vectors));
@@ -3185,12 +3193,12 @@ class _$_FetchResponse extends _FetchResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FetchResponseCopyWith<_$_FetchResponse> get copyWith =>
-      __$$_FetchResponseCopyWithImpl<_$_FetchResponse>(this, _$identity);
+  _$$FetchResponseImplCopyWith<_$FetchResponseImpl> get copyWith =>
+      __$$FetchResponseImplCopyWithImpl<_$FetchResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FetchResponseToJson(
+    return _$$FetchResponseImplToJson(
       this,
     );
   }
@@ -3199,11 +3207,11 @@ class _$_FetchResponse extends _FetchResponse {
 abstract class _FetchResponse extends FetchResponse {
   const factory _FetchResponse(
       {required final String namespace,
-      required final Map<String, Vector> vectors}) = _$_FetchResponse;
+      required final Map<String, Vector> vectors}) = _$FetchResponseImpl;
   const _FetchResponse._() : super._();
 
   factory _FetchResponse.fromJson(Map<String, dynamic> json) =
-      _$_FetchResponse.fromJson;
+      _$FetchResponseImpl.fromJson;
 
   @override
 
@@ -3215,7 +3223,7 @@ abstract class _FetchResponse extends FetchResponse {
   Map<String, Vector> get vectors;
   @override
   @JsonKey(ignore: true)
-  _$$_FetchResponseCopyWith<_$_FetchResponse> get copyWith =>
+  _$$FetchResponseImplCopyWith<_$FetchResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3319,11 +3327,11 @@ class _$UpdateRequestCopyWithImpl<$Res, $Val extends UpdateRequest>
 }
 
 /// @nodoc
-abstract class _$$_UpdateRequestCopyWith<$Res>
+abstract class _$$UpdateRequestImplCopyWith<$Res>
     implements $UpdateRequestCopyWith<$Res> {
-  factory _$$_UpdateRequestCopyWith(
-          _$_UpdateRequest value, $Res Function(_$_UpdateRequest) then) =
-      __$$_UpdateRequestCopyWithImpl<$Res>;
+  factory _$$UpdateRequestImplCopyWith(
+          _$UpdateRequestImpl value, $Res Function(_$UpdateRequestImpl) then) =
+      __$$UpdateRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3338,11 +3346,11 @@ abstract class _$$_UpdateRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UpdateRequestCopyWithImpl<$Res>
-    extends _$UpdateRequestCopyWithImpl<$Res, _$_UpdateRequest>
-    implements _$$_UpdateRequestCopyWith<$Res> {
-  __$$_UpdateRequestCopyWithImpl(
-      _$_UpdateRequest _value, $Res Function(_$_UpdateRequest) _then)
+class __$$UpdateRequestImplCopyWithImpl<$Res>
+    extends _$UpdateRequestCopyWithImpl<$Res, _$UpdateRequestImpl>
+    implements _$$UpdateRequestImplCopyWith<$Res> {
+  __$$UpdateRequestImplCopyWithImpl(
+      _$UpdateRequestImpl _value, $Res Function(_$UpdateRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3354,7 +3362,7 @@ class __$$_UpdateRequestCopyWithImpl<$Res>
     Object? setMetadata = freezed,
     Object? namespace = freezed,
   }) {
-    return _then(_$_UpdateRequest(
+    return _then(_$UpdateRequestImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -3381,8 +3389,8 @@ class __$$_UpdateRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UpdateRequest extends _UpdateRequest {
-  const _$_UpdateRequest(
+class _$UpdateRequestImpl extends _UpdateRequest {
+  const _$UpdateRequestImpl(
       {required this.id,
       final List<double>? values,
       this.sparseValues,
@@ -3392,8 +3400,8 @@ class _$_UpdateRequest extends _UpdateRequest {
         _setMetadata = setMetadata,
         super._();
 
-  factory _$_UpdateRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_UpdateRequestFromJson(json);
+  factory _$UpdateRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UpdateRequestImplFromJson(json);
 
   /// The unique identifier of the vector.
   @override
@@ -3442,7 +3450,7 @@ class _$_UpdateRequest extends _UpdateRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateRequest &&
+            other is _$UpdateRequestImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._values, _values) &&
             (identical(other.sparseValues, sparseValues) ||
@@ -3466,12 +3474,12 @@ class _$_UpdateRequest extends _UpdateRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpdateRequestCopyWith<_$_UpdateRequest> get copyWith =>
-      __$$_UpdateRequestCopyWithImpl<_$_UpdateRequest>(this, _$identity);
+  _$$UpdateRequestImplCopyWith<_$UpdateRequestImpl> get copyWith =>
+      __$$UpdateRequestImplCopyWithImpl<_$UpdateRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UpdateRequestToJson(
+    return _$$UpdateRequestImplToJson(
       this,
     );
   }
@@ -3483,11 +3491,11 @@ abstract class _UpdateRequest extends UpdateRequest {
       final List<double>? values,
       final SparseVector? sparseValues,
       final Map<String, dynamic>? setMetadata,
-      final String? namespace}) = _$_UpdateRequest;
+      final String? namespace}) = _$UpdateRequestImpl;
   const _UpdateRequest._() : super._();
 
   factory _UpdateRequest.fromJson(Map<String, dynamic> json) =
-      _$_UpdateRequest.fromJson;
+      _$UpdateRequestImpl.fromJson;
 
   @override
 
@@ -3511,7 +3519,7 @@ abstract class _UpdateRequest extends UpdateRequest {
   String? get namespace;
   @override
   @JsonKey(ignore: true)
-  _$$_UpdateRequestCopyWith<_$_UpdateRequest> get copyWith =>
+  _$$UpdateRequestImplCopyWith<_$UpdateRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3572,22 +3580,22 @@ class _$UpsertRequestCopyWithImpl<$Res, $Val extends UpsertRequest>
 }
 
 /// @nodoc
-abstract class _$$_UpsertRequestCopyWith<$Res>
+abstract class _$$UpsertRequestImplCopyWith<$Res>
     implements $UpsertRequestCopyWith<$Res> {
-  factory _$$_UpsertRequestCopyWith(
-          _$_UpsertRequest value, $Res Function(_$_UpsertRequest) then) =
-      __$$_UpsertRequestCopyWithImpl<$Res>;
+  factory _$$UpsertRequestImplCopyWith(
+          _$UpsertRequestImpl value, $Res Function(_$UpsertRequestImpl) then) =
+      __$$UpsertRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Vector> vectors, String? namespace});
 }
 
 /// @nodoc
-class __$$_UpsertRequestCopyWithImpl<$Res>
-    extends _$UpsertRequestCopyWithImpl<$Res, _$_UpsertRequest>
-    implements _$$_UpsertRequestCopyWith<$Res> {
-  __$$_UpsertRequestCopyWithImpl(
-      _$_UpsertRequest _value, $Res Function(_$_UpsertRequest) _then)
+class __$$UpsertRequestImplCopyWithImpl<$Res>
+    extends _$UpsertRequestCopyWithImpl<$Res, _$UpsertRequestImpl>
+    implements _$$UpsertRequestImplCopyWith<$Res> {
+  __$$UpsertRequestImplCopyWithImpl(
+      _$UpsertRequestImpl _value, $Res Function(_$UpsertRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3596,7 +3604,7 @@ class __$$_UpsertRequestCopyWithImpl<$Res>
     Object? vectors = null,
     Object? namespace = freezed,
   }) {
-    return _then(_$_UpsertRequest(
+    return _then(_$UpsertRequestImpl(
       vectors: null == vectors
           ? _value._vectors
           : vectors // ignore: cast_nullable_to_non_nullable
@@ -3611,13 +3619,14 @@ class __$$_UpsertRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UpsertRequest extends _UpsertRequest {
-  const _$_UpsertRequest({required final List<Vector> vectors, this.namespace})
+class _$UpsertRequestImpl extends _UpsertRequest {
+  const _$UpsertRequestImpl(
+      {required final List<Vector> vectors, this.namespace})
       : _vectors = vectors,
         super._();
 
-  factory _$_UpsertRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_UpsertRequestFromJson(json);
+  factory _$UpsertRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UpsertRequestImplFromJson(json);
 
   /// An array containing the vectors to upsert.
   final List<Vector> _vectors;
@@ -3643,7 +3652,7 @@ class _$_UpsertRequest extends _UpsertRequest {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpsertRequest &&
+            other is _$UpsertRequestImpl &&
             const DeepCollectionEquality().equals(other._vectors, _vectors) &&
             (identical(other.namespace, namespace) ||
                 other.namespace == namespace));
@@ -3657,12 +3666,12 @@ class _$_UpsertRequest extends _UpsertRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpsertRequestCopyWith<_$_UpsertRequest> get copyWith =>
-      __$$_UpsertRequestCopyWithImpl<_$_UpsertRequest>(this, _$identity);
+  _$$UpsertRequestImplCopyWith<_$UpsertRequestImpl> get copyWith =>
+      __$$UpsertRequestImplCopyWithImpl<_$UpsertRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UpsertRequestToJson(
+    return _$$UpsertRequestImplToJson(
       this,
     );
   }
@@ -3671,11 +3680,11 @@ class _$_UpsertRequest extends _UpsertRequest {
 abstract class _UpsertRequest extends UpsertRequest {
   const factory _UpsertRequest(
       {required final List<Vector> vectors,
-      final String? namespace}) = _$_UpsertRequest;
+      final String? namespace}) = _$UpsertRequestImpl;
   const _UpsertRequest._() : super._();
 
   factory _UpsertRequest.fromJson(Map<String, dynamic> json) =
-      _$_UpsertRequest.fromJson;
+      _$UpsertRequestImpl.fromJson;
 
   @override
 
@@ -3687,7 +3696,7 @@ abstract class _UpsertRequest extends UpsertRequest {
   String? get namespace;
   @override
   @JsonKey(ignore: true)
-  _$$_UpsertRequestCopyWith<_$_UpsertRequest> get copyWith =>
+  _$$UpsertRequestImplCopyWith<_$UpsertRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3740,22 +3749,22 @@ class _$UpsertResponseCopyWithImpl<$Res, $Val extends UpsertResponse>
 }
 
 /// @nodoc
-abstract class _$$_UpsertResponseCopyWith<$Res>
+abstract class _$$UpsertResponseImplCopyWith<$Res>
     implements $UpsertResponseCopyWith<$Res> {
-  factory _$$_UpsertResponseCopyWith(
-          _$_UpsertResponse value, $Res Function(_$_UpsertResponse) then) =
-      __$$_UpsertResponseCopyWithImpl<$Res>;
+  factory _$$UpsertResponseImplCopyWith(_$UpsertResponseImpl value,
+          $Res Function(_$UpsertResponseImpl) then) =
+      __$$UpsertResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? upsertedCount});
 }
 
 /// @nodoc
-class __$$_UpsertResponseCopyWithImpl<$Res>
-    extends _$UpsertResponseCopyWithImpl<$Res, _$_UpsertResponse>
-    implements _$$_UpsertResponseCopyWith<$Res> {
-  __$$_UpsertResponseCopyWithImpl(
-      _$_UpsertResponse _value, $Res Function(_$_UpsertResponse) _then)
+class __$$UpsertResponseImplCopyWithImpl<$Res>
+    extends _$UpsertResponseCopyWithImpl<$Res, _$UpsertResponseImpl>
+    implements _$$UpsertResponseImplCopyWith<$Res> {
+  __$$UpsertResponseImplCopyWithImpl(
+      _$UpsertResponseImpl _value, $Res Function(_$UpsertResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3763,7 +3772,7 @@ class __$$_UpsertResponseCopyWithImpl<$Res>
   $Res call({
     Object? upsertedCount = freezed,
   }) {
-    return _then(_$_UpsertResponse(
+    return _then(_$UpsertResponseImpl(
       upsertedCount: freezed == upsertedCount
           ? _value.upsertedCount
           : upsertedCount // ignore: cast_nullable_to_non_nullable
@@ -3774,11 +3783,11 @@ class __$$_UpsertResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UpsertResponse extends _UpsertResponse {
-  const _$_UpsertResponse({this.upsertedCount}) : super._();
+class _$UpsertResponseImpl extends _UpsertResponse {
+  const _$UpsertResponseImpl({this.upsertedCount}) : super._();
 
-  factory _$_UpsertResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_UpsertResponseFromJson(json);
+  factory _$UpsertResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UpsertResponseImplFromJson(json);
 
   /// The number of vectors upserted.
   @override
@@ -3793,7 +3802,7 @@ class _$_UpsertResponse extends _UpsertResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpsertResponse &&
+            other is _$UpsertResponseImpl &&
             (identical(other.upsertedCount, upsertedCount) ||
                 other.upsertedCount == upsertedCount));
   }
@@ -3805,23 +3814,25 @@ class _$_UpsertResponse extends _UpsertResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpsertResponseCopyWith<_$_UpsertResponse> get copyWith =>
-      __$$_UpsertResponseCopyWithImpl<_$_UpsertResponse>(this, _$identity);
+  _$$UpsertResponseImplCopyWith<_$UpsertResponseImpl> get copyWith =>
+      __$$UpsertResponseImplCopyWithImpl<_$UpsertResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UpsertResponseToJson(
+    return _$$UpsertResponseImplToJson(
       this,
     );
   }
 }
 
 abstract class _UpsertResponse extends UpsertResponse {
-  const factory _UpsertResponse({final int? upsertedCount}) = _$_UpsertResponse;
+  const factory _UpsertResponse({final int? upsertedCount}) =
+      _$UpsertResponseImpl;
   const _UpsertResponse._() : super._();
 
   factory _UpsertResponse.fromJson(Map<String, dynamic> json) =
-      _$_UpsertResponse.fromJson;
+      _$UpsertResponseImpl.fromJson;
 
   @override
 
@@ -3829,7 +3840,7 @@ abstract class _UpsertResponse extends UpsertResponse {
   int? get upsertedCount;
   @override
   @JsonKey(ignore: true)
-  _$$_UpsertResponseCopyWith<_$_UpsertResponse> get copyWith =>
+  _$$UpsertResponseImplCopyWith<_$UpsertResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3922,9 +3933,10 @@ class _$VectorCopyWithImpl<$Res, $Val extends Vector>
 }
 
 /// @nodoc
-abstract class _$$_VectorCopyWith<$Res> implements $VectorCopyWith<$Res> {
-  factory _$$_VectorCopyWith(_$_Vector value, $Res Function(_$_Vector) then) =
-      __$$_VectorCopyWithImpl<$Res>;
+abstract class _$$VectorImplCopyWith<$Res> implements $VectorCopyWith<$Res> {
+  factory _$$VectorImplCopyWith(
+          _$VectorImpl value, $Res Function(_$VectorImpl) then) =
+      __$$VectorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3938,10 +3950,11 @@ abstract class _$$_VectorCopyWith<$Res> implements $VectorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_VectorCopyWithImpl<$Res>
-    extends _$VectorCopyWithImpl<$Res, _$_Vector>
-    implements _$$_VectorCopyWith<$Res> {
-  __$$_VectorCopyWithImpl(_$_Vector _value, $Res Function(_$_Vector) _then)
+class __$$VectorImplCopyWithImpl<$Res>
+    extends _$VectorCopyWithImpl<$Res, _$VectorImpl>
+    implements _$$VectorImplCopyWith<$Res> {
+  __$$VectorImplCopyWithImpl(
+      _$VectorImpl _value, $Res Function(_$VectorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3952,7 +3965,7 @@ class __$$_VectorCopyWithImpl<$Res>
     Object? sparseValues = freezed,
     Object? metadata = freezed,
   }) {
-    return _then(_$_Vector(
+    return _then(_$VectorImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -3975,8 +3988,8 @@ class __$$_VectorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Vector extends _Vector {
-  const _$_Vector(
+class _$VectorImpl extends _Vector {
+  const _$VectorImpl(
       {required this.id,
       required final List<double> values,
       this.sparseValues,
@@ -3985,8 +3998,8 @@ class _$_Vector extends _Vector {
         _metadata = metadata,
         super._();
 
-  factory _$_Vector.fromJson(Map<String, dynamic> json) =>
-      _$$_VectorFromJson(json);
+  factory _$VectorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VectorImplFromJson(json);
 
   /// The unique identifier of the vector.
   @override
@@ -4029,7 +4042,7 @@ class _$_Vector extends _Vector {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Vector &&
+            other is _$VectorImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._values, _values) &&
             (identical(other.sparseValues, sparseValues) ||
@@ -4049,12 +4062,12 @@ class _$_Vector extends _Vector {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_VectorCopyWith<_$_Vector> get copyWith =>
-      __$$_VectorCopyWithImpl<_$_Vector>(this, _$identity);
+  _$$VectorImplCopyWith<_$VectorImpl> get copyWith =>
+      __$$VectorImplCopyWithImpl<_$VectorImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_VectorToJson(
+    return _$$VectorImplToJson(
       this,
     );
   }
@@ -4065,10 +4078,10 @@ abstract class _Vector extends Vector {
       {required final String id,
       required final List<double> values,
       final SparseVector? sparseValues,
-      final Map<String, dynamic>? metadata}) = _$_Vector;
+      final Map<String, dynamic>? metadata}) = _$VectorImpl;
   const _Vector._() : super._();
 
-  factory _Vector.fromJson(Map<String, dynamic> json) = _$_Vector.fromJson;
+  factory _Vector.fromJson(Map<String, dynamic> json) = _$VectorImpl.fromJson;
 
   @override
 
@@ -4088,7 +4101,7 @@ abstract class _Vector extends Vector {
   Map<String, dynamic>? get metadata;
   @override
   @JsonKey(ignore: true)
-  _$$_VectorCopyWith<_$_Vector> get copyWith =>
+  _$$VectorImplCopyWith<_$VectorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -4192,11 +4205,11 @@ class _$VectorMatchCopyWithImpl<$Res, $Val extends VectorMatch>
 }
 
 /// @nodoc
-abstract class _$$_VectorMatchCopyWith<$Res>
+abstract class _$$VectorMatchImplCopyWith<$Res>
     implements $VectorMatchCopyWith<$Res> {
-  factory _$$_VectorMatchCopyWith(
-          _$_VectorMatch value, $Res Function(_$_VectorMatch) then) =
-      __$$_VectorMatchCopyWithImpl<$Res>;
+  factory _$$VectorMatchImplCopyWith(
+          _$VectorMatchImpl value, $Res Function(_$VectorMatchImpl) then) =
+      __$$VectorMatchImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -4211,11 +4224,11 @@ abstract class _$$_VectorMatchCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_VectorMatchCopyWithImpl<$Res>
-    extends _$VectorMatchCopyWithImpl<$Res, _$_VectorMatch>
-    implements _$$_VectorMatchCopyWith<$Res> {
-  __$$_VectorMatchCopyWithImpl(
-      _$_VectorMatch _value, $Res Function(_$_VectorMatch) _then)
+class __$$VectorMatchImplCopyWithImpl<$Res>
+    extends _$VectorMatchCopyWithImpl<$Res, _$VectorMatchImpl>
+    implements _$$VectorMatchImplCopyWith<$Res> {
+  __$$VectorMatchImplCopyWithImpl(
+      _$VectorMatchImpl _value, $Res Function(_$VectorMatchImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -4227,7 +4240,7 @@ class __$$_VectorMatchCopyWithImpl<$Res>
     Object? sparseValues = freezed,
     Object? metadata = freezed,
   }) {
-    return _then(_$_VectorMatch(
+    return _then(_$VectorMatchImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -4254,8 +4267,8 @@ class __$$_VectorMatchCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_VectorMatch extends _VectorMatch {
-  const _$_VectorMatch(
+class _$VectorMatchImpl extends _VectorMatch {
+  const _$VectorMatchImpl(
       {required this.id,
       this.score,
       final List<double>? values,
@@ -4265,8 +4278,8 @@ class _$_VectorMatch extends _VectorMatch {
         _metadata = metadata,
         super._();
 
-  factory _$_VectorMatch.fromJson(Map<String, dynamic> json) =>
-      _$$_VectorMatchFromJson(json);
+  factory _$VectorMatchImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VectorMatchImplFromJson(json);
 
   /// The unique identifier of the vector.
   @override
@@ -4315,7 +4328,7 @@ class _$_VectorMatch extends _VectorMatch {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_VectorMatch &&
+            other is _$VectorMatchImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.score, score) || other.score == score) &&
             const DeepCollectionEquality().equals(other._values, _values) &&
@@ -4337,12 +4350,12 @@ class _$_VectorMatch extends _VectorMatch {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_VectorMatchCopyWith<_$_VectorMatch> get copyWith =>
-      __$$_VectorMatchCopyWithImpl<_$_VectorMatch>(this, _$identity);
+  _$$VectorMatchImplCopyWith<_$VectorMatchImpl> get copyWith =>
+      __$$VectorMatchImplCopyWithImpl<_$VectorMatchImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_VectorMatchToJson(
+    return _$$VectorMatchImplToJson(
       this,
     );
   }
@@ -4354,11 +4367,11 @@ abstract class _VectorMatch extends VectorMatch {
       final double? score,
       final List<double>? values,
       final SparseVector? sparseValues,
-      final Map<String, dynamic>? metadata}) = _$_VectorMatch;
+      final Map<String, dynamic>? metadata}) = _$VectorMatchImpl;
   const _VectorMatch._() : super._();
 
   factory _VectorMatch.fromJson(Map<String, dynamic> json) =
-      _$_VectorMatch.fromJson;
+      _$VectorMatchImpl.fromJson;
 
   @override
 
@@ -4382,7 +4395,7 @@ abstract class _VectorMatch extends VectorMatch {
   Map<String, dynamic>? get metadata;
   @override
   @JsonKey(ignore: true)
-  _$$_VectorMatchCopyWith<_$_VectorMatch> get copyWith =>
+  _$$VectorMatchImplCopyWith<_$VectorMatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -4443,22 +4456,22 @@ class _$SparseVectorCopyWithImpl<$Res, $Val extends SparseVector>
 }
 
 /// @nodoc
-abstract class _$$_SparseVectorCopyWith<$Res>
+abstract class _$$SparseVectorImplCopyWith<$Res>
     implements $SparseVectorCopyWith<$Res> {
-  factory _$$_SparseVectorCopyWith(
-          _$_SparseVector value, $Res Function(_$_SparseVector) then) =
-      __$$_SparseVectorCopyWithImpl<$Res>;
+  factory _$$SparseVectorImplCopyWith(
+          _$SparseVectorImpl value, $Res Function(_$SparseVectorImpl) then) =
+      __$$SparseVectorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<int>? indices, List<double>? values});
 }
 
 /// @nodoc
-class __$$_SparseVectorCopyWithImpl<$Res>
-    extends _$SparseVectorCopyWithImpl<$Res, _$_SparseVector>
-    implements _$$_SparseVectorCopyWith<$Res> {
-  __$$_SparseVectorCopyWithImpl(
-      _$_SparseVector _value, $Res Function(_$_SparseVector) _then)
+class __$$SparseVectorImplCopyWithImpl<$Res>
+    extends _$SparseVectorCopyWithImpl<$Res, _$SparseVectorImpl>
+    implements _$$SparseVectorImplCopyWith<$Res> {
+  __$$SparseVectorImplCopyWithImpl(
+      _$SparseVectorImpl _value, $Res Function(_$SparseVectorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -4467,7 +4480,7 @@ class __$$_SparseVectorCopyWithImpl<$Res>
     Object? indices = freezed,
     Object? values = freezed,
   }) {
-    return _then(_$_SparseVector(
+    return _then(_$SparseVectorImpl(
       indices: freezed == indices
           ? _value._indices
           : indices // ignore: cast_nullable_to_non_nullable
@@ -4482,14 +4495,15 @@ class __$$_SparseVectorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SparseVector extends _SparseVector {
-  const _$_SparseVector({final List<int>? indices, final List<double>? values})
+class _$SparseVectorImpl extends _SparseVector {
+  const _$SparseVectorImpl(
+      {final List<int>? indices, final List<double>? values})
       : _indices = indices,
         _values = values,
         super._();
 
-  factory _$_SparseVector.fromJson(Map<String, dynamic> json) =>
-      _$$_SparseVectorFromJson(json);
+  factory _$SparseVectorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SparseVectorImplFromJson(json);
 
   /// The indices of the sparse data.
   final List<int>? _indices;
@@ -4526,7 +4540,7 @@ class _$_SparseVector extends _SparseVector {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SparseVector &&
+            other is _$SparseVectorImpl &&
             const DeepCollectionEquality().equals(other._indices, _indices) &&
             const DeepCollectionEquality().equals(other._values, _values));
   }
@@ -4541,12 +4555,12 @@ class _$_SparseVector extends _SparseVector {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SparseVectorCopyWith<_$_SparseVector> get copyWith =>
-      __$$_SparseVectorCopyWithImpl<_$_SparseVector>(this, _$identity);
+  _$$SparseVectorImplCopyWith<_$SparseVectorImpl> get copyWith =>
+      __$$SparseVectorImplCopyWithImpl<_$SparseVectorImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SparseVectorToJson(
+    return _$$SparseVectorImplToJson(
       this,
     );
   }
@@ -4554,11 +4568,12 @@ class _$_SparseVector extends _SparseVector {
 
 abstract class _SparseVector extends SparseVector {
   const factory _SparseVector(
-      {final List<int>? indices, final List<double>? values}) = _$_SparseVector;
+      {final List<int>? indices,
+      final List<double>? values}) = _$SparseVectorImpl;
   const _SparseVector._() : super._();
 
   factory _SparseVector.fromJson(Map<String, dynamic> json) =
-      _$_SparseVector.fromJson;
+      _$SparseVectorImpl.fromJson;
 
   @override
 
@@ -4570,6 +4585,6 @@ abstract class _SparseVector extends SparseVector {
   List<double>? get values;
   @override
   @JsonKey(ignore: true)
-  _$$_SparseVectorCopyWith<_$_SparseVector> get copyWith =>
+  _$$SparseVectorImplCopyWith<_$SparseVectorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

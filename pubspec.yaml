@@ -1,6 +1,6 @@
 name: pinecone
 description: Unofficial Dart client for Pinecone vector database. For more details on Pinecone, please visit https://docs.pinecone.io/docs/overview.
-version: 0.5.4
+version: 0.5.5
 maintainer: Taza Technology LLC
 repository: https://github.com/tazatechnology/pinecone
 issue_tracker: https://github.com/tazatechnology/pinecone/issues
@@ -16,9 +16,9 @@ dependencies:
   json_annotation: ^4.8.1
   
 dev_dependencies:
-  openapi_spec: ^0.5.9
+  openapi_spec: ^0.5.13
   build_runner: ^2.4.6
   lints: ^2.1.1
-  freezed: ^2.4.2
+  freezed: ^2.4.5
   json_serializable: ^6.7.1
-  test: ^1.24.6
+  test: ^1.24.7
