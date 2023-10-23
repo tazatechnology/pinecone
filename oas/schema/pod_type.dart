@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// An enumeration of the available pod types.
 final schemaPodType = Schema.enumeration(

@@ -1,4 +1,4 @@
-part of pinecone_vector_api;
+part of 'api.dart';
 
 /// Query vectors operation
 final queryVectors = Operation(

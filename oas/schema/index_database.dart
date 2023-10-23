@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// Index database object
 final schemaIndexDatabase = Schema.object(

@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// Vector query request object
 final schemaQueryRequest = Schema.object(

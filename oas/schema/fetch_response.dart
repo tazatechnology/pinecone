@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// Vector fetch response object
 final schemaFetchResponse = Schema.object(

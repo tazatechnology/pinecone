@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// Create collection request object
 final schemaCreateCollectionRequest = Schema.object(

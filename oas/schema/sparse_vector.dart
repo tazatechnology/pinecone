@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// Sparse values object
 final schemaSparseVector = Schema.object(

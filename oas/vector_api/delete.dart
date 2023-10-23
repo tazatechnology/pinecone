@@ -1,4 +1,4 @@
-part of pinecone_vector_api;
+part of 'api.dart';
 
 /// Delete vectors operation
 final deleteVectors = Operation(

@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// Create index request object
 final schemaCreateIndexRequest = Schema.object(

@@ -1,4 +1,4 @@
-part of pinecone_index_api;
+part of 'api.dart';
 
 /// Delete collection operation
 final deleteCollection = Operation(

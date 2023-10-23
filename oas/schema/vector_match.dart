@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// Vector match object
 final schemaVectorMatch = Schema.object(

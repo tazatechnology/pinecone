@@ -1,4 +1,4 @@
-part of pinecone_schema;
+part of 'schema.dart';
 
 /// An enumeration of the current index state.
 final schemaIndexState = Schema.enumeration(
