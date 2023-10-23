@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0
+
+* Client generation using latest `openapi_spec` package (v0.6.0)
+* Breaking: `host` is now changed to `baseUrl` in generated client
+
 ## 0.5.5
 
 * Client generation using latest `openapi_spec` package (v0.5.13)
