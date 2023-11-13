@@ -19,16 +19,16 @@ class VectorMatch with _$VectorMatch {
     required String id,
 
     /// This is a measure of similarity between this vector and the query vector. The higher the score, the more they are similar.
-    double? score,
+    @JsonKey(includeIfNull: false) double? score,
 
     /// This is the vector data, if it is requested.
-    List<double>? values,
+    @JsonKey(includeIfNull: false) List<double>? values,
 
-    /// No Description
-    SparseVector? sparseValues,
+    /// This is the sparse vector data, if it is requested.
+    @JsonKey(includeIfNull: false) SparseVector? sparseValues,
 
     /// This is the metadata, if it is requested.
-    Map<String, dynamic>? metadata,
+    @JsonKey(includeIfNull: false) Map<String, dynamic>? metadata,
   }) = _VectorMatch;
 
   /// Object construction from a JSON representation

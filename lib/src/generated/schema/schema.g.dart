@@ -32,16 +32,25 @@ _$IndexDatabaseImpl _$$IndexDatabaseImplFromJson(Map<String, dynamic> json) =>
           unknownValue: JsonKey.nullForUndefinedEnumValue),
     );
 
-Map<String, dynamic> _$$IndexDatabaseImplToJson(_$IndexDatabaseImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'metric': _$SearchMetricEnumMap[instance.metric]!,
-      'dimension': instance.dimension,
-      'replicas': instance.replicas,
-      'shards': instance.shards,
-      'pods': instance.pods,
-      'pod_type': _$PodTypeEnumMap[instance.podType],
-    };
+Map<String, dynamic> _$$IndexDatabaseImplToJson(_$IndexDatabaseImpl instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+    'metric': _$SearchMetricEnumMap[instance.metric]!,
+    'dimension': instance.dimension,
+    'replicas': instance.replicas,
+    'shards': instance.shards,
+    'pods': instance.pods,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('pod_type', _$PodTypeEnumMap[instance.podType]);
+  return val;
+}
 
 const _$SearchMetricEnumMap = {
   SearchMetric.euclidean: 'euclidean',
@@ -50,18 +59,18 @@ const _$SearchMetricEnumMap = {
 };
 
 const _$PodTypeEnumMap = {
-  PodType.s1x1: 's1.x1',
-  PodType.s1x2: 's1.x2',
-  PodType.s1x4: 's1.x4',
-  PodType.s1x8: 's1.x8',
-  PodType.p1x1: 'p1.x1',
-  PodType.p1x2: 'p1.x2',
-  PodType.p1x4: 'p1.x4',
-  PodType.p1x8: 'p1.x8',
-  PodType.p2x1: 'p2.x1',
-  PodType.p2x2: 'p2.x2',
-  PodType.p2x4: 'p2.x4',
-  PodType.p2x8: 'p2.x8',
+  PodType.s1X1: 's1.x1',
+  PodType.s1X2: 's1.x2',
+  PodType.s1X4: 's1.x4',
+  PodType.s1X8: 's1.x8',
+  PodType.p1X1: 'p1.x1',
+  PodType.p1X2: 'p1.x2',
+  PodType.p1X4: 'p1.x4',
+  PodType.p1X8: 'p1.x8',
+  PodType.p2X1: 'p2.x1',
+  PodType.p2X2: 'p2.x2',
+  PodType.p2X4: 'p2.x4',
+  PodType.p2X8: 'p2.x8',
 };
 
 _$IndexStatusImpl _$$IndexStatusImplFromJson(Map<String, dynamic> json) =>
@@ -100,13 +109,21 @@ _$IndexStatsImpl _$$IndexStatsImplFromJson(Map<String, dynamic> json) =>
       totalVectorCount: json['totalVectorCount'] as int?,
     );
 
-Map<String, dynamic> _$$IndexStatsImplToJson(_$IndexStatsImpl instance) =>
-    <String, dynamic>{
-      'namespaces': instance.namespaces,
-      'dimension': instance.dimension,
-      'indexFullness': instance.indexFullness,
-      'totalVectorCount': instance.totalVectorCount,
-    };
+Map<String, dynamic> _$$IndexStatsImplToJson(_$IndexStatsImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('namespaces', instance.namespaces);
+  writeNotNull('dimension', instance.dimension);
+  writeNotNull('indexFullness', instance.indexFullness);
+  writeNotNull('totalVectorCount', instance.totalVectorCount);
+  return val;
+}
 
 _$NamespaceStatsImpl _$$NamespaceStatsImplFromJson(Map<String, dynamic> json) =>
     _$NamespaceStatsImpl(
@@ -127,13 +144,22 @@ _$CollectionImpl _$$CollectionImplFromJson(Map<String, dynamic> json) =>
       dimension: json['dimension'] as int,
     );
 
-Map<String, dynamic> _$$CollectionImplToJson(_$CollectionImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'status': _$CollectionStatusEnumMap[instance.status]!,
-      'size': instance.size,
-      'dimension': instance.dimension,
-    };
+Map<String, dynamic> _$$CollectionImplToJson(_$CollectionImpl instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+    'status': _$CollectionStatusEnumMap[instance.status]!,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('size', instance.size);
+  val['dimension'] = instance.dimension;
+  return val;
+}
 
 const _$CollectionStatusEnumMap = {
   CollectionStatus.initializing: 'Initializing',
@@ -149,11 +175,20 @@ _$ConfigureIndexRequestImpl _$$ConfigureIndexRequestImplFromJson(
     );
 
 Map<String, dynamic> _$$ConfigureIndexRequestImplToJson(
-        _$ConfigureIndexRequestImpl instance) =>
-    <String, dynamic>{
-      'replicas': instance.replicas,
-      'pod_type': _$PodTypeEnumMap[instance.podType],
-    };
+    _$ConfigureIndexRequestImpl instance) {
+  final val = <String, dynamic>{
+    'replicas': instance.replicas,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('pod_type', _$PodTypeEnumMap[instance.podType]);
+  return val;
+}
 
 _$CreateCollectionRequestImpl _$$CreateCollectionRequestImplFromJson(
         Map<String, dynamic> json) =>
@@ -179,23 +214,32 @@ _$CreateIndexRequestImpl _$$CreateIndexRequestImplFromJson(
       pods: json['pods'] as int? ?? 1,
       replicas: json['replicas'] as int? ?? 1,
       podType: $enumDecodeNullable(_$PodTypeEnumMap, json['pod_type']) ??
-          PodType.p1x1,
+          PodType.p1X1,
       metadataConfig: json['metadata_config'] as Map<String, dynamic>?,
       sourceCollection: json['source_collection'] as String?,
     );
 
 Map<String, dynamic> _$$CreateIndexRequestImplToJson(
-        _$CreateIndexRequestImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'dimension': instance.dimension,
-      'metric': _$SearchMetricEnumMap[instance.metric]!,
-      'pods': instance.pods,
-      'replicas': instance.replicas,
-      'pod_type': _$PodTypeEnumMap[instance.podType]!,
-      'metadata_config': instance.metadataConfig,
-      'source_collection': instance.sourceCollection,
-    };
+    _$CreateIndexRequestImpl instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+    'dimension': instance.dimension,
+    'metric': _$SearchMetricEnumMap[instance.metric]!,
+    'pods': instance.pods,
+    'replicas': instance.replicas,
+    'pod_type': _$PodTypeEnumMap[instance.podType]!,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('metadata_config', instance.metadataConfig);
+  writeNotNull('source_collection', instance.sourceCollection);
+  return val;
+}
 
 _$IndexStatsRequestImpl _$$IndexStatsRequestImplFromJson(
         Map<String, dynamic> json) =>
@@ -204,10 +248,18 @@ _$IndexStatsRequestImpl _$$IndexStatsRequestImplFromJson(
     );
 
 Map<String, dynamic> _$$IndexStatsRequestImplToJson(
-        _$IndexStatsRequestImpl instance) =>
-    <String, dynamic>{
-      'filter': instance.filter,
-    };
+    _$IndexStatsRequestImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('filter', instance.filter);
+  return val;
+}
 
 _$DeleteRequestImpl _$$DeleteRequestImplFromJson(Map<String, dynamic> json) =>
     _$DeleteRequestImpl(
@@ -217,13 +269,21 @@ _$DeleteRequestImpl _$$DeleteRequestImplFromJson(Map<String, dynamic> json) =>
       filter: json['filter'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$DeleteRequestImplToJson(_$DeleteRequestImpl instance) =>
-    <String, dynamic>{
-      'ids': instance.ids,
-      'deleteAll': instance.deleteAll,
-      'namespace': instance.namespace,
-      'filter': instance.filter,
-    };
+Map<String, dynamic> _$$DeleteRequestImplToJson(_$DeleteRequestImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('ids', instance.ids);
+  writeNotNull('deleteAll', instance.deleteAll);
+  writeNotNull('namespace', instance.namespace);
+  writeNotNull('filter', instance.filter);
+  return val;
+}
 
 _$QueryRequestImpl _$$QueryRequestImplFromJson(Map<String, dynamic> json) =>
     _$QueryRequestImpl(
@@ -241,17 +301,25 @@ _$QueryRequestImpl _$$QueryRequestImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$QueryRequestImplToJson(_$QueryRequestImpl instance) =>
-    <String, dynamic>{
-      'namespace': instance.namespace,
-      'topK': instance.topK,
-      'filter': instance.filter,
-      'includeValues': instance.includeValues,
-      'includeMetadata': instance.includeMetadata,
-      'vector': instance.vector,
-      'sparseVector': instance.sparseVector,
-      'id': instance.id,
-    };
+Map<String, dynamic> _$$QueryRequestImplToJson(_$QueryRequestImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('namespace', instance.namespace);
+  val['topK'] = instance.topK;
+  writeNotNull('filter', instance.filter);
+  val['includeValues'] = instance.includeValues;
+  val['includeMetadata'] = instance.includeMetadata;
+  writeNotNull('vector', instance.vector);
+  writeNotNull('sparseVector', instance.sparseVector);
+  writeNotNull('id', instance.id);
+  return val;
+}
 
 _$QueryResponseImpl _$$QueryResponseImplFromJson(Map<String, dynamic> json) =>
     _$QueryResponseImpl(
@@ -294,14 +362,23 @@ _$UpdateRequestImpl _$$UpdateRequestImplFromJson(Map<String, dynamic> json) =>
       namespace: json['namespace'] as String?,
     );
 
-Map<String, dynamic> _$$UpdateRequestImplToJson(_$UpdateRequestImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'values': instance.values,
-      'sparseValues': instance.sparseValues,
-      'setMetadata': instance.setMetadata,
-      'namespace': instance.namespace,
-    };
+Map<String, dynamic> _$$UpdateRequestImplToJson(_$UpdateRequestImpl instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('values', instance.values);
+  writeNotNull('sparseValues', instance.sparseValues);
+  writeNotNull('setMetadata', instance.setMetadata);
+  writeNotNull('namespace', instance.namespace);
+  return val;
+}
 
 _$UpsertRequestImpl _$$UpsertRequestImplFromJson(Map<String, dynamic> json) =>
     _$UpsertRequestImpl(
@@ -311,11 +388,20 @@ _$UpsertRequestImpl _$$UpsertRequestImplFromJson(Map<String, dynamic> json) =>
       namespace: json['namespace'] as String?,
     );
 
-Map<String, dynamic> _$$UpsertRequestImplToJson(_$UpsertRequestImpl instance) =>
-    <String, dynamic>{
-      'vectors': instance.vectors,
-      'namespace': instance.namespace,
-    };
+Map<String, dynamic> _$$UpsertRequestImplToJson(_$UpsertRequestImpl instance) {
+  final val = <String, dynamic>{
+    'vectors': instance.vectors,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('namespace', instance.namespace);
+  return val;
+}
 
 _$UpsertResponseImpl _$$UpsertResponseImplFromJson(Map<String, dynamic> json) =>
     _$UpsertResponseImpl(
@@ -323,10 +409,18 @@ _$UpsertResponseImpl _$$UpsertResponseImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$UpsertResponseImplToJson(
-        _$UpsertResponseImpl instance) =>
-    <String, dynamic>{
-      'upsertedCount': instance.upsertedCount,
-    };
+    _$UpsertResponseImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('upsertedCount', instance.upsertedCount);
+  return val;
+}
 
 _$VectorImpl _$$VectorImplFromJson(Map<String, dynamic> json) => _$VectorImpl(
       id: json['id'] as String,
@@ -339,13 +433,22 @@ _$VectorImpl _$$VectorImplFromJson(Map<String, dynamic> json) => _$VectorImpl(
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$VectorImplToJson(_$VectorImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'values': instance.values,
-      'sparseValues': instance.sparseValues,
-      'metadata': instance.metadata,
-    };
+Map<String, dynamic> _$$VectorImplToJson(_$VectorImpl instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+    'values': instance.values,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('sparseValues', instance.sparseValues);
+  writeNotNull('metadata', instance.metadata);
+  return val;
+}
 
 _$VectorMatchImpl _$$VectorMatchImplFromJson(Map<String, dynamic> json) =>
     _$VectorMatchImpl(
@@ -360,14 +463,23 @@ _$VectorMatchImpl _$$VectorMatchImplFromJson(Map<String, dynamic> json) =>
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$$VectorMatchImplToJson(_$VectorMatchImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'score': instance.score,
-      'values': instance.values,
-      'sparseValues': instance.sparseValues,
-      'metadata': instance.metadata,
-    };
+Map<String, dynamic> _$$VectorMatchImplToJson(_$VectorMatchImpl instance) {
+  final val = <String, dynamic>{
+    'id': instance.id,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('score', instance.score);
+  writeNotNull('values', instance.values);
+  writeNotNull('sparseValues', instance.sparseValues);
+  writeNotNull('metadata', instance.metadata);
+  return val;
+}
 
 _$SparseVectorImpl _$$SparseVectorImplFromJson(Map<String, dynamic> json) =>
     _$SparseVectorImpl(
@@ -378,8 +490,16 @@ _$SparseVectorImpl _$$SparseVectorImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$SparseVectorImplToJson(_$SparseVectorImpl instance) =>
-    <String, dynamic>{
-      'indices': instance.indices,
-      'values': instance.values,
-    };
+Map<String, dynamic> _$$SparseVectorImplToJson(_$SparseVectorImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('indices', instance.indices);
+  writeNotNull('values', instance.values);
+  return val;
+}

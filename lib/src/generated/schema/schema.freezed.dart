@@ -226,7 +226,9 @@ mixin _$IndexDatabase {
 
   /// An enumeration of the available pod types.
   @JsonKey(
-      name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      name: 'pod_type',
+      includeIfNull: false,
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   PodType? get podType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -249,7 +251,9 @@ abstract class $IndexDatabaseCopyWith<$Res> {
       int shards,
       int pods,
       @JsonKey(
-          name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+          name: 'pod_type',
+          includeIfNull: false,
+          unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       PodType? podType});
 }
 
@@ -323,7 +327,9 @@ abstract class _$$IndexDatabaseImplCopyWith<$Res>
       int shards,
       int pods,
       @JsonKey(
-          name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+          name: 'pod_type',
+          includeIfNull: false,
+          unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       PodType? podType});
 }
 
@@ -390,7 +396,9 @@ class _$IndexDatabaseImpl extends _IndexDatabase {
       required this.shards,
       required this.pods,
       @JsonKey(
-          name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+          name: 'pod_type',
+          includeIfNull: false,
+          unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       this.podType})
       : super._();
 
@@ -424,7 +432,9 @@ class _$IndexDatabaseImpl extends _IndexDatabase {
   /// An enumeration of the available pod types.
   @override
   @JsonKey(
-      name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      name: 'pod_type',
+      includeIfNull: false,
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   final PodType? podType;
 
   @override
@@ -476,7 +486,9 @@ abstract class _IndexDatabase extends IndexDatabase {
       required final int shards,
       required final int pods,
       @JsonKey(
-          name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+          name: 'pod_type',
+          includeIfNull: false,
+          unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       final PodType? podType}) = _$IndexDatabaseImpl;
   const _IndexDatabase._() : super._();
 
@@ -511,7 +523,9 @@ abstract class _IndexDatabase extends IndexDatabase {
 
   /// An enumeration of the available pod types.
   @JsonKey(
-      name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      name: 'pod_type',
+      includeIfNull: false,
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   PodType? get podType;
   @override
   @JsonKey(ignore: true)
@@ -754,16 +768,20 @@ IndexStats _$IndexStatsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$IndexStats {
   /// A mapping for each namespace in the index from the namespace name to a summary of its contents.
+  @JsonKey(includeIfNull: false)
   Map<String, NamespaceStats>? get namespaces =>
       throw _privateConstructorUsedError;
 
   /// The dimension of the indexed vectors.
+  @JsonKey(includeIfNull: false)
   int? get dimension => throw _privateConstructorUsedError;
 
   /// The fullness of the index, regardless of whether a metadata filter expression was passed. The granularity of this metric is 10%.
+  @JsonKey(includeIfNull: false)
   double? get indexFullness => throw _privateConstructorUsedError;
 
   /// Indicator of index readiness.
+  @JsonKey(includeIfNull: false)
   int? get totalVectorCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -779,10 +797,10 @@ abstract class $IndexStatsCopyWith<$Res> {
       _$IndexStatsCopyWithImpl<$Res, IndexStats>;
   @useResult
   $Res call(
-      {Map<String, NamespaceStats>? namespaces,
-      int? dimension,
-      double? indexFullness,
-      int? totalVectorCount});
+      {@JsonKey(includeIfNull: false) Map<String, NamespaceStats>? namespaces,
+      @JsonKey(includeIfNull: false) int? dimension,
+      @JsonKey(includeIfNull: false) double? indexFullness,
+      @JsonKey(includeIfNull: false) int? totalVectorCount});
 }
 
 /// @nodoc
@@ -833,10 +851,10 @@ abstract class _$$IndexStatsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Map<String, NamespaceStats>? namespaces,
-      int? dimension,
-      double? indexFullness,
-      int? totalVectorCount});
+      {@JsonKey(includeIfNull: false) Map<String, NamespaceStats>? namespaces,
+      @JsonKey(includeIfNull: false) int? dimension,
+      @JsonKey(includeIfNull: false) double? indexFullness,
+      @JsonKey(includeIfNull: false) int? totalVectorCount});
 }
 
 /// @nodoc
@@ -880,10 +898,11 @@ class __$$IndexStatsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$IndexStatsImpl extends _IndexStats {
   const _$IndexStatsImpl(
-      {final Map<String, NamespaceStats>? namespaces,
-      this.dimension,
-      this.indexFullness,
-      this.totalVectorCount})
+      {@JsonKey(includeIfNull: false)
+      final Map<String, NamespaceStats>? namespaces,
+      @JsonKey(includeIfNull: false) this.dimension,
+      @JsonKey(includeIfNull: false) this.indexFullness,
+      @JsonKey(includeIfNull: false) this.totalVectorCount})
       : _namespaces = namespaces,
         super._();
 
@@ -895,6 +914,7 @@ class _$IndexStatsImpl extends _IndexStats {
 
   /// A mapping for each namespace in the index from the namespace name to a summary of its contents.
   @override
+  @JsonKey(includeIfNull: false)
   Map<String, NamespaceStats>? get namespaces {
     final value = _namespaces;
     if (value == null) return null;
@@ -905,14 +925,17 @@ class _$IndexStatsImpl extends _IndexStats {
 
   /// The dimension of the indexed vectors.
   @override
+  @JsonKey(includeIfNull: false)
   final int? dimension;
 
   /// The fullness of the index, regardless of whether a metadata filter expression was passed. The granularity of this metric is 10%.
   @override
+  @JsonKey(includeIfNull: false)
   final double? indexFullness;
 
   /// Indicator of index readiness.
   @override
+  @JsonKey(includeIfNull: false)
   final int? totalVectorCount;
 
   @override
@@ -960,10 +983,12 @@ class _$IndexStatsImpl extends _IndexStats {
 
 abstract class _IndexStats extends IndexStats {
   const factory _IndexStats(
-      {final Map<String, NamespaceStats>? namespaces,
-      final int? dimension,
-      final double? indexFullness,
-      final int? totalVectorCount}) = _$IndexStatsImpl;
+          {@JsonKey(includeIfNull: false)
+          final Map<String, NamespaceStats>? namespaces,
+          @JsonKey(includeIfNull: false) final int? dimension,
+          @JsonKey(includeIfNull: false) final double? indexFullness,
+          @JsonKey(includeIfNull: false) final int? totalVectorCount}) =
+      _$IndexStatsImpl;
   const _IndexStats._() : super._();
 
   factory _IndexStats.fromJson(Map<String, dynamic> json) =
@@ -972,18 +997,22 @@ abstract class _IndexStats extends IndexStats {
   @override
 
   /// A mapping for each namespace in the index from the namespace name to a summary of its contents.
+  @JsonKey(includeIfNull: false)
   Map<String, NamespaceStats>? get namespaces;
   @override
 
   /// The dimension of the indexed vectors.
+  @JsonKey(includeIfNull: false)
   int? get dimension;
   @override
 
   /// The fullness of the index, regardless of whether a metadata filter expression was passed. The granularity of this metric is 10%.
+  @JsonKey(includeIfNull: false)
   double? get indexFullness;
   @override
 
   /// Indicator of index readiness.
+  @JsonKey(includeIfNull: false)
   int? get totalVectorCount;
   @override
   @JsonKey(ignore: true)
@@ -1148,6 +1177,7 @@ mixin _$Collection {
   CollectionStatus get status => throw _privateConstructorUsedError;
 
   /// The size of the collection in bytes.
+  @JsonKey(includeIfNull: false)
   int? get size => throw _privateConstructorUsedError;
 
   /// The dimensionality of the collection.
@@ -1165,7 +1195,11 @@ abstract class $CollectionCopyWith<$Res> {
           Collection value, $Res Function(Collection) then) =
       _$CollectionCopyWithImpl<$Res, Collection>;
   @useResult
-  $Res call({String name, CollectionStatus status, int? size, int dimension});
+  $Res call(
+      {String name,
+      CollectionStatus status,
+      @JsonKey(includeIfNull: false) int? size,
+      int dimension});
 }
 
 /// @nodoc
@@ -1215,7 +1249,11 @@ abstract class _$$CollectionImplCopyWith<$Res>
       __$$CollectionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, CollectionStatus status, int? size, int dimension});
+  $Res call(
+      {String name,
+      CollectionStatus status,
+      @JsonKey(includeIfNull: false) int? size,
+      int dimension});
 }
 
 /// @nodoc
@@ -1261,7 +1299,7 @@ class _$CollectionImpl extends _Collection {
   const _$CollectionImpl(
       {required this.name,
       required this.status,
-      this.size,
+      @JsonKey(includeIfNull: false) this.size,
       required this.dimension})
       : super._();
 
@@ -1278,6 +1316,7 @@ class _$CollectionImpl extends _Collection {
 
   /// The size of the collection in bytes.
   @override
+  @JsonKey(includeIfNull: false)
   final int? size;
 
   /// The dimensionality of the collection.
@@ -1323,7 +1362,7 @@ abstract class _Collection extends Collection {
   const factory _Collection(
       {required final String name,
       required final CollectionStatus status,
-      final int? size,
+      @JsonKey(includeIfNull: false) final int? size,
       required final int dimension}) = _$CollectionImpl;
   const _Collection._() : super._();
 
@@ -1341,6 +1380,7 @@ abstract class _Collection extends Collection {
   @override
 
   /// The size of the collection in bytes.
+  @JsonKey(includeIfNull: false)
   int? get size;
   @override
 
@@ -1364,7 +1404,9 @@ mixin _$ConfigureIndexRequest {
 
   /// An enumeration of the available pod types.
   @JsonKey(
-      name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      name: 'pod_type',
+      includeIfNull: false,
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   PodType? get podType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1382,7 +1424,9 @@ abstract class $ConfigureIndexRequestCopyWith<$Res> {
   $Res call(
       {int replicas,
       @JsonKey(
-          name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+          name: 'pod_type',
+          includeIfNull: false,
+          unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       PodType? podType});
 }
 
@@ -1428,7 +1472,9 @@ abstract class _$$ConfigureIndexRequestImplCopyWith<$Res>
   $Res call(
       {int replicas,
       @JsonKey(
-          name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+          name: 'pod_type',
+          includeIfNull: false,
+          unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       PodType? podType});
 }
 
@@ -1466,7 +1512,9 @@ class _$ConfigureIndexRequestImpl extends _ConfigureIndexRequest {
   const _$ConfigureIndexRequestImpl(
       {this.replicas = 1,
       @JsonKey(
-          name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+          name: 'pod_type',
+          includeIfNull: false,
+          unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       this.podType})
       : super._();
 
@@ -1481,7 +1529,9 @@ class _$ConfigureIndexRequestImpl extends _ConfigureIndexRequest {
   /// An enumeration of the available pod types.
   @override
   @JsonKey(
-      name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      name: 'pod_type',
+      includeIfNull: false,
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   final PodType? podType;
 
   @override
@@ -1522,7 +1572,9 @@ abstract class _ConfigureIndexRequest extends ConfigureIndexRequest {
   const factory _ConfigureIndexRequest(
       {final int replicas,
       @JsonKey(
-          name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+          name: 'pod_type',
+          includeIfNull: false,
+          unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
       final PodType? podType}) = _$ConfigureIndexRequestImpl;
   const _ConfigureIndexRequest._() : super._();
 
@@ -1537,7 +1589,9 @@ abstract class _ConfigureIndexRequest extends ConfigureIndexRequest {
 
   /// An enumeration of the available pod types.
   @JsonKey(
-      name: 'pod_type', unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      name: 'pod_type',
+      includeIfNull: false,
+      unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
   PodType? get podType;
   @override
   @JsonKey(ignore: true)
@@ -1744,12 +1798,12 @@ mixin _$CreateIndexRequest {
   PodType get podType => throw _privateConstructorUsedError;
 
   /// Configuration for the behavior of Pinecone's internal metadata index.
-  @JsonKey(name: 'metadata_config')
+  @JsonKey(name: 'metadata_config', includeIfNull: false)
   Map<String, dynamic>? get metadataConfig =>
       throw _privateConstructorUsedError;
 
   /// The name of the collection to create an index from.
-  @JsonKey(name: 'source_collection')
+  @JsonKey(name: 'source_collection', includeIfNull: false)
   String? get sourceCollection => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1771,8 +1825,10 @@ abstract class $CreateIndexRequestCopyWith<$Res> {
       int pods,
       int replicas,
       @JsonKey(name: 'pod_type') PodType podType,
-      @JsonKey(name: 'metadata_config') Map<String, dynamic>? metadataConfig,
-      @JsonKey(name: 'source_collection') String? sourceCollection});
+      @JsonKey(name: 'metadata_config', includeIfNull: false)
+      Map<String, dynamic>? metadataConfig,
+      @JsonKey(name: 'source_collection', includeIfNull: false)
+      String? sourceCollection});
 }
 
 /// @nodoc
@@ -1849,8 +1905,10 @@ abstract class _$$CreateIndexRequestImplCopyWith<$Res>
       int pods,
       int replicas,
       @JsonKey(name: 'pod_type') PodType podType,
-      @JsonKey(name: 'metadata_config') Map<String, dynamic>? metadataConfig,
-      @JsonKey(name: 'source_collection') String? sourceCollection});
+      @JsonKey(name: 'metadata_config', includeIfNull: false)
+      Map<String, dynamic>? metadataConfig,
+      @JsonKey(name: 'source_collection', includeIfNull: false)
+      String? sourceCollection});
 }
 
 /// @nodoc
@@ -1919,10 +1977,11 @@ class _$CreateIndexRequestImpl extends _CreateIndexRequest {
       this.metric = SearchMetric.cosine,
       this.pods = 1,
       this.replicas = 1,
-      @JsonKey(name: 'pod_type') this.podType = PodType.p1x1,
-      @JsonKey(name: 'metadata_config')
+      @JsonKey(name: 'pod_type') this.podType = PodType.p1X1,
+      @JsonKey(name: 'metadata_config', includeIfNull: false)
       final Map<String, dynamic>? metadataConfig,
-      @JsonKey(name: 'source_collection') this.sourceCollection})
+      @JsonKey(name: 'source_collection', includeIfNull: false)
+      this.sourceCollection})
       : _metadataConfig = metadataConfig,
         super._();
 
@@ -1962,7 +2021,7 @@ class _$CreateIndexRequestImpl extends _CreateIndexRequest {
 
   /// Configuration for the behavior of Pinecone's internal metadata index.
   @override
-  @JsonKey(name: 'metadata_config')
+  @JsonKey(name: 'metadata_config', includeIfNull: false)
   Map<String, dynamic>? get metadataConfig {
     final value = _metadataConfig;
     if (value == null) return null;
@@ -1973,7 +2032,7 @@ class _$CreateIndexRequestImpl extends _CreateIndexRequest {
 
   /// The name of the collection to create an index from.
   @override
-  @JsonKey(name: 'source_collection')
+  @JsonKey(name: 'source_collection', includeIfNull: false)
   final String? sourceCollection;
 
   @override
@@ -2030,16 +2089,16 @@ class _$CreateIndexRequestImpl extends _CreateIndexRequest {
 
 abstract class _CreateIndexRequest extends CreateIndexRequest {
   const factory _CreateIndexRequest(
-          {required final String name,
-          required final int dimension,
-          final SearchMetric metric,
-          final int pods,
-          final int replicas,
-          @JsonKey(name: 'pod_type') final PodType podType,
-          @JsonKey(name: 'metadata_config')
-          final Map<String, dynamic>? metadataConfig,
-          @JsonKey(name: 'source_collection') final String? sourceCollection}) =
-      _$CreateIndexRequestImpl;
+      {required final String name,
+      required final int dimension,
+      final SearchMetric metric,
+      final int pods,
+      final int replicas,
+      @JsonKey(name: 'pod_type') final PodType podType,
+      @JsonKey(name: 'metadata_config', includeIfNull: false)
+      final Map<String, dynamic>? metadataConfig,
+      @JsonKey(name: 'source_collection', includeIfNull: false)
+      final String? sourceCollection}) = _$CreateIndexRequestImpl;
   const _CreateIndexRequest._() : super._();
 
   factory _CreateIndexRequest.fromJson(Map<String, dynamic> json) =
@@ -2073,12 +2132,12 @@ abstract class _CreateIndexRequest extends CreateIndexRequest {
   @override
 
   /// Configuration for the behavior of Pinecone's internal metadata index.
-  @JsonKey(name: 'metadata_config')
+  @JsonKey(name: 'metadata_config', includeIfNull: false)
   Map<String, dynamic>? get metadataConfig;
   @override
 
   /// The name of the collection to create an index from.
-  @JsonKey(name: 'source_collection')
+  @JsonKey(name: 'source_collection', includeIfNull: false)
   String? get sourceCollection;
   @override
   @JsonKey(ignore: true)
@@ -2093,6 +2152,7 @@ IndexStatsRequest _$IndexStatsRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$IndexStatsRequest {
   /// If defined, the operation only returns statistics for vectors that satisfy the filter.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2107,7 +2167,7 @@ abstract class $IndexStatsRequestCopyWith<$Res> {
           IndexStatsRequest value, $Res Function(IndexStatsRequest) then) =
       _$IndexStatsRequestCopyWithImpl<$Res, IndexStatsRequest>;
   @useResult
-  $Res call({Map<String, dynamic>? filter});
+  $Res call({@JsonKey(includeIfNull: false) Map<String, dynamic>? filter});
 }
 
 /// @nodoc
@@ -2142,7 +2202,7 @@ abstract class _$$IndexStatsRequestImplCopyWith<$Res>
       __$$IndexStatsRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<String, dynamic>? filter});
+  $Res call({@JsonKey(includeIfNull: false) Map<String, dynamic>? filter});
 }
 
 /// @nodoc
@@ -2170,7 +2230,8 @@ class __$$IndexStatsRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$IndexStatsRequestImpl extends _IndexStatsRequest {
-  const _$IndexStatsRequestImpl({final Map<String, dynamic>? filter})
+  const _$IndexStatsRequestImpl(
+      {@JsonKey(includeIfNull: false) final Map<String, dynamic>? filter})
       : _filter = filter,
         super._();
 
@@ -2182,6 +2243,7 @@ class _$IndexStatsRequestImpl extends _IndexStatsRequest {
 
   /// If defined, the operation only returns statistics for vectors that satisfy the filter.
   @override
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter {
     final value = _filter;
     if (value == null) return null;
@@ -2224,7 +2286,8 @@ class _$IndexStatsRequestImpl extends _IndexStatsRequest {
 }
 
 abstract class _IndexStatsRequest extends IndexStatsRequest {
-  const factory _IndexStatsRequest({final Map<String, dynamic>? filter}) =
+  const factory _IndexStatsRequest(
+          {@JsonKey(includeIfNull: false) final Map<String, dynamic>? filter}) =
       _$IndexStatsRequestImpl;
   const _IndexStatsRequest._() : super._();
 
@@ -2234,6 +2297,7 @@ abstract class _IndexStatsRequest extends IndexStatsRequest {
   @override
 
   /// If defined, the operation only returns statistics for vectors that satisfy the filter.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter;
   @override
   @JsonKey(ignore: true)
@@ -2248,15 +2312,19 @@ DeleteRequest _$DeleteRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DeleteRequest {
   /// Vectors to delete, by id.
+  @JsonKey(includeIfNull: false)
   List<String>? get ids => throw _privateConstructorUsedError;
 
   /// This indicates that all vectors in the index namespace should be deleted.
+  @JsonKey(includeIfNull: false)
   bool? get deleteAll => throw _privateConstructorUsedError;
 
   /// The namespace to delete vectors from, if applicable.
+  @JsonKey(includeIfNull: false)
   String? get namespace => throw _privateConstructorUsedError;
 
   /// If specified, the metadata filter here will be used to select the vectors to delete.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2272,10 +2340,10 @@ abstract class $DeleteRequestCopyWith<$Res> {
       _$DeleteRequestCopyWithImpl<$Res, DeleteRequest>;
   @useResult
   $Res call(
-      {List<String>? ids,
-      bool? deleteAll,
-      String? namespace,
-      Map<String, dynamic>? filter});
+      {@JsonKey(includeIfNull: false) List<String>? ids,
+      @JsonKey(includeIfNull: false) bool? deleteAll,
+      @JsonKey(includeIfNull: false) String? namespace,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? filter});
 }
 
 /// @nodoc
@@ -2326,10 +2394,10 @@ abstract class _$$DeleteRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<String>? ids,
-      bool? deleteAll,
-      String? namespace,
-      Map<String, dynamic>? filter});
+      {@JsonKey(includeIfNull: false) List<String>? ids,
+      @JsonKey(includeIfNull: false) bool? deleteAll,
+      @JsonKey(includeIfNull: false) String? namespace,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? filter});
 }
 
 /// @nodoc
@@ -2373,10 +2441,10 @@ class __$$DeleteRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DeleteRequestImpl extends _DeleteRequest {
   const _$DeleteRequestImpl(
-      {final List<String>? ids,
-      this.deleteAll,
-      this.namespace,
-      final Map<String, dynamic>? filter})
+      {@JsonKey(includeIfNull: false) final List<String>? ids,
+      @JsonKey(includeIfNull: false) this.deleteAll,
+      @JsonKey(includeIfNull: false) this.namespace,
+      @JsonKey(includeIfNull: false) final Map<String, dynamic>? filter})
       : _ids = ids,
         _filter = filter,
         super._();
@@ -2389,6 +2457,7 @@ class _$DeleteRequestImpl extends _DeleteRequest {
 
   /// Vectors to delete, by id.
   @override
+  @JsonKey(includeIfNull: false)
   List<String>? get ids {
     final value = _ids;
     if (value == null) return null;
@@ -2399,10 +2468,12 @@ class _$DeleteRequestImpl extends _DeleteRequest {
 
   /// This indicates that all vectors in the index namespace should be deleted.
   @override
+  @JsonKey(includeIfNull: false)
   final bool? deleteAll;
 
   /// The namespace to delete vectors from, if applicable.
   @override
+  @JsonKey(includeIfNull: false)
   final String? namespace;
 
   /// If specified, the metadata filter here will be used to select the vectors to delete.
@@ -2410,6 +2481,7 @@ class _$DeleteRequestImpl extends _DeleteRequest {
 
   /// If specified, the metadata filter here will be used to select the vectors to delete.
   @override
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter {
     final value = _filter;
     if (value == null) return null;
@@ -2461,10 +2533,11 @@ class _$DeleteRequestImpl extends _DeleteRequest {
 
 abstract class _DeleteRequest extends DeleteRequest {
   const factory _DeleteRequest(
-      {final List<String>? ids,
-      final bool? deleteAll,
-      final String? namespace,
-      final Map<String, dynamic>? filter}) = _$DeleteRequestImpl;
+          {@JsonKey(includeIfNull: false) final List<String>? ids,
+          @JsonKey(includeIfNull: false) final bool? deleteAll,
+          @JsonKey(includeIfNull: false) final String? namespace,
+          @JsonKey(includeIfNull: false) final Map<String, dynamic>? filter}) =
+      _$DeleteRequestImpl;
   const _DeleteRequest._() : super._();
 
   factory _DeleteRequest.fromJson(Map<String, dynamic> json) =
@@ -2473,18 +2546,22 @@ abstract class _DeleteRequest extends DeleteRequest {
   @override
 
   /// Vectors to delete, by id.
+  @JsonKey(includeIfNull: false)
   List<String>? get ids;
   @override
 
   /// This indicates that all vectors in the index namespace should be deleted.
+  @JsonKey(includeIfNull: false)
   bool? get deleteAll;
   @override
 
   /// The namespace to delete vectors from, if applicable.
+  @JsonKey(includeIfNull: false)
   String? get namespace;
   @override
 
   /// If specified, the metadata filter here will be used to select the vectors to delete.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter;
   @override
   @JsonKey(ignore: true)
@@ -2499,12 +2576,14 @@ QueryRequest _$QueryRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$QueryRequest {
   /// The namespace to query.
+  @JsonKey(includeIfNull: false)
   String? get namespace => throw _privateConstructorUsedError;
 
   /// The number of results to return for each query.
   int get topK => throw _privateConstructorUsedError;
 
   /// The filter to apply. You can use vector metadata to limit your search.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter => throw _privateConstructorUsedError;
 
   /// Indicates whether vector values are included in the response.
@@ -2514,12 +2593,15 @@ mixin _$QueryRequest {
   bool get includeMetadata => throw _privateConstructorUsedError;
 
   /// The query vector. This should be the same length as the dimension of the index being queried.
+  @JsonKey(includeIfNull: false)
   List<double>? get vector => throw _privateConstructorUsedError;
 
-  /// No Description
+  /// Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length.
+  @JsonKey(includeIfNull: false)
   SparseVector? get sparseVector => throw _privateConstructorUsedError;
 
   /// The unique ID of the vector to be used as a query vector.
+  @JsonKey(includeIfNull: false)
   String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2535,14 +2617,14 @@ abstract class $QueryRequestCopyWith<$Res> {
       _$QueryRequestCopyWithImpl<$Res, QueryRequest>;
   @useResult
   $Res call(
-      {String? namespace,
+      {@JsonKey(includeIfNull: false) String? namespace,
       int topK,
-      Map<String, dynamic>? filter,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? filter,
       bool includeValues,
       bool includeMetadata,
-      List<double>? vector,
-      SparseVector? sparseVector,
-      String? id});
+      @JsonKey(includeIfNull: false) List<double>? vector,
+      @JsonKey(includeIfNull: false) SparseVector? sparseVector,
+      @JsonKey(includeIfNull: false) String? id});
 
   $SparseVectorCopyWith<$Res>? get sparseVector;
 }
@@ -2627,14 +2709,14 @@ abstract class _$$QueryRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? namespace,
+      {@JsonKey(includeIfNull: false) String? namespace,
       int topK,
-      Map<String, dynamic>? filter,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? filter,
       bool includeValues,
       bool includeMetadata,
-      List<double>? vector,
-      SparseVector? sparseVector,
-      String? id});
+      @JsonKey(includeIfNull: false) List<double>? vector,
+      @JsonKey(includeIfNull: false) SparseVector? sparseVector,
+      @JsonKey(includeIfNull: false) String? id});
 
   @override
   $SparseVectorCopyWith<$Res>? get sparseVector;
@@ -2701,14 +2783,14 @@ class __$$QueryRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$QueryRequestImpl extends _QueryRequest {
   const _$QueryRequestImpl(
-      {this.namespace,
+      {@JsonKey(includeIfNull: false) this.namespace,
       this.topK = 10,
-      final Map<String, dynamic>? filter,
+      @JsonKey(includeIfNull: false) final Map<String, dynamic>? filter,
       this.includeValues = false,
       this.includeMetadata = false,
-      final List<double>? vector,
-      this.sparseVector,
-      this.id})
+      @JsonKey(includeIfNull: false) final List<double>? vector,
+      @JsonKey(includeIfNull: false) this.sparseVector,
+      @JsonKey(includeIfNull: false) this.id})
       : _filter = filter,
         _vector = vector,
         super._();
@@ -2718,6 +2800,7 @@ class _$QueryRequestImpl extends _QueryRequest {
 
   /// The namespace to query.
   @override
+  @JsonKey(includeIfNull: false)
   final String? namespace;
 
   /// The number of results to return for each query.
@@ -2730,6 +2813,7 @@ class _$QueryRequestImpl extends _QueryRequest {
 
   /// The filter to apply. You can use vector metadata to limit your search.
   @override
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter {
     final value = _filter;
     if (value == null) return null;
@@ -2753,6 +2837,7 @@ class _$QueryRequestImpl extends _QueryRequest {
 
   /// The query vector. This should be the same length as the dimension of the index being queried.
   @override
+  @JsonKey(includeIfNull: false)
   List<double>? get vector {
     final value = _vector;
     if (value == null) return null;
@@ -2761,12 +2846,14 @@ class _$QueryRequestImpl extends _QueryRequest {
     return EqualUnmodifiableListView(value);
   }
 
-  /// No Description
+  /// Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length.
   @override
+  @JsonKey(includeIfNull: false)
   final SparseVector? sparseVector;
 
   /// The unique ID of the vector to be used as a query vector.
   @override
+  @JsonKey(includeIfNull: false)
   final String? id;
 
   @override
@@ -2822,14 +2909,14 @@ class _$QueryRequestImpl extends _QueryRequest {
 
 abstract class _QueryRequest extends QueryRequest {
   const factory _QueryRequest(
-      {final String? namespace,
+      {@JsonKey(includeIfNull: false) final String? namespace,
       final int topK,
-      final Map<String, dynamic>? filter,
+      @JsonKey(includeIfNull: false) final Map<String, dynamic>? filter,
       final bool includeValues,
       final bool includeMetadata,
-      final List<double>? vector,
-      final SparseVector? sparseVector,
-      final String? id}) = _$QueryRequestImpl;
+      @JsonKey(includeIfNull: false) final List<double>? vector,
+      @JsonKey(includeIfNull: false) final SparseVector? sparseVector,
+      @JsonKey(includeIfNull: false) final String? id}) = _$QueryRequestImpl;
   const _QueryRequest._() : super._();
 
   factory _QueryRequest.fromJson(Map<String, dynamic> json) =
@@ -2838,6 +2925,7 @@ abstract class _QueryRequest extends QueryRequest {
   @override
 
   /// The namespace to query.
+  @JsonKey(includeIfNull: false)
   String? get namespace;
   @override
 
@@ -2846,6 +2934,7 @@ abstract class _QueryRequest extends QueryRequest {
   @override
 
   /// The filter to apply. You can use vector metadata to limit your search.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get filter;
   @override
 
@@ -2858,14 +2947,17 @@ abstract class _QueryRequest extends QueryRequest {
   @override
 
   /// The query vector. This should be the same length as the dimension of the index being queried.
+  @JsonKey(includeIfNull: false)
   List<double>? get vector;
   @override
 
-  /// No Description
+  /// Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length.
+  @JsonKey(includeIfNull: false)
   SparseVector? get sparseVector;
   @override
 
   /// The unique ID of the vector to be used as a query vector.
+  @JsonKey(includeIfNull: false)
   String? get id;
   @override
   @JsonKey(ignore: true)
@@ -3237,15 +3329,19 @@ mixin _$UpdateRequest {
   String get id => throw _privateConstructorUsedError;
 
   /// The vector values
+  @JsonKey(includeIfNull: false)
   List<double>? get values => throw _privateConstructorUsedError;
 
-  /// No Description
+  /// Vector sparse data.
+  @JsonKey(includeIfNull: false)
   SparseVector? get sparseValues => throw _privateConstructorUsedError;
 
   /// Metadata to set for the vector.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get setMetadata => throw _privateConstructorUsedError;
 
   /// The namespace containing the vector to update.
+  @JsonKey(includeIfNull: false)
   String? get namespace => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3262,10 +3358,10 @@ abstract class $UpdateRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      List<double>? values,
-      SparseVector? sparseValues,
-      Map<String, dynamic>? setMetadata,
-      String? namespace});
+      @JsonKey(includeIfNull: false) List<double>? values,
+      @JsonKey(includeIfNull: false) SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? setMetadata,
+      @JsonKey(includeIfNull: false) String? namespace});
 
   $SparseVectorCopyWith<$Res>? get sparseValues;
 }
@@ -3336,10 +3432,10 @@ abstract class _$$UpdateRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      List<double>? values,
-      SparseVector? sparseValues,
-      Map<String, dynamic>? setMetadata,
-      String? namespace});
+      @JsonKey(includeIfNull: false) List<double>? values,
+      @JsonKey(includeIfNull: false) SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? setMetadata,
+      @JsonKey(includeIfNull: false) String? namespace});
 
   @override
   $SparseVectorCopyWith<$Res>? get sparseValues;
@@ -3392,10 +3488,10 @@ class __$$UpdateRequestImplCopyWithImpl<$Res>
 class _$UpdateRequestImpl extends _UpdateRequest {
   const _$UpdateRequestImpl(
       {required this.id,
-      final List<double>? values,
-      this.sparseValues,
-      final Map<String, dynamic>? setMetadata,
-      this.namespace})
+      @JsonKey(includeIfNull: false) final List<double>? values,
+      @JsonKey(includeIfNull: false) this.sparseValues,
+      @JsonKey(includeIfNull: false) final Map<String, dynamic>? setMetadata,
+      @JsonKey(includeIfNull: false) this.namespace})
       : _values = values,
         _setMetadata = setMetadata,
         super._();
@@ -3412,6 +3508,7 @@ class _$UpdateRequestImpl extends _UpdateRequest {
 
   /// The vector values
   @override
+  @JsonKey(includeIfNull: false)
   List<double>? get values {
     final value = _values;
     if (value == null) return null;
@@ -3420,8 +3517,9 @@ class _$UpdateRequestImpl extends _UpdateRequest {
     return EqualUnmodifiableListView(value);
   }
 
-  /// No Description
+  /// Vector sparse data.
   @override
+  @JsonKey(includeIfNull: false)
   final SparseVector? sparseValues;
 
   /// Metadata to set for the vector.
@@ -3429,6 +3527,7 @@ class _$UpdateRequestImpl extends _UpdateRequest {
 
   /// Metadata to set for the vector.
   @override
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get setMetadata {
     final value = _setMetadata;
     if (value == null) return null;
@@ -3439,6 +3538,7 @@ class _$UpdateRequestImpl extends _UpdateRequest {
 
   /// The namespace containing the vector to update.
   @override
+  @JsonKey(includeIfNull: false)
   final String? namespace;
 
   @override
@@ -3488,9 +3588,10 @@ class _$UpdateRequestImpl extends _UpdateRequest {
 abstract class _UpdateRequest extends UpdateRequest {
   const factory _UpdateRequest(
       {required final String id,
-      final List<double>? values,
-      final SparseVector? sparseValues,
-      final Map<String, dynamic>? setMetadata,
+      @JsonKey(includeIfNull: false) final List<double>? values,
+      @JsonKey(includeIfNull: false) final SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) final Map<String, dynamic>? setMetadata,
+      @JsonKey(includeIfNull: false)
       final String? namespace}) = _$UpdateRequestImpl;
   const _UpdateRequest._() : super._();
 
@@ -3504,18 +3605,22 @@ abstract class _UpdateRequest extends UpdateRequest {
   @override
 
   /// The vector values
+  @JsonKey(includeIfNull: false)
   List<double>? get values;
   @override
 
-  /// No Description
+  /// Vector sparse data.
+  @JsonKey(includeIfNull: false)
   SparseVector? get sparseValues;
   @override
 
   /// Metadata to set for the vector.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get setMetadata;
   @override
 
   /// The namespace containing the vector to update.
+  @JsonKey(includeIfNull: false)
   String? get namespace;
   @override
   @JsonKey(ignore: true)
@@ -3533,6 +3638,7 @@ mixin _$UpsertRequest {
   List<Vector> get vectors => throw _privateConstructorUsedError;
 
   /// This is the namespace name where you upsert vectors.
+  @JsonKey(includeIfNull: false)
   String? get namespace => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3547,7 +3653,8 @@ abstract class $UpsertRequestCopyWith<$Res> {
           UpsertRequest value, $Res Function(UpsertRequest) then) =
       _$UpsertRequestCopyWithImpl<$Res, UpsertRequest>;
   @useResult
-  $Res call({List<Vector> vectors, String? namespace});
+  $Res call(
+      {List<Vector> vectors, @JsonKey(includeIfNull: false) String? namespace});
 }
 
 /// @nodoc
@@ -3587,7 +3694,8 @@ abstract class _$$UpsertRequestImplCopyWith<$Res>
       __$$UpsertRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Vector> vectors, String? namespace});
+  $Res call(
+      {List<Vector> vectors, @JsonKey(includeIfNull: false) String? namespace});
 }
 
 /// @nodoc
@@ -3621,7 +3729,8 @@ class __$$UpsertRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UpsertRequestImpl extends _UpsertRequest {
   const _$UpsertRequestImpl(
-      {required final List<Vector> vectors, this.namespace})
+      {required final List<Vector> vectors,
+      @JsonKey(includeIfNull: false) this.namespace})
       : _vectors = vectors,
         super._();
 
@@ -3641,6 +3750,7 @@ class _$UpsertRequestImpl extends _UpsertRequest {
 
   /// This is the namespace name where you upsert vectors.
   @override
+  @JsonKey(includeIfNull: false)
   final String? namespace;
 
   @override
@@ -3679,8 +3789,9 @@ class _$UpsertRequestImpl extends _UpsertRequest {
 
 abstract class _UpsertRequest extends UpsertRequest {
   const factory _UpsertRequest(
-      {required final List<Vector> vectors,
-      final String? namespace}) = _$UpsertRequestImpl;
+          {required final List<Vector> vectors,
+          @JsonKey(includeIfNull: false) final String? namespace}) =
+      _$UpsertRequestImpl;
   const _UpsertRequest._() : super._();
 
   factory _UpsertRequest.fromJson(Map<String, dynamic> json) =
@@ -3693,6 +3804,7 @@ abstract class _UpsertRequest extends UpsertRequest {
   @override
 
   /// This is the namespace name where you upsert vectors.
+  @JsonKey(includeIfNull: false)
   String? get namespace;
   @override
   @JsonKey(ignore: true)
@@ -3707,6 +3819,7 @@ UpsertResponse _$UpsertResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UpsertResponse {
   /// The number of vectors upserted.
+  @JsonKey(includeIfNull: false)
   int? get upsertedCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3721,7 +3834,7 @@ abstract class $UpsertResponseCopyWith<$Res> {
           UpsertResponse value, $Res Function(UpsertResponse) then) =
       _$UpsertResponseCopyWithImpl<$Res, UpsertResponse>;
   @useResult
-  $Res call({int? upsertedCount});
+  $Res call({@JsonKey(includeIfNull: false) int? upsertedCount});
 }
 
 /// @nodoc
@@ -3756,7 +3869,7 @@ abstract class _$$UpsertResponseImplCopyWith<$Res>
       __$$UpsertResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? upsertedCount});
+  $Res call({@JsonKey(includeIfNull: false) int? upsertedCount});
 }
 
 /// @nodoc
@@ -3784,13 +3897,16 @@ class __$$UpsertResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UpsertResponseImpl extends _UpsertResponse {
-  const _$UpsertResponseImpl({this.upsertedCount}) : super._();
+  const _$UpsertResponseImpl(
+      {@JsonKey(includeIfNull: false) this.upsertedCount})
+      : super._();
 
   factory _$UpsertResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$UpsertResponseImplFromJson(json);
 
   /// The number of vectors upserted.
   @override
+  @JsonKey(includeIfNull: false)
   final int? upsertedCount;
 
   @override
@@ -3827,7 +3943,8 @@ class _$UpsertResponseImpl extends _UpsertResponse {
 }
 
 abstract class _UpsertResponse extends UpsertResponse {
-  const factory _UpsertResponse({final int? upsertedCount}) =
+  const factory _UpsertResponse(
+          {@JsonKey(includeIfNull: false) final int? upsertedCount}) =
       _$UpsertResponseImpl;
   const _UpsertResponse._() : super._();
 
@@ -3837,6 +3954,7 @@ abstract class _UpsertResponse extends UpsertResponse {
   @override
 
   /// The number of vectors upserted.
+  @JsonKey(includeIfNull: false)
   int? get upsertedCount;
   @override
   @JsonKey(ignore: true)
@@ -3856,10 +3974,12 @@ mixin _$Vector {
   /// The vector values
   List<double> get values => throw _privateConstructorUsedError;
 
-  /// No Description
+  /// Sparse vector data for this vector.
+  @JsonKey(includeIfNull: false)
   SparseVector? get sparseValues => throw _privateConstructorUsedError;
 
   /// Metadata associated with this vector.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get metadata => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3875,8 +3995,8 @@ abstract class $VectorCopyWith<$Res> {
   $Res call(
       {String id,
       List<double> values,
-      SparseVector? sparseValues,
-      Map<String, dynamic>? metadata});
+      @JsonKey(includeIfNull: false) SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? metadata});
 
   $SparseVectorCopyWith<$Res>? get sparseValues;
 }
@@ -3942,8 +4062,8 @@ abstract class _$$VectorImplCopyWith<$Res> implements $VectorCopyWith<$Res> {
   $Res call(
       {String id,
       List<double> values,
-      SparseVector? sparseValues,
-      Map<String, dynamic>? metadata});
+      @JsonKey(includeIfNull: false) SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? metadata});
 
   @override
   $SparseVectorCopyWith<$Res>? get sparseValues;
@@ -3992,8 +4112,8 @@ class _$VectorImpl extends _Vector {
   const _$VectorImpl(
       {required this.id,
       required final List<double> values,
-      this.sparseValues,
-      final Map<String, dynamic>? metadata})
+      @JsonKey(includeIfNull: false) this.sparseValues,
+      @JsonKey(includeIfNull: false) final Map<String, dynamic>? metadata})
       : _values = values,
         _metadata = metadata,
         super._();
@@ -4016,8 +4136,9 @@ class _$VectorImpl extends _Vector {
     return EqualUnmodifiableListView(_values);
   }
 
-  /// No Description
+  /// Sparse vector data for this vector.
   @override
+  @JsonKey(includeIfNull: false)
   final SparseVector? sparseValues;
 
   /// Metadata associated with this vector.
@@ -4025,6 +4146,7 @@ class _$VectorImpl extends _Vector {
 
   /// Metadata associated with this vector.
   @override
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get metadata {
     final value = _metadata;
     if (value == null) return null;
@@ -4077,7 +4199,8 @@ abstract class _Vector extends Vector {
   const factory _Vector(
       {required final String id,
       required final List<double> values,
-      final SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) final SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false)
       final Map<String, dynamic>? metadata}) = _$VectorImpl;
   const _Vector._() : super._();
 
@@ -4093,11 +4216,13 @@ abstract class _Vector extends Vector {
   List<double> get values;
   @override
 
-  /// No Description
+  /// Sparse vector data for this vector.
+  @JsonKey(includeIfNull: false)
   SparseVector? get sparseValues;
   @override
 
   /// Metadata associated with this vector.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get metadata;
   @override
   @JsonKey(ignore: true)
@@ -4115,15 +4240,19 @@ mixin _$VectorMatch {
   String get id => throw _privateConstructorUsedError;
 
   /// This is a measure of similarity between this vector and the query vector. The higher the score, the more they are similar.
+  @JsonKey(includeIfNull: false)
   double? get score => throw _privateConstructorUsedError;
 
   /// This is the vector data, if it is requested.
+  @JsonKey(includeIfNull: false)
   List<double>? get values => throw _privateConstructorUsedError;
 
-  /// No Description
+  /// This is the sparse vector data, if it is requested.
+  @JsonKey(includeIfNull: false)
   SparseVector? get sparseValues => throw _privateConstructorUsedError;
 
   /// This is the metadata, if it is requested.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get metadata => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -4140,10 +4269,10 @@ abstract class $VectorMatchCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      double? score,
-      List<double>? values,
-      SparseVector? sparseValues,
-      Map<String, dynamic>? metadata});
+      @JsonKey(includeIfNull: false) double? score,
+      @JsonKey(includeIfNull: false) List<double>? values,
+      @JsonKey(includeIfNull: false) SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? metadata});
 
   $SparseVectorCopyWith<$Res>? get sparseValues;
 }
@@ -4214,10 +4343,10 @@ abstract class _$$VectorMatchImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      double? score,
-      List<double>? values,
-      SparseVector? sparseValues,
-      Map<String, dynamic>? metadata});
+      @JsonKey(includeIfNull: false) double? score,
+      @JsonKey(includeIfNull: false) List<double>? values,
+      @JsonKey(includeIfNull: false) SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) Map<String, dynamic>? metadata});
 
   @override
   $SparseVectorCopyWith<$Res>? get sparseValues;
@@ -4270,10 +4399,10 @@ class __$$VectorMatchImplCopyWithImpl<$Res>
 class _$VectorMatchImpl extends _VectorMatch {
   const _$VectorMatchImpl(
       {required this.id,
-      this.score,
-      final List<double>? values,
-      this.sparseValues,
-      final Map<String, dynamic>? metadata})
+      @JsonKey(includeIfNull: false) this.score,
+      @JsonKey(includeIfNull: false) final List<double>? values,
+      @JsonKey(includeIfNull: false) this.sparseValues,
+      @JsonKey(includeIfNull: false) final Map<String, dynamic>? metadata})
       : _values = values,
         _metadata = metadata,
         super._();
@@ -4287,6 +4416,7 @@ class _$VectorMatchImpl extends _VectorMatch {
 
   /// This is a measure of similarity between this vector and the query vector. The higher the score, the more they are similar.
   @override
+  @JsonKey(includeIfNull: false)
   final double? score;
 
   /// This is the vector data, if it is requested.
@@ -4294,6 +4424,7 @@ class _$VectorMatchImpl extends _VectorMatch {
 
   /// This is the vector data, if it is requested.
   @override
+  @JsonKey(includeIfNull: false)
   List<double>? get values {
     final value = _values;
     if (value == null) return null;
@@ -4302,8 +4433,9 @@ class _$VectorMatchImpl extends _VectorMatch {
     return EqualUnmodifiableListView(value);
   }
 
-  /// No Description
+  /// This is the sparse vector data, if it is requested.
   @override
+  @JsonKey(includeIfNull: false)
   final SparseVector? sparseValues;
 
   /// This is the metadata, if it is requested.
@@ -4311,6 +4443,7 @@ class _$VectorMatchImpl extends _VectorMatch {
 
   /// This is the metadata, if it is requested.
   @override
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get metadata {
     final value = _metadata;
     if (value == null) return null;
@@ -4364,9 +4497,10 @@ class _$VectorMatchImpl extends _VectorMatch {
 abstract class _VectorMatch extends VectorMatch {
   const factory _VectorMatch(
       {required final String id,
-      final double? score,
-      final List<double>? values,
-      final SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false) final double? score,
+      @JsonKey(includeIfNull: false) final List<double>? values,
+      @JsonKey(includeIfNull: false) final SparseVector? sparseValues,
+      @JsonKey(includeIfNull: false)
       final Map<String, dynamic>? metadata}) = _$VectorMatchImpl;
   const _VectorMatch._() : super._();
 
@@ -4380,18 +4514,22 @@ abstract class _VectorMatch extends VectorMatch {
   @override
 
   /// This is a measure of similarity between this vector and the query vector. The higher the score, the more they are similar.
+  @JsonKey(includeIfNull: false)
   double? get score;
   @override
 
   /// This is the vector data, if it is requested.
+  @JsonKey(includeIfNull: false)
   List<double>? get values;
   @override
 
-  /// No Description
+  /// This is the sparse vector data, if it is requested.
+  @JsonKey(includeIfNull: false)
   SparseVector? get sparseValues;
   @override
 
   /// This is the metadata, if it is requested.
+  @JsonKey(includeIfNull: false)
   Map<String, dynamic>? get metadata;
   @override
   @JsonKey(ignore: true)
@@ -4406,9 +4544,11 @@ SparseVector _$SparseVectorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SparseVector {
   /// The indices of the sparse data.
+  @JsonKey(includeIfNull: false)
   List<int>? get indices => throw _privateConstructorUsedError;
 
   /// The corresponding values of the sparse data, which must be the same length as the indices.
+  @JsonKey(includeIfNull: false)
   List<double>? get values => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -4423,7 +4563,9 @@ abstract class $SparseVectorCopyWith<$Res> {
           SparseVector value, $Res Function(SparseVector) then) =
       _$SparseVectorCopyWithImpl<$Res, SparseVector>;
   @useResult
-  $Res call({List<int>? indices, List<double>? values});
+  $Res call(
+      {@JsonKey(includeIfNull: false) List<int>? indices,
+      @JsonKey(includeIfNull: false) List<double>? values});
 }
 
 /// @nodoc
@@ -4463,7 +4605,9 @@ abstract class _$$SparseVectorImplCopyWith<$Res>
       __$$SparseVectorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<int>? indices, List<double>? values});
+  $Res call(
+      {@JsonKey(includeIfNull: false) List<int>? indices,
+      @JsonKey(includeIfNull: false) List<double>? values});
 }
 
 /// @nodoc
@@ -4497,7 +4641,8 @@ class __$$SparseVectorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SparseVectorImpl extends _SparseVector {
   const _$SparseVectorImpl(
-      {final List<int>? indices, final List<double>? values})
+      {@JsonKey(includeIfNull: false) final List<int>? indices,
+      @JsonKey(includeIfNull: false) final List<double>? values})
       : _indices = indices,
         _values = values,
         super._();
@@ -4510,6 +4655,7 @@ class _$SparseVectorImpl extends _SparseVector {
 
   /// The indices of the sparse data.
   @override
+  @JsonKey(includeIfNull: false)
   List<int>? get indices {
     final value = _indices;
     if (value == null) return null;
@@ -4523,6 +4669,7 @@ class _$SparseVectorImpl extends _SparseVector {
 
   /// The corresponding values of the sparse data, which must be the same length as the indices.
   @override
+  @JsonKey(includeIfNull: false)
   List<double>? get values {
     final value = _values;
     if (value == null) return null;
@@ -4568,8 +4715,9 @@ class _$SparseVectorImpl extends _SparseVector {
 
 abstract class _SparseVector extends SparseVector {
   const factory _SparseVector(
-      {final List<int>? indices,
-      final List<double>? values}) = _$SparseVectorImpl;
+          {@JsonKey(includeIfNull: false) final List<int>? indices,
+          @JsonKey(includeIfNull: false) final List<double>? values}) =
+      _$SparseVectorImpl;
   const _SparseVector._() : super._();
 
   factory _SparseVector.fromJson(Map<String, dynamic> json) =
@@ -4578,10 +4726,12 @@ abstract class _SparseVector extends SparseVector {
   @override
 
   /// The indices of the sparse data.
+  @JsonKey(includeIfNull: false)
   List<int>? get indices;
   @override
 
   /// The corresponding values of the sparse data, which must be the same length as the indices.
+  @JsonKey(includeIfNull: false)
   List<double>? get values;
   @override
   @JsonKey(ignore: true)

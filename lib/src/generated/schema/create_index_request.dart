@@ -31,13 +31,15 @@ class CreateIndexRequest with _$CreateIndexRequest {
     @Default(1) int replicas,
 
     /// An enumeration of the available pod types.
-    @JsonKey(name: 'pod_type') @Default(PodType.p1x1) PodType podType,
+    @JsonKey(name: 'pod_type') @Default(PodType.p1X1) PodType podType,
 
     /// Configuration for the behavior of Pinecone's internal metadata index.
-    @JsonKey(name: 'metadata_config') Map<String, dynamic>? metadataConfig,
+    @JsonKey(name: 'metadata_config', includeIfNull: false)
+    Map<String, dynamic>? metadataConfig,
 
     /// The name of the collection to create an index from.
-    @JsonKey(name: 'source_collection') String? sourceCollection,
+    @JsonKey(name: 'source_collection', includeIfNull: false)
+    String? sourceCollection,
   }) = _CreateIndexRequest;
 
   /// Object construction from a JSON representation

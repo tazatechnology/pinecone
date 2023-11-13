@@ -16,13 +16,13 @@ class QueryRequest with _$QueryRequest {
   /// Factory constructor for QueryRequest
   const factory QueryRequest({
     /// The namespace to query.
-    String? namespace,
+    @JsonKey(includeIfNull: false) String? namespace,
 
     /// The number of results to return for each query.
     @Default(10) int topK,
 
     /// The filter to apply. You can use vector metadata to limit your search.
-    Map<String, dynamic>? filter,
+    @JsonKey(includeIfNull: false) Map<String, dynamic>? filter,
 
     /// Indicates whether vector values are included in the response.
     @Default(false) bool includeValues,
@@ -31,13 +31,13 @@ class QueryRequest with _$QueryRequest {
     @Default(false) bool includeMetadata,
 
     /// The query vector. This should be the same length as the dimension of the index being queried.
-    List<double>? vector,
+    @JsonKey(includeIfNull: false) List<double>? vector,
 
-    /// No Description
-    SparseVector? sparseVector,
+    /// Vector sparse data. Represented as a list of indices and a list of corresponded values, which must be the same length.
+    @JsonKey(includeIfNull: false) SparseVector? sparseVector,
 
     /// The unique ID of the vector to be used as a query vector.
-    String? id,
+    @JsonKey(includeIfNull: false) String? id,
   }) = _QueryRequest;
 
   /// Object construction from a JSON representation

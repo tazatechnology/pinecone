@@ -19,7 +19,7 @@ class UpsertRequest with _$UpsertRequest {
     required List<Vector> vectors,
 
     /// This is the namespace name where you upsert vectors.
-    String? namespace,
+    @JsonKey(includeIfNull: false) String? namespace,
   }) = _UpsertRequest;
 
   /// Object construction from a JSON representation

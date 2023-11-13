@@ -21,11 +21,11 @@ class Vector with _$Vector {
     /// The vector values
     required List<double> values,
 
-    /// No Description
-    SparseVector? sparseValues,
+    /// Sparse vector data for this vector.
+    @JsonKey(includeIfNull: false) SparseVector? sparseValues,
 
     /// Metadata associated with this vector.
-    Map<String, dynamic>? metadata,
+    @JsonKey(includeIfNull: false) Map<String, dynamic>? metadata,
   }) = _Vector;
 
   /// Object construction from a JSON representation

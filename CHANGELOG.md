@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.0
+
+* Client generation using latest `openapi_spec` package (v0.7.6)
+* Breaking: `PodType` enum values are now camel case
+
 ## 0.6.0
 
 * Client generation using latest `openapi_spec` package (v0.6.0)

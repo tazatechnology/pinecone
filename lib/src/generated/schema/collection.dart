@@ -22,7 +22,7 @@ class Collection with _$Collection {
     required CollectionStatus status,
 
     /// The size of the collection in bytes.
-    int? size,
+    @JsonKey(includeIfNull: false) int? size,
 
     /// The dimensionality of the collection.
     required int dimension,

@@ -22,7 +22,9 @@ class IndexStatus with _$IndexStatus {
     required int port,
 
     /// The current state of a index.
-    @JsonKey(unknownEnumValue: IndexState.terminating)
+    @JsonKey(
+      unknownEnumValue: IndexState.terminating,
+    )
     required IndexState state,
 
     /// Indicator of index readiness.
