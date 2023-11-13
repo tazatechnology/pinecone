@@ -64,7 +64,7 @@ void main() async {
           metric: SearchMetric.dotproduct,
           pods: 1,
           replicas: 1,
-          podType: PodType.p1x1,
+          podType: PodType.p1X1,
         ),
       );
     }

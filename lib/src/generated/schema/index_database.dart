@@ -36,6 +36,7 @@ class IndexDatabase with _$IndexDatabase {
     /// An enumeration of the available pod types.
     @JsonKey(
       name: 'pod_type',
+      includeIfNull: false,
       unknownEnumValue: JsonKey.nullForUndefinedEnumValue,
     )
     PodType? podType,

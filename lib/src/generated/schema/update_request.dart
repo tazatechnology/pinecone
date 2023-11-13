@@ -19,16 +19,16 @@ class UpdateRequest with _$UpdateRequest {
     required String id,
 
     /// The vector values
-    List<double>? values,
+    @JsonKey(includeIfNull: false) List<double>? values,
 
-    /// No Description
-    SparseVector? sparseValues,
+    /// Vector sparse data.
+    @JsonKey(includeIfNull: false) SparseVector? sparseValues,
 
     /// Metadata to set for the vector.
-    Map<String, dynamic>? setMetadata,
+    @JsonKey(includeIfNull: false) Map<String, dynamic>? setMetadata,
 
     /// The namespace containing the vector to update.
-    String? namespace,
+    @JsonKey(includeIfNull: false) String? namespace,
   }) = _UpdateRequest;
 
   /// Object construction from a JSON representation

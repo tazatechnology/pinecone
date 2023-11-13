@@ -16,16 +16,16 @@ class DeleteRequest with _$DeleteRequest {
   /// Factory constructor for DeleteRequest
   const factory DeleteRequest({
     /// Vectors to delete, by id.
-    List<String>? ids,
+    @JsonKey(includeIfNull: false) List<String>? ids,
 
     /// This indicates that all vectors in the index namespace should be deleted.
-    bool? deleteAll,
+    @JsonKey(includeIfNull: false) bool? deleteAll,
 
     /// The namespace to delete vectors from, if applicable.
-    String? namespace,
+    @JsonKey(includeIfNull: false) String? namespace,
 
     /// If specified, the metadata filter here will be used to select the vectors to delete.
-    Map<String, dynamic>? filter,
+    @JsonKey(includeIfNull: false) Map<String, dynamic>? filter,
   }) = _DeleteRequest;
 
   /// Object construction from a JSON representation

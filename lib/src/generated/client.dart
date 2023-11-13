@@ -1,12 +1,16 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: invalid_annotation_target
+// ignore_for_file: invalid_annotation_target, unused_import
 
-import 'dart:io' as io;
 import 'dart:convert';
+import 'dart:io' as io;
+import 'dart:typed_data';
+
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
+import 'package:meta/meta.dart';
+
 import 'schema/schema.dart';
 
 /// Enum of HTTP methods
@@ -25,6 +29,7 @@ class PineconeClientException implements io.HttpException {
     this.code,
     this.body,
   });
+
   @override
   final String message;
   @override
@@ -56,31 +61,38 @@ class PineconeClientException implements io.HttpException {
 // CLASS: PineconeClient
 // ==========================================
 
-/// Client for Pinecone API
+/// Client for Pinecone API (v.1.1.0)
 ///
-/// `baseUrl`: Override baseUrl URL - else defaults to server url defined in spec
-///
-/// `client`: Override HTTP client to use for requests
+/// No description
 class PineconeClient {
+  /// Creates a new PineconeClient instance.
+  ///
+  /// - [PineconeClient.baseUrl] Override base URL (default: server url defined in spec)
+  /// - [PineconeClient.headers] Global headers to be sent with every request
+  /// - [PineconeClient.client] Override HTTP client to use for requests
   PineconeClient({
     this.apiKey = '',
-    String? baseUrl,
+    this.baseUrl,
+    this.headers = const {},
     http.Client? client,
-  }) : assert(
+  })  : assert(
           baseUrl == null || baseUrl.startsWith('http'),
           'baseUrl must start with http',
-        ) {
-    // Ensure trailing slash is removed from baseUrl
-    this.baseUrl = baseUrl?.replaceAll(RegExp(r'/$'), '');
-    // Create a retry client
-    this.client = RetryClient(client ?? http.Client());
-  }
+        ),
+        assert(
+          baseUrl == null || !baseUrl.endsWith('/'),
+          'baseUrl must not end with /',
+        ),
+        client = RetryClient(client ?? http.Client());
 
-  /// User provided override for baseUrl URL
-  late final String? baseUrl;
+  /// Override base URL (default: server url defined in spec)
+  final String? baseUrl;
+
+  /// Global headers to be sent with every request
+  final Map<String, String> headers;
 
   /// HTTP client for requests
-  late final http.Client client;
+  final http.Client client;
 
   /// Authentication related variables
   final String apiKey;
@@ -99,8 +111,19 @@ class PineconeClient {
   /// Middleware for HTTP requests (user can override)
   ///
   /// The request can be of type [http.Request] or [http.MultipartRequest]
-  Future<http.BaseRequest> onRequest(http.BaseRequest request) async {
-    return request;
+  Future<http.BaseRequest> onRequest(http.BaseRequest request) {
+    return Future.value(request);
+  }
+
+  // ------------------------------------------
+  // METHOD: onStreamedResponse
+  // ------------------------------------------
+
+  /// Middleware for HTTP streamed responses (user can override)
+  Future<http.StreamedResponse> onStreamedResponse(
+    final http.StreamedResponse response,
+  ) {
+    return Future.value(response);
   }
 
   // ------------------------------------------
@@ -108,16 +131,17 @@ class PineconeClient {
   // ------------------------------------------
 
   /// Middleware for HTTP responses (user can override)
-  Future<http.Response> onResponse(http.Response response) async {
-    return response;
+  Future<http.Response> onResponse(http.Response response) {
+    return Future.value(response);
   }
 
   // ------------------------------------------
-  // METHOD: _request
+  // METHOD: makeRequestStream
   // ------------------------------------------
 
-  /// Reusable request method
-  Future<http.Response> _request({
+  /// Reusable request stream method
+  @protected
+  Future<http.StreamedResponse> makeRequestStream({
     required String baseUrl,
     required String path,
     required HttpMethod method,
@@ -165,8 +189,11 @@ class PineconeClient {
       headers['accept'] = responseType;
     }
 
+    // Add global headers
+    headers.addAll(this.headers);
+
     // Build the request object
-    late http.Response response;
+    late http.StreamedResponse response;
     try {
       http.BaseRequest request;
       if (isMultipart) {
@@ -204,10 +231,10 @@ class PineconeClient {
       request = await onRequest(request);
 
       // Submit request
-      response = await http.Response.fromStream(await client.send(request));
+      response = await client.send(request);
 
       // Handle user response middleware
-      response = await onResponse(response);
+      response = await onStreamedResponse(response);
     } catch (e) {
       // Handle request and response errors
       throw PineconeClientException(
@@ -229,8 +256,53 @@ class PineconeClient {
       method: method,
       message: 'Unsuccessful response',
       code: response.statusCode,
-      body: response.body,
+      body: (await http.Response.fromStream(response)).body,
     );
+  }
+
+  // ------------------------------------------
+  // METHOD: makeRequest
+  // ------------------------------------------
+
+  /// Reusable request method
+  @protected
+  Future<http.Response> makeRequest({
+    required String baseUrl,
+    required String path,
+    required HttpMethod method,
+    Map<String, dynamic> queryParams = const {},
+    Map<String, String> headerParams = const {},
+    bool isMultipart = false,
+    String requestType = '',
+    String responseType = '',
+    Object? body,
+  }) async {
+    try {
+      final streamedResponse = await makeRequestStream(
+        baseUrl: baseUrl,
+        path: path,
+        method: method,
+        queryParams: queryParams,
+        headerParams: headerParams,
+        requestType: requestType,
+        responseType: responseType,
+        body: body,
+      );
+      final response = await http.Response.fromStream(streamedResponse);
+
+      // Handle user response middleware
+      return await onResponse(response);
+    } on PineconeClientException {
+      rethrow;
+    } catch (e) {
+      // Handle request and response errors
+      throw PineconeClientException(
+        uri: Uri.parse((this.baseUrl ?? baseUrl) + path),
+        method: method,
+        message: 'Response error',
+        body: e,
+      );
+    }
   }
 
   // ------------------------------------------
@@ -247,7 +319,7 @@ class PineconeClient {
   Future<List<String>> listCollections({
     String environment = 'us-west1-gcp-free',
   }) async {
-    final r = await _request(
+    final r = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/collections',
       method: HttpMethod.get,
@@ -278,7 +350,7 @@ class PineconeClient {
     String environment = 'us-west1-gcp-free',
     required CreateCollectionRequest request,
   }) async {
-    final _ = await _request(
+    final _ = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/collections',
       method: HttpMethod.post,
@@ -309,7 +381,7 @@ class PineconeClient {
     String environment = 'us-west1-gcp-free',
     required String collectionName,
   }) async {
-    final r = await _request(
+    final r = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/collections/$collectionName',
       method: HttpMethod.get,
@@ -340,7 +412,7 @@ class PineconeClient {
     String environment = 'us-west1-gcp-free',
     required String collectionName,
   }) async {
-    final _ = await _request(
+    final _ = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/collections/$collectionName',
       method: HttpMethod.delete,
@@ -367,7 +439,7 @@ class PineconeClient {
   Future<List<String>> listIndexes({
     String environment = 'us-west1-gcp-free',
   }) async {
-    final r = await _request(
+    final r = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/databases',
       method: HttpMethod.get,
@@ -398,7 +470,7 @@ class PineconeClient {
     String environment = 'us-west1-gcp-free',
     required CreateIndexRequest request,
   }) async {
-    final _ = await _request(
+    final _ = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/databases',
       method: HttpMethod.post,
@@ -429,7 +501,7 @@ class PineconeClient {
     String environment = 'us-west1-gcp-free',
     required String indexName,
   }) async {
-    final r = await _request(
+    final r = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
       method: HttpMethod.get,
@@ -460,7 +532,7 @@ class PineconeClient {
     String environment = 'us-west1-gcp-free',
     required String indexName,
   }) async {
-    final _ = await _request(
+    final _ = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
       method: HttpMethod.delete,
@@ -493,7 +565,7 @@ class PineconeClient {
     required String indexName,
     required ConfigureIndexRequest request,
   }) async {
-    final _ = await _request(
+    final _ = await makeRequest(
       baseUrl: 'https://controller.${environment}.pinecone.io',
       path: '/databases/$indexName',
       method: HttpMethod.patch,
@@ -530,7 +602,7 @@ class PineconeClient {
     required String environment,
     IndexStatsRequest? request,
   }) async {
-    final r = await _request(
+    final r = await makeRequest(
       baseUrl:
           'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/describe_index_stats',
@@ -569,7 +641,7 @@ class PineconeClient {
     required String environment,
     required QueryRequest request,
   }) async {
-    final r = await _request(
+    final r = await makeRequest(
       baseUrl:
           'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/query',
@@ -608,7 +680,7 @@ class PineconeClient {
     required String environment,
     required DeleteRequest request,
   }) async {
-    final _ = await _request(
+    final _ = await makeRequest(
       baseUrl:
           'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/delete',
@@ -649,7 +721,7 @@ class PineconeClient {
     required List<String> ids,
     String? namespace,
   }) async {
-    final r = await _request(
+    final r = await makeRequest(
       baseUrl:
           'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/fetch',
@@ -691,7 +763,7 @@ class PineconeClient {
     required String environment,
     required UpdateRequest request,
   }) async {
-    final _ = await _request(
+    final _ = await makeRequest(
       baseUrl:
           'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/update',
@@ -729,7 +801,7 @@ class PineconeClient {
     required String environment,
     required UpsertRequest request,
   }) async {
-    final r = await _request(
+    final r = await makeRequest(
       baseUrl:
           'https://${indexName}-${projectId}.svc.${environment}.pinecone.io',
       path: '/vectors/upsert',

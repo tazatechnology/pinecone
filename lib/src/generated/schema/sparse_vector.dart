@@ -16,10 +16,10 @@ class SparseVector with _$SparseVector {
   /// Factory constructor for SparseVector
   const factory SparseVector({
     /// The indices of the sparse data.
-    List<int>? indices,
+    @JsonKey(includeIfNull: false) List<int>? indices,
 
     /// The corresponding values of the sparse data, which must be the same length as the indices.
-    List<double>? values,
+    @JsonKey(includeIfNull: false) List<double>? values,
   }) = _SparseVector;
 
   /// Object construction from a JSON representation

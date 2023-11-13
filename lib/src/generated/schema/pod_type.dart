@@ -11,27 +11,27 @@ part of pinecone_schema;
 /// An enumeration of the available pod types.
 enum PodType {
   @JsonValue('s1.x1')
-  s1x1,
+  s1X1,
   @JsonValue('s1.x2')
-  s1x2,
+  s1X2,
   @JsonValue('s1.x4')
-  s1x4,
+  s1X4,
   @JsonValue('s1.x8')
-  s1x8,
+  s1X8,
   @JsonValue('p1.x1')
-  p1x1,
+  p1X1,
   @JsonValue('p1.x2')
-  p1x2,
+  p1X2,
   @JsonValue('p1.x4')
-  p1x4,
+  p1X4,
   @JsonValue('p1.x8')
-  p1x8,
+  p1X8,
   @JsonValue('p2.x1')
-  p2x1,
+  p2X1,
   @JsonValue('p2.x2')
-  p2x2,
+  p2X2,
   @JsonValue('p2.x4')
-  p2x4,
+  p2X4,
   @JsonValue('p2.x8')
-  p2x8,
+  p2X8,
 }

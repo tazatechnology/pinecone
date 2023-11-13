@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1
+
+* Client generation using latest `openapi_spec` package (v0.7.6)
+
 ## 0.6.0
 
 * Client generation using latest `openapi_spec` package (v0.6.0)

@@ -16,7 +16,7 @@ class IndexStatsRequest with _$IndexStatsRequest {
   /// Factory constructor for IndexStatsRequest
   const factory IndexStatsRequest({
     /// If defined, the operation only returns statistics for vectors that satisfy the filter.
-    Map<String, dynamic>? filter,
+    @JsonKey(includeIfNull: false) Map<String, dynamic>? filter,
   }) = _IndexStatsRequest;
 
   /// Object construction from a JSON representation

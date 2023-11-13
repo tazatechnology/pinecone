@@ -16,7 +16,7 @@ class UpsertResponse with _$UpsertResponse {
   /// Factory constructor for UpsertResponse
   const factory UpsertResponse({
     /// The number of vectors upserted.
-    int? upsertedCount,
+    @JsonKey(includeIfNull: false) int? upsertedCount,
   }) = _UpsertResponse;
 
   /// Object construction from a JSON representation
