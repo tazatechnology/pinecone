@@ -4,7 +4,6 @@
 // ignore_for_file: invalid_annotation_target, unused_import
 
 import 'dart:convert';
-import 'dart:io' as io;
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
@@ -21,7 +20,7 @@ enum HttpMethod { get, put, post, delete, options, head, patch, trace }
 // ==========================================
 
 /// HTTP exception handler for PineconeClient
-class PineconeClientException implements io.HttpException {
+class PineconeClientException implements Exception {
   PineconeClientException({
     required this.message,
     required this.uri,
@@ -30,9 +29,7 @@ class PineconeClientException implements io.HttpException {
     this.body,
   });
 
-  @override
   final String message;
-  @override
   final Uri uri;
   final HttpMethod method;
   final int? code;
@@ -69,11 +66,13 @@ class PineconeClient {
   ///
   /// - [PineconeClient.baseUrl] Override base URL (default: server url defined in spec)
   /// - [PineconeClient.headers] Global headers to be sent with every request
+  /// - [PineconeClient.queryParams] Global query parameters to be sent with every request
   /// - [PineconeClient.client] Override HTTP client to use for requests
   PineconeClient({
     this.apiKey = '',
     this.baseUrl,
     this.headers = const {},
+    this.queryParams = const {},
     http.Client? client,
   })  : assert(
           baseUrl == null || baseUrl.startsWith('http'),
@@ -90,6 +89,9 @@ class PineconeClient {
 
   /// Global headers to be sent with every request
   final Map<String, String> headers;
+
+  /// Global query parameters to be sent with every request
+  final Map<String, dynamic> queryParams;
 
   /// HTTP client for requests
   final http.Client client;
@@ -136,12 +138,20 @@ class PineconeClient {
   }
 
   // ------------------------------------------
-  // METHOD: makeRequestStream
+  // METHOD: _jsonDecode
   // ------------------------------------------
 
-  /// Reusable request stream method
+  dynamic _jsonDecode(http.Response r) {
+    return json.decode(utf8.decode(r.bodyBytes));
+  }
+
+  // ------------------------------------------
+  // METHOD: _request
+  // ------------------------------------------
+
+  /// Reusable request method
   @protected
-  Future<http.StreamedResponse> makeRequestStream({
+  Future<http.StreamedResponse> _request({
     required String baseUrl,
     required String path,
     required HttpMethod method,
@@ -160,6 +170,9 @@ class PineconeClient {
       baseUrl.isNotEmpty,
       'baseUrl is required, but none defined in spec or provided by user',
     );
+
+    // Add global query parameters
+    queryParams = {...queryParams, ...this.queryParams};
 
     // Ensure query parameters are strings or iterable of strings
     queryParams = queryParams.map((key, value) {
@@ -193,46 +206,75 @@ class PineconeClient {
     headers.addAll(this.headers);
 
     // Build the request object
+    http.BaseRequest request;
+    if (isMultipart) {
+      // Handle multipart request
+      request = http.MultipartRequest(method.name, uri);
+      request = request as http.MultipartRequest;
+      if (body is List<http.MultipartFile>) {
+        request.files.addAll(body);
+      } else {
+        request.files.add(body as http.MultipartFile);
+      }
+    } else {
+      // Handle normal request
+      request = http.Request(method.name, uri);
+      request = request as http.Request;
+      try {
+        if (body != null) {
+          request.body = json.encode(body);
+        }
+      } catch (e) {
+        // Handle request encoding error
+        throw PineconeClientException(
+          uri: uri,
+          method: method,
+          message: 'Could not encode: ${body.runtimeType}',
+          body: e,
+        );
+      }
+    }
+
+    // Add request headers
+    request.headers.addAll(headers);
+
+    // Handle user request middleware
+    request = await onRequest(request);
+
+    // Submit request
+    return await client.send(request);
+  }
+
+  // ------------------------------------------
+  // METHOD: makeRequestStream
+  // ------------------------------------------
+
+  /// Reusable request stream method
+  @protected
+  Future<http.StreamedResponse> makeRequestStream({
+    required String baseUrl,
+    required String path,
+    required HttpMethod method,
+    Map<String, dynamic> queryParams = const {},
+    Map<String, String> headerParams = const {},
+    bool isMultipart = false,
+    String requestType = '',
+    String responseType = '',
+    Object? body,
+  }) async {
+    final uri = Uri.parse((this.baseUrl ?? baseUrl) + path);
     late http.StreamedResponse response;
     try {
-      http.BaseRequest request;
-      if (isMultipart) {
-        // Handle multipart request
-        request = http.MultipartRequest(method.name, uri);
-        request = request as http.MultipartRequest;
-        if (body is List<http.MultipartFile>) {
-          request.files.addAll(body);
-        } else {
-          request.files.add(body as http.MultipartFile);
-        }
-      } else {
-        // Handle normal request
-        request = http.Request(method.name, uri);
-        request = request as http.Request;
-        try {
-          if (body != null) {
-            request.body = json.encode(body);
-          }
-        } catch (e) {
-          // Handle request encoding error
-          throw PineconeClientException(
-            uri: uri,
-            method: method,
-            message: 'Could not encode: ${body.runtimeType}',
-            body: e,
-          );
-        }
-      }
-
-      // Add request headers
-      request.headers.addAll(headers);
-
-      // Handle user request middleware
-      request = await onRequest(request);
-
-      // Submit request
-      response = await client.send(request);
-
+      response = await _request(
+        baseUrl: baseUrl,
+        path: path,
+        method: method,
+        queryParams: queryParams,
+        headerParams: headerParams,
+        requestType: requestType,
+        responseType: responseType,
+        body: body,
+      );
       // Handle user response middleware
       response = await onStreamedResponse(response);
     } catch (e) {
@@ -277,8 +319,10 @@ class PineconeClient {
     String responseType = '',
     Object? body,
   }) async {
+    final uri = Uri.parse((this.baseUrl ?? baseUrl) + path);
+    late http.Response response;
     try {
-      final streamedResponse = await makeRequestStream(
+      final streamedResponse = await _request(
         baseUrl: baseUrl,
         path: path,
         method: method,
@@ -288,21 +332,32 @@ class PineconeClient {
         responseType: responseType,
         body: body,
       );
-      final response = await http.Response.fromStream(streamedResponse);
-
+      response = await http.Response.fromStream(streamedResponse);
       // Handle user response middleware
-      return await onResponse(response);
-    } on PineconeClientException {
-      rethrow;
+      response = await onResponse(response);
     } catch (e) {
       // Handle request and response errors
       throw PineconeClientException(
-        uri: Uri.parse((this.baseUrl ?? baseUrl) + path),
+        uri: uri,
         method: method,
         message: 'Response error',
         body: e,
       );
     }
+
+    // Check for successful response
+    if ((response.statusCode ~/ 100) == 2) {
+      return response;
+    }
+
+    // Handle unsuccessful response
+    throw PineconeClientException(
+      uri: uri,
+      method: method,
+      message: 'Unsuccessful response',
+      code: response.statusCode,
+      body: response.body,
+    );
   }
 
   // ------------------------------------------
@@ -330,7 +385,7 @@ class PineconeClient {
         if (apiKey.isNotEmpty) 'Api-Key': apiKey,
       },
     );
-    return List<String>.from(json.decode(r.body));
+    return List<String>.from(_jsonDecode(r));
   }
 
   // ------------------------------------------
@@ -392,7 +447,7 @@ class PineconeClient {
         if (apiKey.isNotEmpty) 'Api-Key': apiKey,
       },
     );
-    return Collection.fromJson(json.decode(r.body));
+    return Collection.fromJson(_jsonDecode(r));
   }
 
   // ------------------------------------------
@@ -450,7 +505,7 @@ class PineconeClient {
         if (apiKey.isNotEmpty) 'Api-Key': apiKey,
       },
     );
-    return List<String>.from(json.decode(r.body));
+    return List<String>.from(_jsonDecode(r));
   }
 
   // ------------------------------------------
@@ -512,7 +567,7 @@ class PineconeClient {
         if (apiKey.isNotEmpty) 'Api-Key': apiKey,
       },
     );
-    return Index.fromJson(json.decode(r.body));
+    return Index.fromJson(_jsonDecode(r));
   }
 
   // ------------------------------------------
@@ -615,7 +670,7 @@ class PineconeClient {
         if (apiKey.isNotEmpty) 'Api-Key': apiKey,
       },
     );
-    return IndexStats.fromJson(json.decode(r.body));
+    return IndexStats.fromJson(_jsonDecode(r));
   }
 
   // ------------------------------------------
@@ -654,7 +709,7 @@ class PineconeClient {
         if (apiKey.isNotEmpty) 'Api-Key': apiKey,
       },
     );
-    return QueryResponse.fromJson(json.decode(r.body));
+    return QueryResponse.fromJson(_jsonDecode(r));
   }
 
   // ------------------------------------------
@@ -737,7 +792,7 @@ class PineconeClient {
         if (namespace != null) 'namespace': namespace,
       },
     );
-    return FetchResponse.fromJson(json.decode(r.body));
+    return FetchResponse.fromJson(_jsonDecode(r));
   }
 
   // ------------------------------------------
@@ -814,6 +869,6 @@ class PineconeClient {
         if (apiKey.isNotEmpty) 'Api-Key': apiKey,
       },
     );
-    return UpsertResponse.fromJson(json.decode(r.body));
+    return UpsertResponse.fromJson(_jsonDecode(r));
   }
 }

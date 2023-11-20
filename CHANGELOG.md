@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.2
+
+* Client generation using latest `openapi_spec` package (v0.7.8)
+
 ## 0.7.1
 
 * Relax `meta` version requirement
